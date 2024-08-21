@@ -7,7 +7,7 @@ public class CellManager : MonoBehaviour
 {
     [SerializeField] SpriteData sprites;
     [SerializeField] Image image;
-    public int index;
+    public int indexSprite;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class CellManager : MonoBehaviour
     public void SetUpSprite(int index)
     {
         //index = Random.Range(0, sprites.sprite.Count);
-        this.index = index;
-        image.sprite = sprites.sprite[index];
+        this.indexSprite = index;
+        image.sprite = sprites.sprite[indexSprite];
     }
 }

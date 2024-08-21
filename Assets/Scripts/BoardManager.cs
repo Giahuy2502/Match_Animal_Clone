@@ -9,12 +9,14 @@ public class BoardManager : MonoBehaviour
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] List<SetUpNumberCell> setUpNumbers;
+    
     GameObject[,] grid = new GameObject[8, 9];
 
     void Start()
     {
+        TickedCell.countAllCell = 0;
         SetUpBoard(layer);
-        TickedCell.listTickedCell.Clear();
+
     }
 
     void SetUpBoard(int layer)
@@ -25,6 +27,7 @@ public class BoardManager : MonoBehaviour
             {
                 width = 8;
                 height = 9;
+                TickedCell.countAllCell += 72;
                 Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
                 SpawmCell(tickPosition);
             }
@@ -32,6 +35,7 @@ public class BoardManager : MonoBehaviour
             {
                 width = 7;
                 height = 9;
+                TickedCell.countAllCell += 63;
                 Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
                 SpawmCell(tickPosition);
             }
@@ -47,7 +51,7 @@ public class BoardManager : MonoBehaviour
             {
 
                 index = Random.Range(0, setUpNumbers.Count);
-                Debug.Log(index);
+                //Debug.Log(index);
                 while (setUpNumbers[index].number == 0)
                 {
                     index = Random.Range(0, setUpNumbers.Count);
@@ -75,6 +79,9 @@ public class SetUpNumberCell
 }
 public static class TickedCell
 {
-    public static List<GameObject> listTickedCell= new List<GameObject>();
+    public static GameObject[] listTickedCell= new GameObject[7];
     public static List<Vector3> PositionTicked = new List<Vector3>();
+    public static bool[] ticked = new bool[7];
+    public static int[] arrindex = new int[7];//mang dem so luong cac cell 
+    public static int countAllCell;
 }
