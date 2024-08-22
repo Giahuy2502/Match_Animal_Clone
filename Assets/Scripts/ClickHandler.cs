@@ -3,25 +3,68 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System;
 
 public class ClickHandler : MonoBehaviour,IPointerClickHandler
 {
     int count = 0;
-    int countDestroy=-1;
+    bool checkDestroy = false;
     public void OnPointerClick(PointerEventData eventData)
     {
-        
         CheckEndGame();
-        
     }
-
+    void CheckEndGame()
+    {
+        if (count > 7)
+        {
+            Debug.Log("Lose game!");
+        }
+        else
+        {
+            MoveTickedCell();
+            TickedCell.countAllCell--;
+            Debug.Log(TickedCell.countAllCell);
+        }
+    }
+    void MoveTickedCell()
+    {
+        for (int i = 0; i < TickedCell.PositionTicked.Count; i++)
+        {
+            if (TickedCell.listTickedCell[i]==null)
+            {
+                Vector3 To = TickedCell.PositionTicked[i];
+                TickedCell.listTickedCell[i] = gameObject;
+                count++;
+                transform.DOMove(To, 0.25f).OnComplete(() =>
+                {
+                    IncreaseArrIndex();
+                    ArrangeTickedCell();
+                });
+                break;
+            }
+        }
+    }
     void IncreaseArrIndex()
     {
-        CellManager datacell = gameObject.GetComponent<CellManager>();
-        int indexCell = datacell.indexSprite;
+        int indexCell = GetIndexSprite(gameObject);
         TickedCell.arrindex[indexCell]++;
+        if (TickedCell.arrindex[indexCell] == 3) checkDestroy = true;
     }
-
+    void ArrangeTickedCell()
+    {
+        SortArrayObject();
+        for (int i = 0; i < TickedCell.listTickedCell.Length; i++)
+        {
+            if (TickedCell.listTickedCell[i] == null) break;
+            Vector3 To = TickedCell.PositionTicked[i];
+            TickedCell.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
+            {
+                if(checkDestroy) DestroyTickedCell();
+                if (TickedCell.countAllCell == 0) SceneManager.LoadScene(0);
+            });
+        }
+        
+    }
     void DestroyTickedCell()
     {
         for(int i = 0; i < 7; i++)
@@ -29,62 +72,59 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
             if (TickedCell.listTickedCell[i] != null)
             {
                 GameObject obj = TickedCell.listTickedCell[i];
-                CellManager datacell = obj.GetComponent<CellManager>();
-                int indexCell = datacell.indexSprite;
-                if (TickedCell.arrindex[indexCell] == 3)
+                int indexCell = GetIndexSprite(obj);
+                if (TickedCell.arrindex[indexCell] >= 3)
                 {
-                    countDestroy = indexCell;
-                    
-                    DOTween.Kill(obj);
-                    Destroy(obj);
-                    Debug.Log("da xoa cell tai o : " + i);
-                    //obj.SetActive(false);
-                    //TickedCell.listTickedCell[i] = null;
-                    TickedCell.ticked[i] = false;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        int index = i+j;
+                        GameObject objDes = TickedCell.listTickedCell[index];
+                        DOTween.Kill(objDes);
+                        Destroy(objDes);
+                        TickedCell.listTickedCell[index] = null;
+                    }
+                    TickedCell.arrindex[indexCell] -= 3;
+                    i = i + 2;
                 }
             }
         }
-        if(countDestroy != -1) 
+        if(checkDestroy) 
         {
-            TickedCell.arrindex[countDestroy] = 0;
-            //Debug.Log(countDestroy+" " + TickedCell.arrindex[countDestroy]+" _003");
-            countDestroy = -1;
-        }  
+            checkDestroy = false;
+            SortArrayAfterDestroy();
+        }
     }
 
-    void MoveTickedCell()
+    static int GetIndexSprite(GameObject obj)
     {
-        for (int i = 0; i < TickedCell.PositionTicked.Count; i++)
+        CellManager datacell = obj.GetComponent<CellManager>();
+        int indexCell = datacell.indexSprite;
+        return indexCell;
+    }
+
+    static void SortArrayObject()
+    {
+        Array.Sort(TickedCell.listTickedCell, (a, b) =>
         {
-            if (!TickedCell.ticked[i])
+            if (a == null || b == null)
+                return a == null ? 1 : -1;
+            var aIndex = a.GetComponent<CellManager>();
+            var bIndex = b.GetComponent<CellManager>();
+            return aIndex.indexSprite.CompareTo(bIndex.indexSprite);
+        });
+    }
+
+    static void SortArrayAfterDestroy()
+    {
+        SortArrayObject();
+        for (int i = 0; i < TickedCell.listTickedCell.Length; i++)
+        {
+            if (TickedCell.listTickedCell[i] != null)
             {
                 Vector3 To = TickedCell.PositionTicked[i];
+                TickedCell.listTickedCell[i].transform.DOMove(To, 0.25f);
+            }           
+        }
+    }
 
-                transform.DOMove(To, 0.25f).OnComplete(() =>
-                {
-                    IncreaseArrIndex();
-                    //Invoke("DestroyTickedCell", 0.5f);
-                    DestroyTickedCell();
-                });
-                TickedCell.ticked[i] = true;
-                TickedCell.listTickedCell[i] = gameObject;
-                count++;
-                break;
-            }
-        }
-    }
-    void CheckEndGame()
-    {
-        if (count > 7)
-        {
-            //lose game
-        }
-        else
-        {
-            MoveTickedCell();
-            TickedCell.countAllCell--;
-            Debug.Log(TickedCell.countAllCell);
-            if (TickedCell.countAllCell == 0) SceneManager.LoadScene(0);
-        }
-    }
 }

@@ -14,9 +14,9 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
-        TickedCell.countAllCell = 0;
+        ResetTickedCell();
+        
         SetUpBoard(layer);
-
     }
 
     void SetUpBoard(int layer)
@@ -49,13 +49,11 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-
                 index = Random.Range(0, setUpNumbers.Count);
-                //Debug.Log(index);
+                
                 while (setUpNumbers[index].number == 0)
                 {
                     index = Random.Range(0, setUpNumbers.Count);
-                    //Debug.Log(index + "  " + setUpNumbers[index].number);
                 }
                 //
                 Vector3 position = new Vector3(i * 140 + tickPosition.x, j * 140 + tickPosition.y, 0);
@@ -68,7 +66,20 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
+
+    void ResetTickedCell()
+    {
+        TickedCell.countAllCell = 0;
+        for(int i=0;i<7;i++)
+        {
+            TickedCell.arrindex[i]=0;
+            TickedCell.listTickedCell[i] = null;
+            //TickedCell.ticked[i] = setUpNumbers.Count+1;
+        }
+    }
 }
+
+
 
 [System.Serializable]
 public class SetUpNumberCell
@@ -79,9 +90,9 @@ public class SetUpNumberCell
 }
 public static class TickedCell
 {
-    public static GameObject[] listTickedCell= new GameObject[7];
-    public static List<Vector3> PositionTicked = new List<Vector3>();
-    public static bool[] ticked = new bool[7];
+    public static GameObject[] listTickedCell= new GameObject[7];//luu cac cell
+    public static List<Vector3> PositionTicked = new List<Vector3>();//luu position cac o
+    //public static int[] ticked = new int[7];//luu indexSprite tai cac o
     public static int[] arrindex = new int[7];//mang dem so luong cac cell 
-    public static int countAllCell;
+    public static int countAllCell;//luu tong so co cell tren board
 }
