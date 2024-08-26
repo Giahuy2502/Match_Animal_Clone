@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class ClickHandler : MonoBehaviour,IPointerClickHandler
 {
@@ -11,7 +12,20 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     bool checkDestroy = false;
     public void OnPointerClick(PointerEventData eventData)
     {
-        CheckEndGame();
+        CellManager cell = GetComponent<CellManager>();
+        if(cell.clickable)
+        {
+            DeleteInGrid(cell);
+            CheckEndGame();
+        }
+    }
+    void DeleteInGrid(CellManager cell)
+    {
+        int i = cell.i;
+        int j = cell.j;
+        int layer =cell.layer;
+        GameObject[,] grid = TickedCell.layerGrid[layer];
+        grid[i, j] = null;
     }
     void CheckEndGame()
     {

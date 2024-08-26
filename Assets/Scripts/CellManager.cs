@@ -8,6 +8,10 @@ public class CellManager : MonoBehaviour
     [SerializeField] SpriteData sprites;
     [SerializeField] Image image;
     public int indexSprite;
+    public int layer;
+    public int i;
+    public int j;
+    public bool clickable;
 
     void Start()
     {
@@ -16,8 +20,11 @@ public class CellManager : MonoBehaviour
     }
     public void SetUpSprite(int index)
     {
-        //index = Random.Range(0, sprites.sprite.Count);
+        
         this.indexSprite = index;
         image.sprite = sprites.sprite[indexSprite];
+
+        if(layer == TickedCell.layer-1) clickable = true;
+        
     }
 }
