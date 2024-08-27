@@ -13,9 +13,8 @@ public class TickedCellManager : MonoBehaviour
             {
                 Vector3 pos = child.position;
                 PositionTicked.Add(pos);
-                //Debug.Log(pos);
             }
         }
-        TickedCell.PositionTicked = PositionTicked;
+        DataGame.PositionTicked = PositionTicked;
     }
 }

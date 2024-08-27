@@ -1,20 +1,21 @@
 ﻿
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System;
-using UnityEngine.UI;
+
 
 public class ClickHandler : MonoBehaviour,IPointerClickHandler
 {
-    int count = 0;
+
     bool checkDestroy = false;
     public void OnPointerClick(PointerEventData eventData)
     {
+        
         CellManager cell = GetComponent<CellManager>();
         if(cell.clickable)
         {
+            
             DeleteInGrid(cell);
             CheckEndGame();
         }
@@ -24,31 +25,34 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         int i = cell.i;
         int j = cell.j;
         int layer =cell.layer;
-        GameObject[,] grid = TickedCell.layerGrid[layer];
+        GameObject[,] grid = DataGame.layerGrid[layer];
         grid[i, j] = null;
     }
     void CheckEndGame()
     {
-        if (count > 7)
+        if (DataGame.countTickedCell>7)
         {
+            DataGame.stateCurrentPlay = 2;
             Debug.Log("Lose game!");
         }
         else
         {
             MoveTickedCell();
-            TickedCell.countAllCell--;
-            Debug.Log(TickedCell.countAllCell);
+            DataGame.countAllCell--;
+            DataGame.countTickedCell++;
+            Debug.Log(DataGame.countTickedCell);
+            //Debug.Log(DataGame.countAllCell);
         }
     }
     void MoveTickedCell()
     {
-        for (int i = 0; i < TickedCell.PositionTicked.Count; i++)
+        for (int i = 0; i < DataGame.PositionTicked.Count; i++)
         {
-            if (TickedCell.listTickedCell[i]==null)
+            if (DataGame.listTickedCell[i]==null)
             {
-                Vector3 To = TickedCell.PositionTicked[i];
-                TickedCell.listTickedCell[i] = gameObject;
-                count++;
+                Vector3 To = DataGame.PositionTicked[i];
+                DataGame.listTickedCell[i] = gameObject;
+                
                 transform.DOMove(To, 0.25f).OnComplete(() =>
                 {
                     IncreaseArrIndex();
@@ -60,21 +64,30 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     }
     void IncreaseArrIndex()
     {
+        
         int indexCell = GetIndexSprite(gameObject);
-        TickedCell.arrindex[indexCell]++;
-        if (TickedCell.arrindex[indexCell] == 3) checkDestroy = true;
+        DataGame.arrindex[indexCell]++;
+        if (DataGame.arrindex[indexCell] == 3)
+        {
+            DataGame.countTickedCell -= 3;
+            Debug.Log(DataGame.countTickedCell+"   da xoa 3 cell");
+            checkDestroy = true;
+        }
     }
     void ArrangeTickedCell()
     {
         SortArrayObject();
-        for (int i = 0; i < TickedCell.listTickedCell.Length; i++)
+        for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
-            if (TickedCell.listTickedCell[i] == null) break;
-            Vector3 To = TickedCell.PositionTicked[i];
-            TickedCell.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
+            if (DataGame.listTickedCell[i] == null) break;
+            Vector3 To = DataGame.PositionTicked[i];
+            DataGame.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
             {
-                if(checkDestroy) DestroyTickedCell();
-                if (TickedCell.countAllCell == 0) SceneManager.LoadScene(0);
+                if(checkDestroy)
+                {  
+                    DestroyTickedCell();
+                }
+                if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
             });
         }
         
@@ -83,27 +96,28 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     {
         for(int i = 0; i < 7; i++)
         {
-            if (TickedCell.listTickedCell[i] != null)
+            if (DataGame.listTickedCell[i] != null)
             {
-                GameObject obj = TickedCell.listTickedCell[i];
+                GameObject obj = DataGame.listTickedCell[i];
                 int indexCell = GetIndexSprite(obj);
-                if (TickedCell.arrindex[indexCell] >= 3)
+                if (DataGame.arrindex[indexCell] >= 3)
                 {
                     for (int j = 0; j < 3; j++)
                     {
                         int index = i+j;
-                        GameObject objDes = TickedCell.listTickedCell[index];
+                        GameObject objDes = DataGame.listTickedCell[index];
                         DOTween.Kill(objDes);
                         Destroy(objDes);
-                        TickedCell.listTickedCell[index] = null;
+                        DataGame.listTickedCell[index] = null;
                     }
-                    TickedCell.arrindex[indexCell] -= 3;
+                    DataGame.arrindex[indexCell] -= 3;
                     i = i + 2;
                 }
             }
         }
         if(checkDestroy) 
         {
+            
             checkDestroy = false;
             SortArrayAfterDestroy();
         }
@@ -118,7 +132,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
 
     static void SortArrayObject()
     {
-        Array.Sort(TickedCell.listTickedCell, (a, b) =>
+        Array.Sort(DataGame.listTickedCell, (a, b) =>
         {
             if (a == null || b == null)
                 return a == null ? 1 : -1;
@@ -131,12 +145,12 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     static void SortArrayAfterDestroy()
     {
         SortArrayObject();
-        for (int i = 0; i < TickedCell.listTickedCell.Length; i++)
+        for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
-            if (TickedCell.listTickedCell[i] != null)
+            if (DataGame.listTickedCell[i] != null)
             {
-                Vector3 To = TickedCell.PositionTicked[i];
-                TickedCell.listTickedCell[i].transform.DOMove(To, 0.25f);
+                Vector3 To = DataGame.PositionTicked[i];
+                DataGame.listTickedCell[i].transform.DOMove(To, 0.25f);
             }           
         }
     }

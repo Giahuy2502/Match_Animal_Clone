@@ -24,7 +24,7 @@ public class CellManager : MonoBehaviour
         this.indexSprite = index;
         image.sprite = sprites.sprite[indexSprite];
 
-        if(layer == TickedCell.layer-1) clickable = true;
+        if(layer == DataGame.layer-1) clickable = true;
         
     }
 }
