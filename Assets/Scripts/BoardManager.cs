@@ -34,8 +34,7 @@ public class BoardManager : MonoBehaviour
     }
     void CheckClickableCell()
     {
-        //Debug.Log(boardLayer.Count);
-        //Debug.Log(DataGame.layerGrid.Count);
+        
         for (int i = layer - 2; i >= 0; i--)
         {
             GameObject[,] currentGrid = DataGame.layerGrid[i];
@@ -45,10 +44,24 @@ public class BoardManager : MonoBehaviour
                 for (int k = 1; k < currentGrid.GetLength(1) - 1; k++)
                 {
                     GameObject currentCell = currentGrid[j, k];
-                    GameObject checkCell1 = checkGrid[j, k];
-                    GameObject checkCell2 = checkGrid[j, k - 1];
-                    GameObject checkCell3 = checkGrid[j - 1, k];
-                    GameObject checkCell4 = checkGrid[j - 1, k - 1];
+                    GameObject checkCell1=new GameObject();
+                    GameObject checkCell2 = new GameObject();
+                    GameObject checkCell3 = new GameObject();
+                    GameObject checkCell4 = new GameObject();
+                    if (i%2==0)
+                    {
+                        checkCell1 = checkGrid[j, k];
+                        checkCell2 = checkGrid[j, k - 1];
+                        checkCell3 = checkGrid[j - 1, k];
+                        checkCell4 = checkGrid[j - 1, k - 1];
+                    }
+                    else
+                    {
+                        checkCell1 = checkGrid[j, k];
+                        checkCell2 = checkGrid[j, k + 1];
+                        checkCell3 = checkGrid[j+1, k];
+                        checkCell4 = checkGrid[j+1, k + 1];
+                    }
                     if (checkCell1 == null && checkCell2 == null && checkCell3 == null && checkCell4 == null && currentCell != null)
                     {
                         CellManager cell = currentCell.GetComponent<CellManager>();
@@ -69,13 +82,13 @@ public class BoardManager : MonoBehaviour
                 //height = 9;
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                Debug.Log(board.Count + "   " + board[0].Count);
-                Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
+                //Debug.Log(board.Count + "   " + board[0].Count);
+                //Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
                 DataGame.countAllCell += 72;
                 Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
                 SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
-                Debug.Log("Da add grid 1");
+                //Debug.Log("Da add grid 1");
             }
             else
             {
@@ -89,7 +102,7 @@ public class BoardManager : MonoBehaviour
                 Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
                 SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
-                Debug.Log("Da add grid 2");
+                //Debug.Log("Da add grid 2");
             }
         }
     }
@@ -100,14 +113,10 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                //if (board[j][i] == "0" || board[j][i] == "")
-                //{
-                //    grid[i, j] = null;
-                //    Debug.Log("da gap TH == 0");
-                //}
-                /*else*/ if (board[j][i] == "1")
+                
+                if (board[j][i] == "1")
                 {
-                    Debug.Log("Da gap TH =1");
+                    //Debug.Log("Da gap TH =1");
                     int index = Random.Range(0, setUpNumbers.Count);
                     while (setUpNumbers[index].number == 0)
                     {
@@ -125,6 +134,11 @@ public class BoardManager : MonoBehaviour
                     grid[i, j] = cell;
                     setUpNumbers[index].number--;
                 }
+                //else
+                //{
+                //    grid[i, j] = null;
+                //    Debug.Log("da gap TH == 0");
+                //}
                 //else
                 //{
                 //    grid[i, j] = null;

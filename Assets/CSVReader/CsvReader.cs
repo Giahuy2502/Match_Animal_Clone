@@ -33,7 +33,7 @@ public class CsvReader
         List<List<string>> csvData = new List<List<string>>();
         foreach (string line in lines)
         {
-            UnityEngine.Debug.Log(line[line.Length-1]);
+            
             if (line.StartsWith('#'))
             {
                 if(csvData.Count > 0)

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class WinPanelManager : MonoBehaviour
 {
+    int indexCurrentScene;
     public void OnContinueButton()
     {
-        SceneManager.LoadScene(0);
+        indexCurrentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(indexCurrentScene+1);
     }
     public void OnHomeButton()
     {
