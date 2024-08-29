@@ -25,6 +25,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         int i = cell.i;
         int j = cell.j;
         int layer =cell.layer;
+        DataGame.undoCell.Push(gameObject);
         GameObject[,] grid = DataGame.layerGrid[layer];
         grid[i, j] = null;
     }

@@ -7,19 +7,14 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField] int layer;
     [SerializeField] GameObject prefabs;
-    //[SerializeField] int width;
-    //[SerializeField] int height;
     [SerializeField] List<SetUpNumberCell> setUpNumbers;
     [SerializeField] TextAsset csv;
     [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
-    private float deltaTime = 0.0f;
-
     void Start()
     {
         ResetDataGame();
         SetUpBoard();
         SetUpGrid(layer);
-        
     }
 
     void Update()
@@ -73,12 +68,8 @@ public class BoardManager : MonoBehaviour
         {
             if (z % 2 == 0)
             {
-                //width = 8;
-                //height = 9;
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                //Debug.Log(board.Count + "   " + board[0].Count);
-                //Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
                 DataGame.countAllCell += 72;
                 Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
                 SpawmCell(tickPosition,z, grid, board);
@@ -86,12 +77,8 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
-                //width = 7;
-                //height = 9;
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                Debug.Log(board.Count + "   " + board[0].Count);
-                Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
                 DataGame.countAllCell += 63;
                 Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
                 SpawmCell(tickPosition, z,grid,board);
@@ -124,13 +111,9 @@ public class BoardManager : MonoBehaviour
                     SetUpClickAble(cell, cellSprite);
                     cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
                     grid[i, j] = cell;
+                    cellSprite.undoPosition = position;
                     setUpNumbers[index].number--;
                 }
-                //else
-                //{
-                //    grid[i, j] = null;
-                //    Debug.Log("da gap TH == 0");
-                //}
                 
             }
         }
@@ -154,6 +137,7 @@ public class BoardManager : MonoBehaviour
             DataGame.arrindex[i] = 0;
             DataGame.listTickedCell[i] = null;
         }
+        DataGame.undoCell.Clear();
     }
     static void CheckConditionsClickableCell(GameObject currentCell, GameObject checkCell1, GameObject checkCell2, GameObject checkCell3, GameObject checkCell4)
     {
@@ -162,6 +146,16 @@ public class BoardManager : MonoBehaviour
             CellManager cell = currentCell.GetComponent<CellManager>();
             cell.clickable = true;
             SetUpClickAble(currentCell, cell);
+        }
+        else
+        {
+            if (currentCell != null)
+            {
+                CellManager cell = currentCell.GetComponent<CellManager>();
+                cell.clickable = false;
+                SetUpClickAble(currentCell, cell);
+            }
+            
         }
     }
 
@@ -176,13 +170,13 @@ public static class DataGame
     public static List<GameObject[,]> layerGrid = new List<GameObject[,]>();
     public static int stateCurrentPlay = 0;
     public static int countTickedCell = 0;
-    
+    public static Stack<GameObject> undoCell = new Stack<GameObject>();
 }
+
 
 [System.Serializable]
 public class SetUpNumberCell
 {
     public Sprite sprite;
     public int number;
-
 }

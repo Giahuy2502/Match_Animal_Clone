@@ -12,6 +12,7 @@ public class CellManager : MonoBehaviour
     public int i;
     public int j;
     public bool clickable;
+    public Vector3 undoPosition;
 
     void Start()
     {
