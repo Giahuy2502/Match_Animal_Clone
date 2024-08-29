@@ -12,7 +12,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField] List<SetUpNumberCell> setUpNumbers;
     [SerializeField] TextAsset csv;
     [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
-
+    private float deltaTime = 0.0f;
 
     void Start()
     {
@@ -30,11 +30,10 @@ public class BoardManager : MonoBehaviour
     {
         var csvReader = new CsvReader();
         boardLayer = csvReader.ReadCsvLayer(csv.text);
-        //Debug.Log(csv.text);
+        
     }
     void CheckClickableCell()
     {
-        
         for (int i = layer - 2; i >= 0; i--)
         {
             GameObject[,] currentGrid = DataGame.layerGrid[i];
@@ -43,35 +42,31 @@ public class BoardManager : MonoBehaviour
             {
                 for (int k = 1; k < currentGrid.GetLength(1) - 1; k++)
                 {
-                    GameObject currentCell = currentGrid[j, k];
-                    GameObject checkCell1=new GameObject();
-                    GameObject checkCell2 = new GameObject();
-                    GameObject checkCell3 = new GameObject();
-                    GameObject checkCell4 = new GameObject();
-                    if (i%2==0)
+                    if (i % 2 == 0)
                     {
-                        checkCell1 = checkGrid[j, k];
-                        checkCell2 = checkGrid[j, k - 1];
-                        checkCell3 = checkGrid[j - 1, k];
-                        checkCell4 = checkGrid[j - 1, k - 1];
+                        GameObject currentCell = currentGrid[j, k];
+                        GameObject checkCell1 = checkGrid[j, k];
+                        GameObject checkCell2 = checkGrid[j, k - 1];
+                        GameObject checkCell3 = checkGrid[j - 1, k];
+                        GameObject checkCell4 = checkGrid[j - 1, k - 1];
+                        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
                     }
+
                     else
                     {
-                        checkCell1 = checkGrid[j, k];
-                        checkCell2 = checkGrid[j, k + 1];
-                        checkCell3 = checkGrid[j+1, k];
-                        checkCell4 = checkGrid[j+1, k + 1];
+                        GameObject currentCell = currentGrid[j, k];
+                        GameObject checkCell1 = checkGrid[j, k];
+                        GameObject checkCell2 = checkGrid[j, k + 1];
+                        GameObject checkCell3 = checkGrid[j+1, k];
+                        GameObject checkCell4 = checkGrid[j+1, k + 1];
+                        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
                     }
-                    if (checkCell1 == null && checkCell2 == null && checkCell3 == null && checkCell4 == null && currentCell != null)
-                    {
-                        CellManager cell = currentCell.GetComponent<CellManager>();
-                        cell.clickable = true;
-                        SetUpClickAble(currentCell, cell);
-                    }
+                    
                 }
             }
         }
     }
+
     void SetUpGrid(int layer)
     {
         for(int z=0; z<layer; z++)
@@ -88,7 +83,6 @@ public class BoardManager : MonoBehaviour
                 Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
                 SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
-                //Debug.Log("Da add grid 1");
             }
             else
             {
@@ -102,7 +96,6 @@ public class BoardManager : MonoBehaviour
                 Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
                 SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
-                //Debug.Log("Da add grid 2");
             }
         }
     }
@@ -116,7 +109,6 @@ public class BoardManager : MonoBehaviour
                 
                 if (board[j][i] == "1")
                 {
-                    //Debug.Log("Da gap TH =1");
                     int index = Random.Range(0, setUpNumbers.Count);
                     while (setUpNumbers[index].number == 0)
                     {
@@ -139,15 +131,10 @@ public class BoardManager : MonoBehaviour
                 //    grid[i, j] = null;
                 //    Debug.Log("da gap TH == 0");
                 //}
-                //else
-                //{
-                //    grid[i, j] = null;
-                //    Debug.Log(board[j][i]+""+j+"   "+i);
-                //}
+                
             }
         }
     }
-
     static void SetUpClickAble(GameObject cell, CellManager cellSprite)
     {
         Image image = cell.GetComponent<Image>();
@@ -168,6 +155,16 @@ public class BoardManager : MonoBehaviour
             DataGame.listTickedCell[i] = null;
         }
     }
+    static void CheckConditionsClickableCell(GameObject currentCell, GameObject checkCell1, GameObject checkCell2, GameObject checkCell3, GameObject checkCell4)
+    {
+        if (checkCell1 == null && checkCell2 == null && checkCell3 == null && checkCell4 == null && currentCell != null)
+        {
+            CellManager cell = currentCell.GetComponent<CellManager>();
+            cell.clickable = true;
+            SetUpClickAble(currentCell, cell);
+        }
+    }
+
 }
 public static class DataGame
 {
