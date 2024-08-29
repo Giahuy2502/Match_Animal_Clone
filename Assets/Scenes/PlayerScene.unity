@@ -763,6 +763,7 @@ MonoBehaviour:
     number: 21
   - sprite: {fileID: 21300000, guid: c228dbbf7483c5b4bbfb1ed07c3b2843, type: 3}
     number: 24
+  csv: {fileID: 4900000, guid: 0b866fa7ba67bbc468272e970c86938d, type: 3}
 --- !u!114 &313113657
 MonoBehaviour:
   m_ObjectHideFlags: 0

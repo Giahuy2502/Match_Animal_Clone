@@ -7,23 +7,35 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField] int layer;
     [SerializeField] GameObject prefabs;
-    [SerializeField] int width;
-    [SerializeField] int height;
+    //[SerializeField] int width;
+    //[SerializeField] int height;
     [SerializeField] List<SetUpNumberCell> setUpNumbers;
+    [SerializeField] TextAsset csv;
+    [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
+
 
     void Start()
     {
-        ResetDataGame(); 
-        SetUpBoard(layer);
+        ResetDataGame();
+        SetUpBoard();
+        SetUpGrid(layer);
+        
     }
 
     void Update()
     {
         CheckClickableCell();
     }
-
+    void SetUpBoard()
+    {
+        var csvReader = new CsvReader();
+        boardLayer = csvReader.ReadCsvLayer(csv.text);
+        //Debug.Log(csv.text);
+    }
     void CheckClickableCell()
     {
+        //Debug.Log(boardLayer.Count);
+        //Debug.Log(DataGame.layerGrid.Count);
         for (int i = layer - 2; i >= 0; i--)
         {
             GameObject[,] currentGrid = DataGame.layerGrid[i];
@@ -47,57 +59,77 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
-    void SetUpBoard(int layer)
+    void SetUpGrid(int layer)
     {
         for(int z=0; z<layer; z++)
         {
             if (z % 2 == 0)
             {
-                width = 8;
-                height = 9;
+                //width = 8;
+                //height = 9;
                 GameObject[,] grid = new GameObject[10, 11];
+                List<List<string>> board = boardLayer[z];
+                Debug.Log(board.Count + "   " + board[0].Count);
+                Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
                 DataGame.countAllCell += 72;
                 Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
-                SpawmCell(tickPosition,z, grid);
+                SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
+                Debug.Log("Da add grid 1");
             }
             else
             {
-                width = 7;
-                height = 9;
-                GameObject[,] grid = new GameObject[9, 11];
+                //width = 7;
+                //height = 9;
+                GameObject[,] grid = new GameObject[10, 11];
+                List<List<string>> board = boardLayer[z];
+                Debug.Log(board.Count + "   " + board[0].Count);
+                Debug.Log(grid.GetLength(0) + "   " + grid.GetLength(1));
                 DataGame.countAllCell += 63;
                 Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
-                SpawmCell(tickPosition, z,grid);
+                SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
+                Debug.Log("Da add grid 2");
             }
         }
     }
-
-    void SpawmCell(Vector3 tickPosition,int layer, GameObject[,] grid)
+    void SpawmCell(Vector3 tickPosition, int layer, GameObject[,] grid, List<List<string>> board)
     {
-        int index = 0;
-        for (int i = 1; i <= width; i++)
+        
+        for (int i = 0; i < grid.GetLength(0); i++)
         {
-            for (int j = 1; j <= height; j++)
+            for (int j = 0; j < grid.GetLength(1); j++)
             {
-                index = Random.Range(0, setUpNumbers.Count);
-                while (setUpNumbers[index].number == 0)
+                //if (board[j][i] == "0" || board[j][i] == "")
+                //{
+                //    grid[i, j] = null;
+                //    Debug.Log("da gap TH == 0");
+                //}
+                /*else*/ if (board[j][i] == "1")
                 {
-                    index = Random.Range(0, setUpNumbers.Count);
+                    Debug.Log("Da gap TH =1");
+                    int index = Random.Range(0, setUpNumbers.Count);
+                    while (setUpNumbers[index].number == 0)
+                    {
+                        index = Random.Range(0, setUpNumbers.Count);
+                    }
+                    Vector3 position = new Vector3((i - 1) * 140 + tickPosition.x, (j - 1) * 140 + tickPosition.y, 0);
+                    GameObject cell = Instantiate(prefabs, position, Quaternion.identity);
+                    CellManager cellSprite = cell.GetComponent<CellManager>();
+                    cellSprite.layer = layer;
+                    cellSprite.i = i;
+                    cellSprite.j = j;
+                    cellSprite.SetUpSprite(index);
+                    SetUpClickAble(cell, cellSprite);
+                    cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
+                    grid[i, j] = cell;
+                    setUpNumbers[index].number--;
                 }
-                Vector3 position = new Vector3((i-1) * 140 + tickPosition.x, (j-1) * 140 + tickPosition.y, 0);
-                GameObject cell = Instantiate(prefabs, position, Quaternion.identity);
-                CellManager cellSprite = cell.GetComponent<CellManager>();
-                cellSprite.layer = layer;
-                cellSprite.i = i;
-                cellSprite.j=j;
-                cellSprite.SetUpSprite(index);
-                SetUpClickAble(cell, cellSprite);
-                cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
-                grid[i, j] = cell;
-                setUpNumbers[index].number--;
+                //else
+                //{
+                //    grid[i, j] = null;
+                //    Debug.Log(board[j][i]+""+j+"   "+i);
+                //}
             }
         }
     }
@@ -116,20 +148,12 @@ public class BoardManager : MonoBehaviour
         DataGame.layerGrid.Clear();
         DataGame.stateCurrentPlay = 0;
         DataGame.countTickedCell = 0;
-        for (int i=0;i<7;i++)
+        for (int i = 0; i < 7; i++)
         {
-            DataGame.arrindex[i]=0;
+            DataGame.arrindex[i] = 0;
             DataGame.listTickedCell[i] = null;
         }
     }
-}
-
-[System.Serializable]
-public class SetUpNumberCell
-{
-    public Sprite sprite;
-    public int number;
-
 }
 public static class DataGame
 {
@@ -141,4 +165,13 @@ public static class DataGame
     public static List<GameObject[,]> layerGrid = new List<GameObject[,]>();
     public static int stateCurrentPlay = 0;
     public static int countTickedCell = 0;
+    
+}
+
+[System.Serializable]
+public class SetUpNumberCell
+{
+    public Sprite sprite;
+    public int number;
+
 }

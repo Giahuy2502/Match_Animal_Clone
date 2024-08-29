@@ -1,5 +1,9 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using UnityEngine;
+using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 
 public class CsvReader
 {
@@ -13,18 +17,42 @@ public class CsvReader
     public List<List<string>> ReadCsv(string csvText)
     {
         List<List<string>> csvData = new List<List<string>>();
-
         string[] lines = csvText.Split('\n');
-
         foreach (string line in lines)
         {
             List<string> fields = ParseCsvLine(line);
             csvData.Add(fields);
         }
-
         return csvData;
     }
+    //
+    public List<List<List<string>>> ReadCsvLayer(string csvText)
+    {
+        List<List<List<string>>> csvDataLayer= new List<List<List<string>>>();
+        string[] lines = csvText.Split('\n');
+        List<List<string>> csvData = new List<List<string>>();
+        foreach (string line in lines)
+        {
+            UnityEngine.Debug.Log(line[line.Length-1]);
+            if (line.StartsWith('#'))
+            {
+                if(csvData.Count > 0)
+                {
+                    csvDataLayer.Add(csvData);
+                    csvData=new List<List<string>>();
+                }
+            }
+            
+            else
+            {
+                List<string> fields = ParseCsvLine(line);
+                csvData.Add(fields);
+            }
+        }
+        return csvDataLayer;
+    }
 
+    //
     public List<List<string>> ReadCsvFromPath(string filePath)
     {
         List<List<string>> csvData = new List<List<string>>();
