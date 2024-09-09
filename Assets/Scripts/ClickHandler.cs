@@ -15,10 +15,16 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         CellManager cell = GetComponent<CellManager>();
         if(cell.clickable)
         {
-            
+            // cell.clickable==false;
+            SetClickable();
             DeleteInGrid(cell);
             CheckEndGame();
         }
+    }
+    void SetClickable()
+    {
+        CellManager cell= GetComponent<CellManager>();
+        cell.clickable = false;
     }
     void DeleteInGrid(CellManager cell)
     {

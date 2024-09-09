@@ -2432,7 +2432,7 @@ GameObject:
   - component: {fileID: 707214625}
   - component: {fileID: 707214624}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SortingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2501,7 +2501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 707214625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1274480811}
+        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
+        m_MethodName: OnSortingButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &707214625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3084,7 @@ GameObject:
   - component: {fileID: 844469419}
   - component: {fileID: 844469418}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: UndoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5205,7 +5217,7 @@ GameObject:
   - component: {fileID: 1493230463}
   - component: {fileID: 1493230462}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: MagnetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5274,7 +5286,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1493230463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1274480811}
+        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
+        m_MethodName: OnMagnetButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1493230463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6051,7 +6075,7 @@ GameObject:
   - component: {fileID: 1759247700}
   - component: {fileID: 1759247699}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: GiftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6074,8 +6098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -394, y: 5.080078}
-  m_SizeDelta: {x: 191.705, y: 191.9713}
+  m_AnchoredPosition: {x: -394, y: 2.5392}
+  m_SizeDelta: {x: 191.705, y: 186.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759247699
 MonoBehaviour:
