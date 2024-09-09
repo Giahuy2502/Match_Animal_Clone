@@ -29,6 +29,20 @@ public class BoardManager : MonoBehaviour
     }
     void CheckClickableCell()
     {
+        GameObject[,] topGrid = DataGame.layerGrid[layer-1];
+        for (int j = 1; j < topGrid.GetLength(0) - 1; j++)
+        {
+            for (int k = 1; k < topGrid.GetLength(1) - 1; k++)
+            {
+                if (topGrid[j, k] != null)
+                {
+                    CellManager tempCell = topGrid[j, k].GetComponent<CellManager>();
+                    tempCell.clickable = true;
+                }
+            }
+        }
+
+        //Debug.Log("Da xet cac cellable");
         for (int i = layer - 2; i >= 0; i--)
         {
             GameObject[,] currentGrid = DataGame.layerGrid[i];

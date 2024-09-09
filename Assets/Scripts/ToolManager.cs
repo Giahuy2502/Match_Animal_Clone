@@ -92,7 +92,58 @@ public class ToolManager : MonoBehaviour
     }
     public void OnSortingButton()
     {
+        //dua cac layerGrid ve list cac gameobject
+        //tron danh sach 1 chieu bang thuat toan fisher-yates
+        //thay doi cac chi so i,j,layer cua cellManager
+        //gan lai gia tri tu danh sach tron ve lai cac layer grid
+        List<GameObject[,]> board = DataGame.layerGrid;
+        List<int> tempList = new List<int>();
+        foreach(var Grid in board)
+        {
+            for(int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for(int j=0;j<Grid.GetLength(1); j++)
+                {
+                    if (Grid[i, j] != null)
+                    {
+                        
+                        CellManager cell = Grid[i, j].GetComponent<CellManager>();
+                        tempList.Add(cell.indexSprite);
+                        // tempList[tempList.Count-1]
+                        // Debug.Log($"cell.layer= {cell.layer} +cell.i= {cell.i}+cell.j= {cell.j}");
+                    }
 
+                }
+            }
+        }
+        for (int i = tempList.Count - 1; i > 0; i--)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, i + 1);
+            int temp = tempList[i];
+            tempList[i] = tempList[randomIndex];
+            tempList[randomIndex] = temp;
+        }
+        int index = 0;
+        for(int k=0;k<DataGame.layerGrid.Count;k++)
+        {
+            GameObject[,] Grid = DataGame.layerGrid[k];
+            for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+                    if (Grid[i, j] != null)
+                    {
+                        
+                        CellManager tempCell = Grid[i,j].GetComponent<CellManager>();
+                        tempCell.indexSprite = tempList[index];
+                        tempCell.SetUpSprite(tempCell.indexSprite);
+                        index++;
+                    }
+
+                }
+            }
+        }
+        
     }
     static void SortArrayObject()
     {
