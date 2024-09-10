@@ -10,23 +10,39 @@ public class ToolManager : MonoBehaviour
 {
     public void OnUndoButton()
     {
-        GameObject undoCell = DataGame.undoCell.Pop();
-        if (undoCell == null) return;
-        CellManager cell = undoCell.GetComponent<CellManager>();
-        int i = cell.i;
-        int j = cell.j;
-        int layer = cell.layer;
-        GameObject[,] grid = DataGame.layerGrid[layer];
-        grid[i, j] = undoCell;
-        for (int z = 0; z < DataGame.PositionTicked.Count; z++)
+        bool checkUndoable;
+        GameObject undoCell = new GameObject();
+        while (true)
         {
-            if (DataGame.listTickedCell[z] == undoCell)
+            undoCell = DataGame.undoCell.Pop();
+            if (undoCell != null)
             {
-                DataGame.listTickedCell[z] = null;
-                Debug.Log("da xoa khoi list tickedcell");
+                checkUndoable = true;
+                break;
             }
         }
+        if (!checkUndoable) return;
+        CellManager cell;
+        int i, j, layer;
+        GetIndexPositionCell(undoCell, out cell, out i, out j, out layer);
+        GameObject[,] grid = DataGame.layerGrid[layer];
+        grid[i, j] = undoCell;
+        DeleteCellInList(undoCell); // xoa cell khoi list tickedcell
         SortArrayObject();
+        SortListTickedCell();
+        ResetAllCountNumber(cell);
+        undoCell.transform.DOMove(cell.undoPosition, 0.25f);
+        cell.clickable = true;
+    }
+    private static void ResetAllCountNumber(CellManager cell)
+    {
+        DataGame.countAllCell++;
+        DataGame.countTickedCell--;
+        int indexCell = cell.indexSprite;
+        DataGame.arrindex[indexCell]--;
+    }
+    private static void SortListTickedCell()
+    {
         for (int z = 0; z < DataGame.listTickedCell.Length; z++)
         {
             if (DataGame.listTickedCell[z] != null)
@@ -35,13 +51,26 @@ public class ToolManager : MonoBehaviour
                 DataGame.listTickedCell[z].transform.DOMove(To, 0.25f);
             }
         }
-        DataGame.countAllCell++;
-        DataGame.countTickedCell--;
-        int indexCell = cell.indexSprite;
-        DataGame.arrindex[indexCell]--;
-        undoCell.transform.DOMove(cell.undoPosition, 0.25f);
-        cell.clickable = true;
     }
+    private static void DeleteCellInList(GameObject undoCell)
+    {
+        for (int z = 0; z < DataGame.PositionTicked.Count; z++)
+        {
+            if (DataGame.listTickedCell[z] == undoCell)
+            {
+                DataGame.listTickedCell[z] = null;
+                Debug.Log("da xoa khoi list tickedcell");
+            }
+        }
+    }
+    private static void GetIndexPositionCell(GameObject undoCell, out CellManager cell, out int i, out int j, out int layer)
+    {
+        cell = undoCell.GetComponent<CellManager>();
+        i = cell.i;
+        j = cell.j;
+        layer = cell.layer;
+    }
+    //-----------------------------------------------------------------------------------------------------------
     public void OnMagnetButton()
     {
         // duyet list ticked cell
@@ -49,47 +78,57 @@ public class ToolManager : MonoBehaviour
         // chon ra cac cell cung loai voi cell tren tu gird
         // set cell.clickable cua cac cell duoc chon la true
         int count = 0;
-        int indexSprite=0;
-        for(int i=0;i<DataGame.listTickedCell.Length;i++)
+        int indexSprite = 0;
+        GetCountAndIndexSprite(ref count, ref indexSprite);
+        Debug.Log($"count : {count} + indexSprite : {indexSprite}");
+        GetSameCell(ref count, ref indexSprite);
+
+    }
+    private static void GetSameCell(ref int count, ref int indexSprite)
+    {
+        List<GameObject[,]> board = DataGame.layerGrid;
+        for (int i = board.Count - 1; i >= 0; i--)
+        {
+            GameObject[,] boardCell = board[i];
+            for (int j = 0; j < boardCell.GetLength(0); j++)
+            {
+                for (int k = 0; k < boardCell.GetLength(1); k++)
+                {
+                    if (boardCell[j, k] != null)
+                    {
+
+                        CellManager cell = boardCell[j, k].GetComponent<CellManager>();
+                        cell.clickable = true;
+                        cell.SetUpColor(Color.white);
+                        if (count == 0 && indexSprite == 0) indexSprite = cell.indexSprite;
+
+                        if (cell.indexSprite == indexSprite && count < 3)
+                        {
+                            ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
+                            PointerEventData eventData = new PointerEventData(EventSystem.current);
+                            clickCell.OnPointerClick(eventData);
+                            count++;
+                        }
+                        if (count == 3) return;
+                    }
+                }
+            }
+        }
+    }
+    private static void GetCountAndIndexSprite(ref int count, ref int indexSprite)
+    {
+        for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
             if (DataGame.listTickedCell[i] == null) break;
-            CellManager cell= DataGame.listTickedCell[i].GetComponent<CellManager>();
+            CellManager cell = DataGame.listTickedCell[i].GetComponent<CellManager>();
             if (DataGame.arrindex[cell.indexSprite] > count)
             {
                 indexSprite = cell.indexSprite;
                 count = DataGame.arrindex[indexSprite];
             }
         }
-        Debug.Log($"count : {count} + indexSprite : {indexSprite}");
-        List<GameObject[,]> board = DataGame.layerGrid;
-        for(int i= board.Count-1;i>=0;i--)
-        {
-            GameObject[,] boardCell = board[i];
-            for(int j=0;j<boardCell.GetLength(0);j++)
-            {
-                for(int k=0;k<boardCell.GetLength(1);k++)
-                {
-                    if (boardCell[j,k]!=null)
-                    {
-
-                        CellManager cell = boardCell[j,k].GetComponent<CellManager>();
-                        cell.clickable = true;
-                        Image image = cell.GetComponent<Image>();
-                        image.color = Color.white;
-                        if (cell.indexSprite == indexSprite&&count<3)
-                        {
-                            ClickHandler clickCell = boardCell[j,k].GetComponent<ClickHandler>();
-                            PointerEventData eventData = new PointerEventData(EventSystem.current);
-                            clickCell.OnPointerClick(eventData);
-                            count++;
-                        }
-                        if(count==3) return;
-                    }
-                }
-            }
-        }
-
     }
+    //-----------------------------------------------------------------------------------------------------------
     public void OnSortingButton()
     {
         //dua cac layerGrid ve list cac gameobject
@@ -98,15 +137,56 @@ public class ToolManager : MonoBehaviour
         //gan lai gia tri tu danh sach tron ve lai cac layer grid
         List<GameObject[,]> board = DataGame.layerGrid;
         List<int> tempList = new List<int>();
-        foreach(var Grid in board)
+        ConvertBoardToListIndex(board, tempList);
+        RandomSortList(tempList);
+        ConvertListIndexToBoard(tempList);
+
+    }
+
+    private static void ConvertListIndexToBoard(List<int> tempList)
+    {
+        int index = 0;
+        for (int k = 0; k < DataGame.layerGrid.Count; k++)
         {
-            for(int i = 0; i < Grid.GetLength(0); i++)
+            GameObject[,] Grid = DataGame.layerGrid[k];
+            for (int i = 0; i < Grid.GetLength(0); i++)
             {
-                for(int j=0;j<Grid.GetLength(1); j++)
+                for (int j = 0; j < Grid.GetLength(1); j++)
                 {
                     if (Grid[i, j] != null)
                     {
-                        
+
+                        CellManager tempCell = Grid[i, j].GetComponent<CellManager>();
+                        tempCell.indexSprite = tempList[index];
+                        tempCell.SetUpSprite(tempCell.indexSprite);
+                        index++;
+                    }
+
+                }
+            }
+        }
+    }
+    private static void RandomSortList(List<int> tempList)
+    {
+        for (int i = tempList.Count - 1; i > 0; i--)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, i + 1);
+            int temp = tempList[i];
+            tempList[i] = tempList[randomIndex];
+            tempList[randomIndex] = temp;
+        }
+    }
+    private static void ConvertBoardToListIndex(List<GameObject[,]> board, List<int> tempList)
+    {
+        foreach (var Grid in board)
+        {
+            for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+                    if (Grid[i, j] != null)
+                    {
+
                         CellManager cell = Grid[i, j].GetComponent<CellManager>();
                         tempList.Add(cell.indexSprite);
                         // tempList[tempList.Count-1]
@@ -116,35 +196,8 @@ public class ToolManager : MonoBehaviour
                 }
             }
         }
-        for (int i = tempList.Count - 1; i > 0; i--)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, i + 1);
-            int temp = tempList[i];
-            tempList[i] = tempList[randomIndex];
-            tempList[randomIndex] = temp;
-        }
-        int index = 0;
-        for(int k=0;k<DataGame.layerGrid.Count;k++)
-        {
-            GameObject[,] Grid = DataGame.layerGrid[k];
-            for (int i = 0; i < Grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < Grid.GetLength(1); j++)
-                {
-                    if (Grid[i, j] != null)
-                    {
-                        
-                        CellManager tempCell = Grid[i,j].GetComponent<CellManager>();
-                        tempCell.indexSprite = tempList[index];
-                        tempCell.SetUpSprite(tempCell.indexSprite);
-                        index++;
-                    }
-
-                }
-            }
-        }
-        
     }
+
     static void SortArrayObject()
     {
         Array.Sort(DataGame.listTickedCell, (a, b) =>

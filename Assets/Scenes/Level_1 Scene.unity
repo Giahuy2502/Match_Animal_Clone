@@ -747,20 +747,24 @@ MonoBehaviour:
   layer: 2
   prefabs: {fileID: 6720437745377179942, guid: a9bbf36125599b44aaa1f849bad127c2, type: 3}
   setUpNumbers:
-  - sprite: {fileID: 21300000, guid: 5607044fa02756b429f063d577cdf7dd, type: 3}
-    number: 18
-  - sprite: {fileID: 21300000, guid: 43d19bcf5b322ee40b33f7b7b9144c15, type: 3}
+  - Sprite: {fileID: 21300000, guid: 63046428c7f7b1d40ba971064577b071, type: 3}
     number: 15
-  - sprite: {fileID: 21300000, guid: e87b4ac485ec84346bb7390ce3265d9b, type: 3}
-    number: 21
-  - sprite: {fileID: 21300000, guid: b00567a139cb9e243b82b39ec80ac36d, type: 3}
+  - Sprite: {fileID: 21300000, guid: a1f9bc3b2099ac64e977b95d37a95d0a, type: 3}
+    number: 15
+  - Sprite: {fileID: 21300000, guid: 206cffdbb043e6045892791fe571552a, type: 3}
+    number: 12
+  - Sprite: {fileID: 21300000, guid: 72e13fd87d4d3b5418e5962b84acb505, type: 3}
     number: 18
-  - sprite: {fileID: 21300000, guid: e8975b9952017c648b6b7d3a91d59625, type: 3}
+  - Sprite: {fileID: 21300000, guid: 131f9d99737d4de42a829541c7614258, type: 3}
+    number: 12
+  - Sprite: {fileID: 21300000, guid: 73b58d226b40c794bba228c09167fe92, type: 3}
     number: 18
-  - sprite: {fileID: 21300000, guid: 576b321cae531df4b91dde212af0eff0, type: 3}
-    number: 21
-  - sprite: {fileID: 21300000, guid: c228dbbf7483c5b4bbfb1ed07c3b2843, type: 3}
-    number: 24
+  - Sprite: {fileID: 21300000, guid: 2385ae38c9ac8c24abd64a5ae4840471, type: 3}
+    number: 15
+  - Sprite: {fileID: 21300000, guid: a787231bec7449040b7ec6825ff0366e, type: 3}
+    number: 12
+  - Sprite: {fileID: 21300000, guid: 7fbe435974d1fd341abfd76668ddc802, type: 3}
+    number: 18
   csv: {fileID: 4900000, guid: 0b866fa7ba67bbc468272e970c86938d, type: 3}
 --- !u!114 &313113657
 MonoBehaviour:

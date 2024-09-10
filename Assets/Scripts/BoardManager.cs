@@ -7,12 +7,13 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField] int layer;
     [SerializeField] GameObject prefabs;
-    [SerializeField] List<SetUpNumberCell> setUpNumbers;
+    [SerializeField] List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
     [SerializeField] TextAsset csv;
     [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
     void Start()
     {
         ResetDataGame();
+       
         SetUpBoard();
         SetUpGrid(layer);
     }
@@ -38,6 +39,7 @@ public class BoardManager : MonoBehaviour
                 {
                     CellManager tempCell = topGrid[j, k].GetComponent<CellManager>();
                     tempCell.clickable = true;
+                    tempCell.SetUpColor(Color.white);
                 }
             }
         }
@@ -134,9 +136,8 @@ public class BoardManager : MonoBehaviour
     }
     static void SetUpClickAble(GameObject cell, CellManager cellSprite)
     {
-        Image image = cell.GetComponent<Image>();
-        if (cellSprite.clickable) image.color = Color.white;
-        else image.color = Color.gray;
+        if (cellSprite.clickable) cellSprite.SetUpColor(Color.white);
+        else cellSprite.SetUpColor(Color.gray);
     }
 
     void ResetDataGame()
@@ -146,12 +147,14 @@ public class BoardManager : MonoBehaviour
         DataGame.layerGrid.Clear();
         DataGame.stateCurrentPlay = 0;
         DataGame.countTickedCell = 0;
+        DataGame.setUpNumbers.Clear();
         for (int i = 0; i < 7; i++)
         {
-            DataGame.arrindex[i] = 0;
             DataGame.listTickedCell[i] = null;
         }
         DataGame.undoCell.Clear();
+        DataGame.setUpNumbers = setUpNumbers;
+        DataGame.arrindex = new int[setUpNumbers.Count];
     }
     static void CheckConditionsClickableCell(GameObject currentCell, GameObject checkCell1, GameObject checkCell2, GameObject checkCell3, GameObject checkCell4)
     {
@@ -178,19 +181,20 @@ public static class DataGame
 {
     public static GameObject[] listTickedCell= new GameObject[7];//luu cac cell
     public static List<Vector3> PositionTicked = new List<Vector3>();//luu position cac o
-    public static int[] arrindex = new int[7];//mang dem so luong cac cell 
+    public static int[] arrindex;//mang dem so luong cac cell 
     public static int countAllCell;//luu tong so co cell tren board
     public static int layer;
     public static List<GameObject[,]> layerGrid = new List<GameObject[,]>();
     public static int stateCurrentPlay = 0;
     public static int countTickedCell = 0;
     public static Stack<GameObject> undoCell = new Stack<GameObject>();
+    public static List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
 }
 
 
 [System.Serializable]
 public class SetUpNumberCell
 {
-    public Sprite sprite;
+    public Sprite Sprite;
     public int number;
 }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CellManager : MonoBehaviour
 {
     [SerializeField] SpriteData sprites;
-    [SerializeField] Image image;
+    [SerializeField] Image animalImage;
+    [SerializeField] Image backGroundImage;
     public int indexSprite;
     public int layer;
     public int i;
@@ -14,18 +15,19 @@ public class CellManager : MonoBehaviour
     public bool clickable;
     public Vector3 undoPosition;
 
-    void Start()
-    {
-        image = GetComponent<Image>();
-        //SetUpSprite();
-    }
+    
     public void SetUpSprite(int index)
     {
         
         this.indexSprite = index;
-        image.sprite = sprites.sprite[indexSprite];
+        animalImage.sprite = DataGame.setUpNumbers[indexSprite].Sprite;
 
         if(layer == DataGame.layer-1) clickable = true;
         
+    }
+    public void SetUpColor(Color color)
+    {
+        animalImage.color = color;
+        backGroundImage.color = color;
     }
 }

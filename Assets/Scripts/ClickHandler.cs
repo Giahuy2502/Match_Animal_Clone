@@ -13,6 +13,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     {
         
         CellManager cell = GetComponent<CellManager>();
+        Debug.Log($"indexSptite ={cell.indexSprite}");
         if(cell.clickable)
         {
             // cell.clickable==false;
