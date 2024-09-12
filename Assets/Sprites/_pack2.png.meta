@@ -260,10 +260,10 @@ TextureImporter:
       name: pack2_7
       rect:
         serializedVersion: 2
-        x: 1939
-        y: 1626
-        width: 103
-        height: 119
+        x: 1943
+        y: 1632
+        width: 95
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +365,10 @@ TextureImporter:
       name: pack2_12
       rect:
         serializedVersion: 2
-        x: 531
-        y: 1329
-        width: 790
-        height: 205
+        x: 545
+        y: 1362
+        width: 761
+        height: 172
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,10 +617,10 @@ TextureImporter:
       name: pack2_24
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 1329
-        width: 96
-        height: 70
+        x: 1471
+        y: 1342
+        width: 36
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -702,9 +702,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 484
-        y: 1121
+        y: 1166
         width: 790
-        height: 205
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -912,9 +912,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 484
-        y: 913
+        y: 941
         width: 790
-        height: 205
+        height: 177
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1415,10 +1415,10 @@ TextureImporter:
       name: pack2_62
       rect:
         serializedVersion: 2
-        x: 2
-        y: 481
-        width: 651
-        height: 245
+        x: 16
+        y: 517
+        width: 621
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2129,8 +2129,8 @@ TextureImporter:
       name: pack2_96
       rect:
         serializedVersion: 2
-        x: 1449
-        y: 75
+        x: 1466
+        y: 130
         width: 197
         height: 89
       alignment: 0
@@ -2402,8 +2402,8 @@ TextureImporter:
       name: pack2_109
       rect:
         serializedVersion: 2
-        x: 1571
-        y: 55
+        x: 1544
+        y: 52
         width: 102
         height: 74
       alignment: 0
@@ -2509,7 +2509,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1462
         y: 70
-        width: 38
+        width: 74
         height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

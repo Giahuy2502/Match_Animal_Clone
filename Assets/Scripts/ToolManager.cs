@@ -2,23 +2,38 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UI;   
 
 public class ToolManager : MonoBehaviour
 {
+    [SerializeField] GameObject giftPanel;
+    [SerializeField] Image GiftBG;
+    [SerializeField] float speedRotation = 15f;
+
+    private void Update()
+    {
+        GiftBG.transform.Rotate(0f,0f,speedRotation*Time.deltaTime);
+    }
     public void OnUndoButton()
     {
+
         bool checkUndoable;
-        GameObject undoCell = new GameObject();
+        GameObject undoCell;
         while (true)
         {
+            if (DataGame.undoCell.Count == 0) return;
             undoCell = DataGame.undoCell.Pop();
             if (undoCell != null)
             {
                 checkUndoable = true;
                 break;
+            }
+            else
+            {
+                Destroy(undoCell );
             }
         }
         if (!checkUndoable) return;
@@ -80,7 +95,7 @@ public class ToolManager : MonoBehaviour
         int count = 0;
         int indexSprite = 0;
         GetCountAndIndexSprite(ref count, ref indexSprite);
-        Debug.Log($"count : {count} + indexSprite : {indexSprite}");
+        //Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
 
     }
@@ -208,5 +223,10 @@ public class ToolManager : MonoBehaviour
             var bIndex = b.GetComponent<CellManager>();
             return aIndex.indexSprite.CompareTo(bIndex.indexSprite);
         });
+    }
+    //-----------------------------------------------------------------------------------------------------------
+    public void OnGiftButton()
+    {
+        giftPanel.SetActive(true);
     }
 }

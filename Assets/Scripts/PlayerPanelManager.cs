@@ -13,4 +13,8 @@ public class PlayerPanelManager : MonoBehaviour
     {
         pausePanel.SetActive(true);
     }
+    public void OnCoinButton()
+    {
+        Debug.Log("da bam va cua hang");
+    }
 }

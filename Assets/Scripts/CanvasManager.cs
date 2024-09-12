@@ -8,6 +8,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject PausePanel;
     [SerializeField] GameObject WinPanel;
     [SerializeField] GameObject LosePanel;
+    [SerializeField] GameObject GiftPanel;
 
 
     void Start()
@@ -16,6 +17,7 @@ public class CanvasManager : MonoBehaviour
         PausePanel.SetActive(false);
         WinPanel.SetActive(false);
         LosePanel.SetActive(false);
+        GiftPanel.SetActive(false);
     }
 
     

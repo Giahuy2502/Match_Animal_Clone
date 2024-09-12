@@ -13,7 +13,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     {
         
         CellManager cell = GetComponent<CellManager>();
-        Debug.Log($"indexSptite ={cell.indexSprite}");
+        //Debug.Log($"indexSptite ={cell.indexSprite}");
         if(cell.clickable)
         {
             // cell.clickable==false;
@@ -38,19 +38,20 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     }
     void CheckEndGame()
     {
-        if (DataGame.countTickedCell>7)
+        //cập nhật các chỉ số đếm
+        //thực hiện di chuyển và sắp xếp các cell
+        //xét điều kiện end game
+
+        DataGame.countAllCell--;
+        DataGame.countTickedCell++;
+        MoveTickedCell();      
+        if (DataGame.countTickedCell>=7)
         {
             DataGame.stateCurrentPlay = 2;
+            Debug.Log(DataGame.countTickedCell);
             Debug.Log("Lose game!");
         }
-        else
-        {
-            MoveTickedCell();
-            DataGame.countAllCell--;
-            DataGame.countTickedCell++;
-            Debug.Log(DataGame.countTickedCell);
-            //Debug.Log(DataGame.countAllCell);
-        }
+        
     }
     void MoveTickedCell()
     {
@@ -78,7 +79,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         if (DataGame.arrindex[indexCell] == 3)
         {
             DataGame.countTickedCell -= 3;
-            Debug.Log(DataGame.countTickedCell+"   da xoa 3 cell");
+            //Debug.Log(DataGame.countTickedCell+"   da xoa 3 cell");
             checkDestroy = true;
         }
     }
@@ -94,6 +95,8 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                 if(checkDestroy)
                 {  
                     DestroyTickedCell();
+                    DataScore.state = 1;
+                    DataScore.combo++;
                 }
                 if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
             });

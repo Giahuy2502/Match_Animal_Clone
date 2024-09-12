@@ -5,17 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class PausePanelManager : MonoBehaviour
 {
+    int indexScene;
+    private void Start()
+    {
+        indexScene = SceneManager.GetActiveScene().buildIndex;
+    }
     public void OnContinueButton()
     {
         this.gameObject.SetActive(false);
     }
     public void OnRestartButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(indexScene);
     }
     public void OnHomeButton()
     {
-
+        SceneManager.LoadScene(0);
     }
     public void OnLevelButton()
     {
