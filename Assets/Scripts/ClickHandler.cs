@@ -41,17 +41,19 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         //cập nhật các chỉ số đếm
         //thực hiện di chuyển và sắp xếp các cell
         //xét điều kiện end game
-
-        DataGame.countAllCell--;
-        DataGame.countTickedCell++;
-        MoveTickedCell();      
-        if (DataGame.countTickedCell>=7)
+        if (DataGame.countTickedCell >= 7)
         {
             DataGame.stateCurrentPlay = 2;
             Debug.Log(DataGame.countTickedCell);
             Debug.Log("Lose game!");
         }
-        
+        else
+        {
+            DataGame.countAllCell--;
+            DataGame.countTickedCell++;
+            Debug.Log($"countTickedCell = {DataGame.countTickedCell}");
+            MoveTickedCell();
+        }
     }
     void MoveTickedCell()
     {
@@ -99,6 +101,12 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                     DataScore.combo++;
                 }
                 if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
+                if (DataGame.countTickedCell >= 7)
+                {
+                    DataGame.stateCurrentPlay = 2;
+                    Debug.Log(DataGame.countTickedCell);
+                    Debug.Log("Lose game!");
+                }
             });
         }
         

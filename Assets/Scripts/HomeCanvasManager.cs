@@ -20,7 +20,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnShopButton()
     {
-
+        SceneManager.LoadScene(2);
     }
     public void OnLevelsButton()
     {
@@ -28,7 +28,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnCoinButton()
     {
-
+        SceneManager.LoadScene(2);
     }
     public void OnGiftButton()
     {

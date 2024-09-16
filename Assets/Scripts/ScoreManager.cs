@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] Image fillStar1;
     [SerializeField] Image fillStar2;
     [SerializeField] Image fillStar3;
-    float countTime = 1f;
+    float countTime = 4f;
     float fillStar = 0.135f;
     float startFill1 = 0.15f;
     float startFill2 = 0.44f;
