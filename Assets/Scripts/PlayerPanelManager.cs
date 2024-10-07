@@ -1,15 +1,29 @@
 
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static DatabaseManager;
 
 public class PlayerPanelManager : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
+    [SerializeField] TextMeshProUGUI coinTxt;
+
+    public static int Coin;
+    private void Awake()
+    {
+        Coin=LoadData<int>(DatabaseKey.Coin);
+    }
     void Start()
     {
         pausePanel.SetActive(false);
+        Coin = PlayerPrefs.GetInt("coin", 0);
+    }
+    private void Update()
+    {
+        coinTxt.text = Coin.ToString();
     }
     public void OnPauseButton()
     {
@@ -17,7 +31,15 @@ public class PlayerPanelManager : MonoBehaviour
     }
     public void OnCoinButton()
     {
+        StorePanelManager.IndexCurrentScene=SceneManager.GetActiveScene().buildIndex;
         Debug.Log("da bam va cua hang");
         SceneManager.LoadScene(2);
+    }
+    public void OnApplicationQuit()
+    {
+        SaveData<int>(DatabaseKey.Coin, PlayerPrefs.GetInt("coin", 0));
+        SaveData<int>(DatabaseKey.undoCount, PlayerPrefs.GetInt("undoCount", 0));
+        SaveData<int>(DatabaseKey.magCount, PlayerPrefs.GetInt("magnetCount", 0));
+        SaveData<int>(DatabaseKey.sortCount, PlayerPrefs.GetInt("sortCount", 0));
     }
 }

@@ -3,23 +3,49 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;   
+using UnityEngine.UI;
+using static DatabaseManager;
 
 public class ToolManager : MonoBehaviour
 {
     [SerializeField] GameObject giftPanel;
     [SerializeField] Image GiftBG;
     [SerializeField] float speedRotation = 15f;
+    [SerializeField] TextMeshProUGUI undoTxt;
+    [SerializeField] TextMeshProUGUI magTxt;
+    [SerializeField] TextMeshProUGUI sortTxt;
+    public static int undoCount;
+    public static int magnetCount;
+    public static int sortCount;
 
+    private void Awake()
+    {
+        undoCount=LoadData<int>(DatabaseKey.undoCount);
+        magnetCount=LoadData<int>(DatabaseKey.magCount);
+        sortCount=LoadData<int>(DatabaseKey.sortCount);
+    }
+    
     private void Update()
     {
         GiftBG.transform.Rotate(0f,0f,speedRotation*Time.deltaTime);
+        undoTxt.text = undoCount.ToString();
+        magTxt.text = magnetCount.ToString();
+        sortTxt.text = sortCount.ToString();
+
     }
     public void OnUndoButton()
     {
-
+        if (undoCount <= 0 && PlayerPanelManager.Coin < 300) return;
+        else if (undoCount <= 0 && PlayerPanelManager.Coin >= 300)
+        {
+            PlayerPanelManager.Coin -= 300;
+            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
+            undoCount++;
+        }
         bool checkUndoable;
         GameObject undoCell;
         while (true)
@@ -48,6 +74,9 @@ public class ToolManager : MonoBehaviour
         ResetAllCountNumber(cell);
         undoCell.transform.DOMove(cell.undoPosition, 0.25f);
         cell.clickable = true;
+        //----
+        undoCount--;
+        PlayerPrefs.SetInt("undoCount",undoCount);
     }
     private static void ResetAllCountNumber(CellManager cell)
     {
@@ -92,12 +121,22 @@ public class ToolManager : MonoBehaviour
         // chon ra cell co so dem lon nhat
         // chon ra cac cell cung loai voi cell tren tu gird
         // set cell.clickable cua cac cell duoc chon la true
+        if (magnetCount <= 0 && PlayerPanelManager.Coin < 300) return;
+        else if (magnetCount <= 0 && PlayerPanelManager.Coin >= 300)
+        {
+            PlayerPanelManager.Coin -= 300;
+            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
+            magnetCount++;
+        }
         int count = 0;
         int indexSprite = 0;
         GetCountAndIndexSprite(ref count, ref indexSprite);
         //Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
-
+        //----
+        magnetCount--;
+        PlayerPrefs.SetInt("magnetCount",magnetCount);
     }
     private static void GetSameCell(ref int count, ref int indexSprite)
     {
@@ -150,12 +189,21 @@ public class ToolManager : MonoBehaviour
         //tron danh sach 1 chieu bang thuat toan fisher-yates
         //thay doi cac chi so i,j,layer cua cellManager
         //gan lai gia tri tu danh sach tron ve lai cac layer grid
+        if (sortCount <= 0 && PlayerPanelManager.Coin < 300) return;
+        else if (sortCount <= 0 && PlayerPanelManager.Coin >= 300)
+        {
+            PlayerPanelManager.Coin -= 300;
+            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
+            sortCount++;
+        }
         List<GameObject[,]> board = DataGame.layerGrid;
         List<int> tempList = new List<int>();
         ConvertBoardToListIndex(board, tempList);
         RandomSortList(tempList);
         ConvertListIndexToBoard(tempList);
-
+        sortCount--;
+        PlayerPrefs.SetInt("sortCount",sortCount);
     }
 
     private static void ConvertListIndexToBoard(List<int> tempList)

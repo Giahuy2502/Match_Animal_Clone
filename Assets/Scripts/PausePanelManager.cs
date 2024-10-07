@@ -24,7 +24,14 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnLevelButton()
     {
-
+        ToolManager.undoCount =0;
+        ToolManager.magnetCount =0;
+        ToolManager.sortCount = 0;
+        PlayerPanelManager.Coin =0;
+        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
+        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
+        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
     }
     public void OnTutorialButton()
     {

@@ -316,8 +316,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2234,8 +2234,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2874,8 +2874,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3740,7 +3740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1208018820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton5
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1208018820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4040,6 +4052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8897143a18ba9499d63d2d6d971782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinTxt: {fileID: 1895016171}
 --- !u!1 &1313788368
 GameObject:
   m_ObjectHideFlags: 0
@@ -4347,7 +4360,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393425383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1393425383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4468,7 +4493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1443914758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443914758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4589,7 +4626,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1458325323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1458325323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4689,8 +4738,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4789,7 +4838,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1583956134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1583956134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6340,7 +6401,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1996595012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnPriceButton2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1996595012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6439,8 +6512,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6650,8 +6723,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1494815369, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 87d55bd6cef5f96449225fd2ce00eff4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
