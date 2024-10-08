@@ -12,14 +12,11 @@ public class PlayerPanelManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinTxt;
 
     public static int Coin;
-    private void Awake()
-    {
-        Coin=LoadData<int>(DatabaseKey.Coin);
-    }
+    
     void Start()
     {
         pausePanel.SetActive(false);
-        Coin = PlayerPrefs.GetInt("coin", 0);
+        Coin = PlayerPrefs.GetInt("coin",0);
     }
     private void Update()
     {
@@ -37,9 +34,6 @@ public class PlayerPanelManager : MonoBehaviour
     }
     public void OnApplicationQuit()
     {
-        SaveData<int>(DatabaseKey.Coin, PlayerPrefs.GetInt("coin", 0));
-        SaveData<int>(DatabaseKey.undoCount, PlayerPrefs.GetInt("undoCount", 0));
-        SaveData<int>(DatabaseKey.magCount, PlayerPrefs.GetInt("magnetCount", 0));
-        SaveData<int>(DatabaseKey.sortCount, PlayerPrefs.GetInt("sortCount", 0));
+        PlayerPrefs.Save();
     }
 }

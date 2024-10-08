@@ -11,7 +11,7 @@ public class StorePanelManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinTxt;
     private void Update()
     {
-        int coin = PlayerPrefs.GetInt("coin", 0);
+        int coin = PlayerPrefs.GetInt("coin",0);
         coinTxt.text = coin.ToString();
     }
     public void OnExitButton()
@@ -27,7 +27,7 @@ public class StorePanelManager : MonoBehaviour
         PlayerPanelManager.Coin += 3000;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
         PlayerPrefs.SetInt("undoCount",ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
+        PlayerPrefs.SetInt("magnetCount",ToolManager.magnetCount);
         PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
     }
     public void OnPriceButton1()

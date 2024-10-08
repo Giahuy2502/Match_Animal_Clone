@@ -9,7 +9,7 @@ public class HomeCanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinTxt;
     private void Update()
     {
-        int coin = PlayerPrefs.GetInt("coin", 0);
+        int coin = PlayerPrefs.GetInt("coin",0);
         coinTxt.text = coin.ToString();
     }
     public void OnPlayButton()

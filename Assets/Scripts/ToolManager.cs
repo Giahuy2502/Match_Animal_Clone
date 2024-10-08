@@ -23,11 +23,14 @@ public class ToolManager : MonoBehaviour
 
     private void Awake()
     {
-        undoCount=LoadData<int>(DatabaseKey.undoCount);
-        magnetCount=LoadData<int>(DatabaseKey.magCount);
-        sortCount=LoadData<int>(DatabaseKey.sortCount);
+        undoCount = PlayerPrefs.GetInt("undoCount", 0);
+        magnetCount= PlayerPrefs.GetInt("magnetCount",0);
+        sortCount= PlayerPrefs.GetInt("sortCount",0);
     }
-    
+    private void OnEnable()
+    {
+        GameUtility.Log(this,"da dc bat",Color.green);
+    }
     private void Update()
     {
         GiftBG.transform.Rotate(0f,0f,speedRotation*Time.deltaTime);

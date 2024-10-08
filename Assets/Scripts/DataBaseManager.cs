@@ -43,7 +43,7 @@ public class DatabaseManager : MonoBehaviour
             var datatType = typeof(T);
             if (datatType.IsPrimitive || datatType == typeof(string))
             {
-                Debug.Log($"string data: {dataString}");
+                Debug.Log($"string data: {dataString}, datatype: {datatType}");
                 return (T)Convert.ChangeType(dataString, typeof(T));
             }
             else
