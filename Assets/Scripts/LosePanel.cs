@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LosePanel : MonoBehaviour
 {
+    [SerializeField] InterstitialAd interstitialAd;
+    [SerializeField] RewardedAds rewardedAds;
+
     int indexScene;
     private void Start()
     {
@@ -16,11 +19,11 @@ public class LosePanel : MonoBehaviour
     }
     public void OnRestartButton()
     {
+
         SceneManager.LoadScene(indexScene);
     }
     public void OnFreeButton()
     {
-
     }
     public void OnBuyButton()
     {

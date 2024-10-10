@@ -41,6 +41,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         //cập nhật các chỉ số đếm
         //thực hiện di chuyển và sắp xếp các cell
         //xét điều kiện end game
+        
         if (DataGame.countTickedCell >= 7)
         {
             DataGame.stateCurrentPlay = 2;
@@ -72,6 +73,8 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                 break;
             }
         }
+        
+
     }
     void IncreaseArrIndex()
     {
@@ -80,7 +83,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         DataGame.arrindex[indexCell]++;
         if (DataGame.arrindex[indexCell] == 3)
         {
-            DataGame.countTickedCell -= 3;
+            //DataGame.countTickedCell -= 3;
             //Debug.Log(DataGame.countTickedCell+"   da xoa 3 cell");
             checkDestroy = true;
         }
@@ -88,6 +91,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     void ArrangeTickedCell()
     {
         SortArrayObject();
+        
         for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
             if (DataGame.listTickedCell[i] == null) break;
@@ -100,13 +104,14 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                     DataScore.state = 1;
                     DataScore.combo++;
                 }
-                if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
-                if (DataGame.countTickedCell >= 7)
+                if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
                 {
                     DataGame.stateCurrentPlay = 2;
                     Debug.Log(DataGame.countTickedCell);
                     Debug.Log("Lose game!");
                 }
+                if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
+                
             });
         }
         
@@ -130,13 +135,14 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                         DataGame.listTickedCell[index] = null;
                     }
                     DataGame.arrindex[indexCell] -= 3;
+                    
                     i = i + 2;
                 }
             }
         }
         if(checkDestroy) 
         {
-            
+            DataGame.countTickedCell -= 3;
             checkDestroy = false;
             SortArrayAfterDestroy();
         }
@@ -169,8 +175,22 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
             if (DataGame.listTickedCell[i] != null)
             {
                 Vector3 To = DataGame.PositionTicked[i];
-                DataGame.listTickedCell[i].transform.DOMove(To, 0.25f);
+                DataGame.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
+                {
+                    if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
+                    {
+                        DataGame.stateCurrentPlay = 2;
+                        Debug.Log(DataGame.countTickedCell);
+                        Debug.Log("Lose game!");
+                    }
+                });
             }           
+        }
+        if (DataGame.countTickedCell == 7)
+        {
+            DataGame.stateCurrentPlay = 2;
+            Debug.Log(DataGame.countTickedCell);
+            Debug.Log("Lose game!");
         }
     }
 
