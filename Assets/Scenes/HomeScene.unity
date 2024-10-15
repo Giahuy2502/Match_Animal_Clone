@@ -1003,8 +1003,6 @@ GameObject:
   - component: {fileID: 646343499}
   - component: {fileID: 646343498}
   - component: {fileID: 646343502}
-  - component: {fileID: 646343504}
-  - component: {fileID: 646343503}
   m_Layer: 0
   m_Name: HomeCanvas
   m_TagString: Untagged
@@ -1109,36 +1107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinTxt: {fileID: 953496307}
-  interstitialAd: {fileID: 646343503}
---- !u!114 &646343503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646343497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1228fc9a2810c438b97ce976f34b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidAdUnitId: Interstitial_Android
-  _iOsAdUnitId: Interstitial_iOS
---- !u!114 &646343504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646343497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2e37a7ce461fc4398e74ce9a72d5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidGameId: 5709443
-  _testMode: 1
-  _gameId: 
 --- !u!1 &890642523
 GameObject:
   m_ObjectHideFlags: 0

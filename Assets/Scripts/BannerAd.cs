@@ -4,20 +4,21 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class BannerAd : MonoBehaviour
+public class BannerAd
 {
+
     // For the purpose of this example, these buttons are for functionality testing:
-    [SerializeField] Button _loadBannerButton;
-    [SerializeField] Button _showBannerButton;
-    [SerializeField] Button _hideBannerButton;
+    // Button _loadBannerButton;
+    //[SerializeField] Button _showBannerButton;
+    //[SerializeField] Button _hideBannerButton;
 
-    [SerializeField] BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
+   /* [SerializeField]*/ BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
 
-    [SerializeField] string _androidAdUnitId = "Banner_Android";
+    /*[SerializeField] */string _androidAdUnitId = "Banner_Android";
     //[SerializeField] string _iOSAdUnitId = "Banner_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms.
 
-    void Start()
+    public void Init()
     {
         // Get the Ad Unit ID for the current platform:
 #if UNITY_IOS
@@ -27,15 +28,15 @@ public class BannerAd : MonoBehaviour
 #endif
 
         // Disable the button until an ad is ready to show:
-        _showBannerButton.interactable = false;
-        _hideBannerButton.interactable = false;
+        //_showBannerButton.interactable = false;
+        //_hideBannerButton.interactable = false;
 
         // Set the banner position:
         Advertisement.Banner.SetPosition(_bannerPosition);
 
         // Configure the Load Banner button to call the LoadBanner() method when clicked:
-        _loadBannerButton.onClick.AddListener(LoadBanner);
-        _loadBannerButton.interactable = true;
+        //_loadBannerButton.onClick.AddListener(LoadBanner);
+        //_loadBannerButton.interactable = true;
     }
 
     // Implement a method to call when the Load Banner button is clicked:
@@ -57,14 +58,14 @@ public class BannerAd : MonoBehaviour
     {
         Debug.Log("Banner loaded");
 
-        // Configure the Show Banner button to call the ShowBannerAd() method when clicked:
-        _showBannerButton.onClick.AddListener(ShowBannerAd);
-        // Configure the Hide Banner button to call the HideBannerAd() method when clicked:
-        _hideBannerButton.onClick.AddListener(HideBannerAd);
+        //// Configure the Show Banner button to call the ShowBannerAd() method when clicked:
+        //_showBannerButton.onClick.AddListener(ShowBannerAd);
+        //// Configure the Hide Banner button to call the HideBannerAd() method when clicked:
+        //_hideBannerButton.onClick.AddListener(HideBannerAd);
 
-        // Enable both buttons:
-        _showBannerButton.interactable = true;
-        _hideBannerButton.interactable = true;
+        //// Enable both buttons:
+        //_showBannerButton.interactable = true;
+        //_hideBannerButton.interactable = true;
     }
 
     // Implement code to execute when the load errorCallback event triggers:
@@ -75,7 +76,7 @@ public class BannerAd : MonoBehaviour
     }
 
     // Implement a method to call when the Show Banner button is clicked:
-    void ShowBannerAd()
+    public void ShowBannerAd()
     {
         // Set up options to notify the SDK of show events:
         BannerOptions options = new BannerOptions
@@ -90,7 +91,7 @@ public class BannerAd : MonoBehaviour
     }
 
     // Implement a method to call when the Hide Banner button is clicked:
-    void HideBannerAd()
+    public void HideBannerAd()
     {
         // Hide the banner:
         Advertisement.Banner.Hide();
@@ -102,9 +103,9 @@ public class BannerAd : MonoBehaviour
 
     void OnDestroy()
     {
-        // Clean up the listeners:
-        _loadBannerButton.onClick.RemoveAllListeners();
-        _showBannerButton.onClick.RemoveAllListeners();
-        _hideBannerButton.onClick.RemoveAllListeners();
+        //// Clean up the listeners:
+        //_loadBannerButton.onClick.RemoveAllListeners();
+        //_showBannerButton.onClick.RemoveAllListeners();
+        //_hideBannerButton.onClick.RemoveAllListeners();
     }
 }

@@ -3061,8 +3061,6 @@ GameObject:
   - component: {fileID: 643510654}
   - component: {fileID: 643510656}
   - component: {fileID: 643510657}
-  - component: {fileID: 643510660}
-  - component: {fileID: 643510659}
   m_Layer: 5
   m_Name: PlayPanel
   m_TagString: Untagged
@@ -3164,35 +3162,6 @@ MonoBehaviour:
   fillStar1: {fileID: 574622653}
   fillStar2: {fileID: 180056295}
   fillStar3: {fileID: 2024905810}
---- !u!114 &643510659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643510652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1228fc9a2810c438b97ce976f34b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidAdUnitId: Interstitial_Android
-  _iOsAdUnitId: Interstitial_iOS
---- !u!114 &643510660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643510652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2e37a7ce461fc4398e74ce9a72d5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidGameId: 5709443
-  _testMode: 1
-  _gameId: 
 --- !u!1 &648716108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,9 +3322,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RewardedAds, Assembly-CSharp
-        m_MethodName: ShowAd
+      - m_Target: {fileID: 2119194964}
+        m_TargetAssemblyTypeName: GiftPanelManager, Assembly-CSharp
+        m_MethodName: OnAdsButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3549,6 +3518,7 @@ GameObject:
   - component: {fileID: 707214626}
   - component: {fileID: 707214625}
   - component: {fileID: 707214624}
+  - component: {fileID: 707214627}
   m_Layer: 5
   m_Name: SortingButton
   m_TagString: Untagged
@@ -3632,6 +3602,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 707214627}
+        m_TargetAssemblyTypeName: DelayButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &707214625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3670,6 +3652,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707214622}
   m_CullTransparentMesh: 1
+--- !u!114 &707214627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707214622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fc51849b168fa4d8008bf6f8d4bcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButton: {fileID: 0}
+  timedelay: 1
 --- !u!1 &717233767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4276,6 +4272,7 @@ GameObject:
   - component: {fileID: 844469420}
   - component: {fileID: 844469419}
   - component: {fileID: 844469418}
+  - component: {fileID: 844469421}
   m_Layer: 5
   m_Name: UndoButton
   m_TagString: Untagged
@@ -4359,6 +4356,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 844469421}
+        m_TargetAssemblyTypeName: DelayButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &844469419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4397,6 +4406,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844469416}
   m_CullTransparentMesh: 1
+--- !u!114 &844469421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844469416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fc51849b168fa4d8008bf6f8d4bcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButton: {fileID: 0}
+  timedelay: 1
 --- !u!1 &848107081
 GameObject:
   m_ObjectHideFlags: 0
@@ -6812,7 +6835,6 @@ MonoBehaviour:
   undoTxt: {fileID: 851174390}
   magTxt: {fileID: 1854323338}
   sortTxt: {fileID: 877203437}
-  rewardedAds: {fileID: 2119194968}
 --- !u!1 &1274527092
 GameObject:
   m_ObjectHideFlags: 0
@@ -7248,7 +7270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1420770900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7321,6 +7343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c901cae6e2d4c634583b63fe4ee217c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolManager: {fileID: 1274480811}
 --- !u!1 &1457999403
 GameObject:
   m_ObjectHideFlags: 0
@@ -7409,6 +7432,7 @@ GameObject:
   - component: {fileID: 1493230464}
   - component: {fileID: 1493230463}
   - component: {fileID: 1493230462}
+  - component: {fileID: 1493230465}
   m_Layer: 5
   m_Name: MagnetButton
   m_TagString: Untagged
@@ -7492,6 +7516,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1493230465}
+        m_TargetAssemblyTypeName: DelayButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1493230463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7530,6 +7566,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493230460}
   m_CullTransparentMesh: 1
+--- !u!114 &1493230465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493230460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fc51849b168fa4d8008bf6f8d4bcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButton: {fileID: 0}
+  timedelay: 1
 --- !u!1 &1527030878
 GameObject:
   m_ObjectHideFlags: 0
@@ -11220,7 +11270,6 @@ GameObject:
   - component: {fileID: 2119194966}
   - component: {fileID: 2119194965}
   - component: {fileID: 2119194964}
-  - component: {fileID: 2119194968}
   m_Layer: 5
   m_Name: GiftPanel
   m_TagString: Untagged
@@ -11240,7 +11289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4d8b72615d09c4bb15a1dd438eef7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardedAds: {fileID: 2119194968}
 --- !u!114 &2119194965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11299,20 +11347,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2119194968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119194963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f5045aeb792564c8c6e8dd8b96ff22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showAdButton: {fileID: 662933295}
-  _androidAdUnitId: Rewarded_Android
 --- !u!1 &2134403458
 GameObject:
   m_ObjectHideFlags: 0
@@ -11446,6 +11480,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134403458}
   m_CullTransparentMesh: 1
+--- !u!1001 &4170338565801135977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 812.8842
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 777.46796
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2916873
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637513475144929562, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448253724843866171, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
+      propertyPath: m_Name
+      value: AdsManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 511f0a9ac628ebe4da7cb58a45780a38, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11453,3 +11544,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 94139097}
   - {fileID: 1679696987}
+  - {fileID: 4170338565801135977}

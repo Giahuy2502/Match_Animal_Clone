@@ -31,5 +31,10 @@ public class CanvasManager : MonoBehaviour
         {
             LosePanel.SetActive(true);
         }
+        else
+        {
+            LosePanel.SetActive(false);
+            WinPanel.SetActive(false);
+        }
     }
 }

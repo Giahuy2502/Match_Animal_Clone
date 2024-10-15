@@ -7,19 +7,20 @@ using UnityEngine.SceneManagement;
 public class HomeCanvasManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinTxt;
-    [SerializeField] InterstitialAd interstitialAd;
     private void Start()
     {
-        interstitialAd.LoadAd();
+        AdsManager.Instance.ShowBannerAd();
     }
+
     private void Update()
     {
         int coin = PlayerPrefs.GetInt("coin",0);
         coinTxt.text = coin.ToString();
+        
     }
     public void OnPlayButton()
     {
-        interstitialAd.ShowAd();
+        AdsManager.Instance.ShowInterstitialAd();
         SceneManager.LoadScene(1);
     }
     public void OnResponButton()

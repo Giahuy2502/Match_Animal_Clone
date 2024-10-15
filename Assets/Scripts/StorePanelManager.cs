@@ -9,6 +9,12 @@ public class StorePanelManager : MonoBehaviour
 {
     public static int IndexCurrentScene;
     [SerializeField] TextMeshProUGUI coinTxt;
+    
+    delegate void LoadAd();
+    private void Start()
+    {
+        AdsManager.Instance.ShowBannerAd();
+    }
     private void Update()
     {
         int coin = PlayerPrefs.GetInt("coin",0);
@@ -58,6 +64,7 @@ public class StorePanelManager : MonoBehaviour
     }
     public void OnPriceButton5()
     {
+        AdsManager.Instance.ShowRewardedlAd();
         PlayerPanelManager.Coin += 300;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
     }

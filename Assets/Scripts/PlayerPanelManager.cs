@@ -17,6 +17,7 @@ public class PlayerPanelManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         Coin = PlayerPrefs.GetInt("coin",0);
+        AdsManager.Instance.ShowBannerAd();
     }
     private void Update()
     {

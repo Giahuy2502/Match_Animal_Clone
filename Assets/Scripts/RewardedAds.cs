@@ -5,15 +5,15 @@ using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadListener
+public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
 {
-    [SerializeField] Button _showAdButton;
-    [SerializeField] string _androidAdUnitId = "Rewarded_Android";
+    /*[SerializeField] */string _androidAdUnitId = "Rewarded_Android";
+    
     //[SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = ""; // This will remain null for unsupported platforms
     int indexScene;
     
-    void Awake()
+    public void Init()
     {
         // Get the Ad Unit ID for the current platform:
 #if UNITY_IOS
@@ -27,7 +27,6 @@ public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadList
 #endif
 
         // Disable the button until the ad is ready to show:
-        _showAdButton.interactable = false;
         indexScene = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -47,9 +46,10 @@ public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadList
         if (adUnitId.Equals(_adUnitId))
         {
             // Configure the button to call the ShowAd() method when clicked:
-            _showAdButton.onClick.AddListener(ShowAd);
+            //_showAdButton.onClick.AddListener(ShowAd);
             // Enable the button for users to click:
-            _showAdButton.interactable = true;
+            //_showAdButton.interactable = true;
+            GameUtility.Log(this, "Da load quang cao thanh cong");
         }
     }
 
@@ -57,7 +57,7 @@ public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadList
     public void ShowAd()
     {
         // Disable the button:
-        _showAdButton.interactable = false;
+        //_showAdButton.interactable = false;
         // Then show the ad:
         Advertisement.Show(_adUnitId, this);
     }
@@ -71,21 +71,30 @@ public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadList
             // Grant a reward.
             GrantReward();
         }
-        _showAdButton.onClick.RemoveAllListeners();
-        Debug.Log("Da xoa onclick");
+        //_showAdButton.onClick.RemoveAllListeners();
+        
     }
 
     private void GrantReward()
     {
         if(indexScene==1)
         {
-            ToolManager.undoCount++;
-            ToolManager.sortCount++;
-            ToolManager.magnetCount++;
-            PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-            PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-            PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
-            Debug.Log("***********");
+            if(DataGame.stateCurrentPlay==0)
+            {
+                ToolManager.undoCount++;
+                ToolManager.sortCount++;
+                ToolManager.magnetCount++;
+                PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
+                PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
+                PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+                Debug.Log("***********");
+            }
+            else
+            {
+                DataGame.stateCurrentPlay = 0;
+                Debug.Log("Da xem quang cao de tiep tuc game"+"  " + DataGame.stateCurrentPlay);
+
+            }
         }
         else if(indexScene==2)
         {
@@ -114,7 +123,7 @@ public class RewardedAds : MonoBehaviour,IUnityAdsShowListener,IUnityAdsLoadList
     public void ExitPanel()
     {
         // Clean up the button listeners:
-        _showAdButton.onClick.RemoveAllListeners();
+        //_showAdButton.onClick.RemoveAllListeners();
         Debug.Log("Da xoa onclick");
     }
 

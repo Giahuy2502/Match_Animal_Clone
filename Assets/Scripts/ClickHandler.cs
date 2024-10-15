@@ -104,12 +104,12 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
                     DataScore.state = 1;
                     DataScore.combo++;
                 }
-                if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
-                {
-                    DataGame.stateCurrentPlay = 2;
-                    Debug.Log(DataGame.countTickedCell);
-                    Debug.Log("Lose game!");
-                }
+                //if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
+                //{
+                //    DataGame.stateCurrentPlay = 2;
+                //    Debug.Log(DataGame.countTickedCell);
+                //    Debug.Log("Lose game!");
+                //}
                 if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
                 
             });

@@ -17,7 +17,7 @@ public class ToolManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI undoTxt;
     [SerializeField] TextMeshProUGUI magTxt;
     [SerializeField] TextMeshProUGUI sortTxt;
-    [SerializeField] RewardedAds rewardedAds;
+    
     public static int undoCount;
     public static int magnetCount;
     public static int sortCount;
@@ -82,6 +82,7 @@ public class ToolManager : MonoBehaviour
         undoCount--;
         PlayerPrefs.SetInt("undoCount",undoCount);
     }
+   
     private static void ResetAllCountNumber(CellManager cell)
     {
         DataGame.countAllCell++;
@@ -280,6 +281,6 @@ public class ToolManager : MonoBehaviour
     public void OnGiftButton()
     {
         giftPanel.SetActive(true);
-        rewardedAds.LoadAd();
+        
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LosePanel : MonoBehaviour
 {
-    [SerializeField] InterstitialAd interstitialAd;
-    [SerializeField] RewardedAds rewardedAds;
+    
+    [SerializeField] ToolManager toolManager;
 
     int indexScene;
     private void Start()
@@ -24,9 +24,29 @@ public class LosePanel : MonoBehaviour
     }
     public void OnFreeButton()
     {
+        
+        AdsManager.Instance.ShowRewardedlAd();
+        Continue();
     }
     public void OnBuyButton()
     {
-
+        PlayerPanelManager.Coin -= 300;
+        PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin); 
+        Continue();
+        DataGame.stateCurrentPlay = 0;
+    }
+    public void Continue()
+    {
+        for(int i = 0;i<3;i++)
+        {
+            toolManager.OnUndoButton();
+            ToolManager.undoCount++;
+            Debug.Log(ToolManager.undoCount);
+        }
+        toolManager.OnSortingButton();
+        ToolManager.sortCount++;
+        Debug.Log(ToolManager.sortCount);
+        this.gameObject.SetActive(false);
+        Debug.Log(this.gameObject.activeSelf);
     }
 }
