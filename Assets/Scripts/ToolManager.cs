@@ -137,7 +137,7 @@ public class ToolManager : MonoBehaviour
         int count = 0;
         int indexSprite = 0;
         GetCountAndIndexSprite(ref count, ref indexSprite);
-        //Debug.Log($"count : {count} + indexSprite : {indexSprite}");
+        Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
         //----
         magnetCount--;
@@ -161,11 +161,16 @@ public class ToolManager : MonoBehaviour
                         cell.SetUpColor(Color.white);
                         if (count == 0 && indexSprite == 0) indexSprite = cell.indexSprite;
 
-                        if (cell.indexSprite == indexSprite && count < 3)
+                        if (cell.indexSprite == indexSprite && count < 3 )
                         {
                             ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
                             PointerEventData eventData = new PointerEventData(EventSystem.current);
                             clickCell.OnPointerClick(eventData);
+                            if( DataGame.countTickedCell >= 7)
+                            {
+                                DataGame.stateCurrentPlay = 2;
+                                return;
+                            }
                             count++;
                         }
                         if (count == 3) return;

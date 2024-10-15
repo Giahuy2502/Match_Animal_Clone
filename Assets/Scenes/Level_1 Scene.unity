@@ -3665,7 +3665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 0}
-  timedelay: 1
+  timedelay: 0
 --- !u!1 &717233767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4419,7 +4419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 0}
-  timedelay: 1
+  timedelay: 0
 --- !u!1 &848107081
 GameObject:
   m_ObjectHideFlags: 0

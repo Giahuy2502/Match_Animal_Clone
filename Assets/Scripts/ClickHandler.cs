@@ -3,18 +3,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using System;
+using System.Collections;
 
 
-public class ClickHandler : MonoBehaviour,IPointerClickHandler
+public class ClickHandler : MonoBehaviour, IPointerClickHandler
 {
-
-    bool checkDestroy = false;
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+
         CellManager cell = GetComponent<CellManager>();
         //Debug.Log($"indexSptite ={cell.indexSprite}");
-        if(cell.clickable)
+        if (cell.clickable)
         {
             // cell.clickable==false;
             SetClickable();
@@ -24,14 +23,14 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     }
     void SetClickable()
     {
-        CellManager cell= GetComponent<CellManager>();
+        CellManager cell = GetComponent<CellManager>();
         cell.clickable = false;
     }
     void DeleteInGrid(CellManager cell)
     {
         int i = cell.i;
         int j = cell.j;
-        int layer =cell.layer;
+        int layer = cell.layer;
         DataGame.undoCell.Push(gameObject);
         GameObject[,] grid = DataGame.layerGrid[layer];
         grid[i, j] = null;
@@ -41,7 +40,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         //cập nhật các chỉ số đếm
         //thực hiện di chuyển và sắp xếp các cell
         //xét điều kiện end game
-        
+
         if (DataGame.countTickedCell >= 7)
         {
             DataGame.stateCurrentPlay = 2;
@@ -53,6 +52,7 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
             DataGame.countAllCell--;
             DataGame.countTickedCell++;
             Debug.Log($"countTickedCell = {DataGame.countTickedCell}");
+            
             MoveTickedCell();
         }
     }
@@ -60,91 +60,95 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
     {
         for (int i = 0; i < DataGame.PositionTicked.Count; i++)
         {
-            if (DataGame.listTickedCell[i]==null)
+            if (DataGame.listTickedCell[i] == null)
             {
                 Vector3 To = DataGame.PositionTicked[i];
                 DataGame.listTickedCell[i] = gameObject;
-                
-                transform.DOMove(To, 0.25f).OnComplete(() =>
-                {
-                    IncreaseArrIndex();
-                    ArrangeTickedCell();
-                });
-                break;
+                IncreaseArrIndex();
+                StartCoroutine(ArrangeTickedCell());
+                return;
             }
         }
-        
-
     }
     void IncreaseArrIndex()
     {
-        
         int indexCell = GetIndexSprite(gameObject);
         DataGame.arrindex[indexCell]++;
         if (DataGame.arrindex[indexCell] == 3)
         {
             //DataGame.countTickedCell -= 3;
             //Debug.Log(DataGame.countTickedCell+"   da xoa 3 cell");
-            checkDestroy = true;
+            TickedCellManager.checkDestroy = true;
         }
     }
-    void ArrangeTickedCell()
+    IEnumerator ArrangeTickedCell()
     {
         SortArrayObject();
-        
         for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
-            if (DataGame.listTickedCell[i] == null) break;
+            if (DataGame.listTickedCell[i] == null || DataGame.listTickedCell[i].gameObject == null) break;
             Vector3 To = DataGame.PositionTicked[i];
-            DataGame.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
-            {
-                if(checkDestroy)
-                {  
-                    DestroyTickedCell();
-                    DataScore.state = 1;
-                    DataScore.combo++;
-                }
-                //if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
-                //{
-                //    DataGame.stateCurrentPlay = 2;
-                //    Debug.Log(DataGame.countTickedCell);
-                //    Debug.Log("Lose game!");
-                //}
-                if (DataGame.countAllCell == 0) DataGame.stateCurrentPlay = 1;
-                
-            });
+            DataGame.listTickedCell[i].transform.DOMove(To, 0.25f);
+
         }
-        
+        yield return new WaitForSeconds(0.25f);
+        CheckDestroyOrLose();
+    }
+    void CheckDestroyOrLose()
+    {
+        if (TickedCellManager.checkDestroy)
+        {
+            DestroyTickedCell(); // Hủy cell khi thỏa điều kiện
+            DataScore.state = 1;
+            DataScore.combo++;
+        }
+        else if (DataGame.countTickedCell >= 7 && !TickedCellManager.checkDestroy)
+        {
+            DataGame.stateCurrentPlay = 2; // Chuyển sang trạng thái thua
+            Debug.Log(DataGame.countTickedCell);
+            Debug.Log("Lose game!");
+            return;
+        }
+
+        if (DataGame.countAllCell == 0)
+        {
+            DataGame.stateCurrentPlay = 1; // Nếu không còn cell nào, chuyển trạng thái chơi tiếp
+        }
+        SortArrayAfterDestroy();
     }
     void DestroyTickedCell()
     {
-        for(int i = 0; i < 7; i++)
+        for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
             if (DataGame.listTickedCell[i] != null)
             {
                 GameObject obj = DataGame.listTickedCell[i];
                 int indexCell = GetIndexSprite(obj);
+
                 if (DataGame.arrindex[indexCell] >= 3)
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        int index = i+j;
+                        int index = i + j;
                         GameObject objDes = DataGame.listTickedCell[index];
-                        DOTween.Kill(objDes);
-                        Destroy(objDes);
-                        DataGame.listTickedCell[index] = null;
+                        if (objDes != null)
+                        {
+                            DOTween.Kill(objDes);
+                            Destroy(objDes);
+                            DataGame.listTickedCell[index] = null;
+                        }
                     }
                     DataGame.arrindex[indexCell] -= 3;
-                    
+
                     i = i + 2;
                 }
             }
         }
-        if(checkDestroy) 
+        if (TickedCellManager.checkDestroy)
         {
             DataGame.countTickedCell -= 3;
-            checkDestroy = false;
-            SortArrayAfterDestroy();
+            TickedCellManager.checkDestroy = false;
+            
         }
     }
 
@@ -172,19 +176,11 @@ public class ClickHandler : MonoBehaviour,IPointerClickHandler
         SortArrayObject();
         for (int i = 0; i < DataGame.listTickedCell.Length; i++)
         {
-            if (DataGame.listTickedCell[i] != null)
+            if (DataGame.listTickedCell[i] != null && DataGame.listTickedCell[i].gameObject != null)
             {
                 Vector3 To = DataGame.PositionTicked[i];
-                DataGame.listTickedCell[i].transform.DOMove(To, 0.25f).OnComplete(() =>
-                {
-                    if (DataGame.countTickedCell >= 7 && DataGame.stateCurrentPlay == 0)
-                    {
-                        DataGame.stateCurrentPlay = 2;
-                        Debug.Log(DataGame.countTickedCell);
-                        Debug.Log("Lose game!");
-                    }
-                });
-            }           
+                DataGame.listTickedCell[i].transform.DOMove(To, 0.25f); 
+            }
         }
         if (DataGame.countTickedCell == 7)
         {
