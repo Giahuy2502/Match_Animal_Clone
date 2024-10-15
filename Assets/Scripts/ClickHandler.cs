@@ -13,6 +13,13 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
 
         CellManager cell = GetComponent<CellManager>();
         //Debug.Log($"indexSptite ={cell.indexSprite}");
+        if (DataGame.countTickedCell >= 7)
+        {
+            DataGame.stateCurrentPlay = 2;
+            Debug.Log(DataGame.countTickedCell);
+            Debug.Log("Lose game!");
+            return;
+        }
         if (cell.clickable)
         {
             // cell.clickable==false;
@@ -46,6 +53,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
             DataGame.stateCurrentPlay = 2;
             Debug.Log(DataGame.countTickedCell);
             Debug.Log("Lose game!");
+            return;
         }
         else
         {

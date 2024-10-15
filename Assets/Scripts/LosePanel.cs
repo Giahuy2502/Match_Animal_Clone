@@ -30,6 +30,7 @@ public class LosePanel : MonoBehaviour
     }
     public void OnBuyButton()
     {
+        if (PlayerPanelManager.Coin < 300) return;
         PlayerPanelManager.Coin -= 300;
         PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin); 
         Continue();

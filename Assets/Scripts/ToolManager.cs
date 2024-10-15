@@ -1,9 +1,11 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Services.Analytics.Internal;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -139,11 +141,12 @@ public class ToolManager : MonoBehaviour
         GetCountAndIndexSprite(ref count, ref indexSprite);
         Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
+        //StartCoroutine(ProcessClicks(DataGame.layerGrid,indexSprite,count));
         //----
         magnetCount--;
         PlayerPrefs.SetInt("magnetCount",magnetCount);
     }
-    private static void GetSameCell(ref int count, ref int indexSprite)
+    private void GetSameCell(ref int count, ref int indexSprite)
     {
         List<GameObject[,]> board = DataGame.layerGrid;
         for (int i = board.Count - 1; i >= 0; i--)
@@ -161,16 +164,12 @@ public class ToolManager : MonoBehaviour
                         cell.SetUpColor(Color.white);
                         if (count == 0 && indexSprite == 0) indexSprite = cell.indexSprite;
 
-                        if (cell.indexSprite == indexSprite && count < 3 )
+                        if (cell.indexSprite == indexSprite && count < 3 && DataGame.countTickedCell <= 7)
                         {
                             ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
                             PointerEventData eventData = new PointerEventData(EventSystem.current);
                             clickCell.OnPointerClick(eventData);
-                            if( DataGame.countTickedCell >= 7)
-                            {
-                                DataGame.stateCurrentPlay = 2;
-                                return;
-                            }
+                            //StartCoroutine(Delay(clickCell, eventData));
                             count++;
                         }
                         if (count == 3) return;
@@ -179,6 +178,41 @@ public class ToolManager : MonoBehaviour
             }
         }
     }
+    //IEnumerator ProcessClicks(List<GameObject[,]> board, int indexSprite,int count )
+    //{
+    //    for (int i = board.Count - 1; i >= 0; i--)
+    //    {
+    //        GameObject[,] boardCell = board[i];
+    //        for (int j = 0; j < boardCell.GetLength(0); j++)
+    //        {
+    //            for (int k = 0; k < boardCell.GetLength(1); k++)
+    //            {
+    //                if (boardCell[j, k] != null)
+    //                {
+    //                    CellManager cell = boardCell[j, k].GetComponent<CellManager>();
+    //                    if (cell.indexSprite == indexSprite && count < 3 && DataGame.countTickedCell <= 7)
+    //                    {
+    //                        if (cell.clickable)
+    //                        {
+    //                            ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
+    //                            PointerEventData eventData = new PointerEventData(EventSystem.current);
+
+    //                            // Thực hiện click cell
+    //                            clickCell.OnPointerClick(eventData);
+    //                            count++;
+
+    //                            // Chờ trước khi click cell tiếp theo
+    //                            yield return new WaitForSeconds(0.5f);
+    //                        }
+    //                    }
+
+    //                    if (count == 3) yield break;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
     private static void GetCountAndIndexSprite(ref int count, ref int indexSprite)
     {
         for (int i = 0; i < DataGame.listTickedCell.Length; i++)
