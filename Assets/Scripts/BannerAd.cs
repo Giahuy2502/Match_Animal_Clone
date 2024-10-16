@@ -23,6 +23,8 @@ public class BannerAd
         // Get the Ad Unit ID for the current platform:
 #if UNITY_IOS
         _adUnitId = _iOSAdUnitId;
+#elif UNITY_EDITOR
+        _adUnitId = _androidAdUnitId;
 #elif UNITY_ANDROID
         _adUnitId = _androidAdUnitId;
 #endif

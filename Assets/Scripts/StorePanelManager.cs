@@ -23,7 +23,7 @@ public class StorePanelManager : MonoBehaviour
     public void OnExitButton()
     {
         PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin);
-        SceneManager.LoadScene(IndexCurrentScene);
+        SceneManager.UnloadSceneAsync(2);
     }
     public void OnPriceButton()
     {

@@ -31,7 +31,7 @@ public class PlayerPanelManager : MonoBehaviour
     {
         StorePanelManager.IndexCurrentScene=SceneManager.GetActiveScene().buildIndex;
         Debug.Log("da bam va cua hang");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadSceneAsync(2,LoadSceneMode.Additive);
     }
     public void OnApplicationQuit()
     {

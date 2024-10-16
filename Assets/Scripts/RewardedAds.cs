@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
 {
-    /*[SerializeField] */string _androidAdUnitId = "Rewarded_Android";
+    string _androidAdUnitId = "Rewarded_Android";
     
     //[SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = ""; // This will remain null for unsupported platforms
     int indexScene;
-    
+    public static UnityEvent rotateSpin = new UnityEvent();
+
+
     public void Init()
     {
         // Get the Ad Unit ID for the current platform:
@@ -100,6 +102,11 @@ public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
         {
             PlayerPanelManager.Coin += 300;
             PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        }
+        else if(indexScene==3)
+        {
+            rotateSpin.Invoke();
+            rotateSpin.RemoveAllListeners();
         }
     }
 

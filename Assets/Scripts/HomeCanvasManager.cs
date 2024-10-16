@@ -20,8 +20,8 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnPlayButton()
     {
-        AdsManager.Instance.ShowInterstitialAd();
-        SceneManager.LoadScene(1);
+        //AdsManager.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene(3);
     }
     public void OnResponButton()
     {
@@ -35,7 +35,8 @@ public class HomeCanvasManager : MonoBehaviour
     public void OnShopButton()
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(2);
+
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
     }
     public void OnLevelsButton()
     {
@@ -44,7 +45,8 @@ public class HomeCanvasManager : MonoBehaviour
     public void OnCoinButton()
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(2);
+
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
     }
     public void OnGiftButton()
     {
