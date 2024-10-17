@@ -17,28 +17,28 @@ public class SpinManager : MonoBehaviour
     [SerializeField] Image spin;
     [SerializeField] Button exit;
     [SerializeField] Button ad;
-    ToolManager ToolManager=> ToolManager.Instance;
+    ResourceManager ResourceManager=> ResourceManager.Instance;
     public static Vector3 corner;
     private void Start()
     {
         AdsManager.Instance.ShowBannerAd();
-        InitValue();
+        //InitValue();
         InitUI();
         
     }
-    void InitValue()
-    {
-        PlayerPanelManager.Coin= PlayerPrefs.GetInt("coin", 0);
-        ToolManager.ResetUndoTool(PlayerPrefs.GetInt("undoCount", 0));
-        ToolManager.ResetMagnetTool(PlayerPrefs.GetInt("magnetCount", 0));
-        ToolManager.ResetSortTool(PlayerPrefs.GetInt("sortCount", 0));
-    }
+    //void InitValue()
+    //{
+    //    ResourceManager.ResetCoin(PlayerPrefs.GetInt("coin", 0));
+    //    ResourceManager.ResetUndoTool(PlayerPrefs.GetInt("undoCount", 0));
+    //    ResourceManager.ResetMagnetTool(PlayerPrefs.GetInt("magnetCount", 0));
+    //    ResourceManager.ResetSortTool(PlayerPrefs.GetInt("sortCount", 0));
+    //}
     public void OnExitButton()
     {
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
-        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
-        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+        PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
         SceneManager.LoadScene(1);
     }
     public void OnAdButton()
@@ -72,10 +72,10 @@ public class SpinManager : MonoBehaviour
     }
     void UpdateUI()
     {
-        int coin = PlayerPanelManager.Coin;
-        int undo = ToolManager.GetUndoCount();
-        int mag = ToolManager.GetMagnetCount();
-        int sort = ToolManager.GetSortCount();
+        int coin = ResourceManager.GetCoin();
+        int undo = ResourceManager.GetUndoCount();
+        int mag = ResourceManager.GetMagnetCount();
+        int sort = ResourceManager.GetSortCount();
         coinTxt.text = coin.ToString();
         undoTxt.text = undo.ToString();
         magTxt.text = mag.ToString();

@@ -18,28 +18,28 @@ public class ToolByUIManager : MonoBehaviour
 
 
     
-    ToolManager ToolManager => ToolManager.Instance;
+    ResourceManager ResourceManager => ResourceManager.Instance;
 
    
 
     private void Update()
     {
         GiftBG.transform.Rotate(0f, 0f, speedRotation * Time.deltaTime);
-        undoTxt.text = ToolManager.GetUndoCount().ToString();
-        magTxt.text = ToolManager.GetMagnetCount().ToString();
-        sortTxt.text = ToolManager.GetSortCount().ToString();
+        undoTxt.text = ResourceManager.GetUndoCount().ToString();
+        magTxt.text = ResourceManager.GetMagnetCount().ToString();
+        sortTxt.text = ResourceManager.GetSortCount().ToString();
 
     }
 
     public void OnUndoButton()
     {
-        if (ToolManager.GetUndoCount() <= 0 && PlayerPanelManager.Coin < 300) return;
-        else if (ToolManager.GetUndoCount() <= 0 && PlayerPanelManager.Coin >= 300)
+        if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        else if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
-            PlayerPanelManager.Coin -= 300;
-            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
-            ToolManager.SetUndoTool(1);
+            ResourceManager.SetCoin(-300);
+            PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+            GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
+            ResourceManager.SetUndoTool(1);
         }
         bool checkUndoable;
         GameObject undoCell;
@@ -70,8 +70,8 @@ public class ToolByUIManager : MonoBehaviour
         undoCell.transform.DOMove(cell.undoPosition, 0.25f);
         cell.clickable = true;
         //----
-        ToolManager.SetUndoTool(-1);
-        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
+        ResourceManager.SetUndoTool(-1);
+        PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
     }
 
     private static void ResetAllCountNumber(CellManager cell)
@@ -118,13 +118,13 @@ public class ToolByUIManager : MonoBehaviour
         // chon ra cell co so dem lon nhat
         // chon ra cac cell cung loai voi cell tren tu gird
         // set cell.clickable cua cac cell duoc chon la true
-        if (ToolManager.GetMagnetCount() <= 0 && PlayerPanelManager.Coin < 300) return;
-        else if (ToolManager.GetMagnetCount() <= 0 && PlayerPanelManager.Coin >= 300)
+        if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        else if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
-            PlayerPanelManager.Coin -= 300;
-            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
-            ToolManager.SetMagnetTool(1);
+            ResourceManager.SetCoin(-300);
+            PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+            GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
+            ResourceManager.SetMagnetTool(1);
         }
         int count = 0;
         int indexSprite = 0;
@@ -133,8 +133,8 @@ public class ToolByUIManager : MonoBehaviour
         GetSameCell(ref count, ref indexSprite);
         //StartCoroutine(ProcessClicks(DataGame.layerGrid,indexSprite,count));
         //----
-        ToolManager.SetMagnetTool(-1);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        ResourceManager.SetMagnetTool(-1);
+        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
     }
     private void GetSameCell(ref int count, ref int indexSprite)
     {
@@ -192,21 +192,21 @@ public class ToolByUIManager : MonoBehaviour
         //tron danh sach 1 chieu bang thuat toan fisher-yates
         //thay doi cac chi so i,j,layer cua cellManager
         //gan lai gia tri tu danh sach tron ve lai cac layer grid
-        if (ToolManager.GetSortCount() <= 0 && PlayerPanelManager.Coin < 300) return;
-        else if (ToolManager.GetSortCount() <= 0 && PlayerPanelManager.Coin >= 300)
+        if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        else if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
-            PlayerPanelManager.Coin -= 300;
-            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-            GameUtility.Log(this, $"PlayerPanelManager.Coin = {PlayerPanelManager.Coin}", Color.cyan);
-            ToolManager.SetSortTool(1);
+            ResourceManager.SetCoin(-300);
+            PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+            GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
+            ResourceManager.SetSortTool(1);
         }
         List<GameObject[,]> board = DataGame.layerGrid;
         List<int> tempList = new List<int>();
         ConvertBoardToListIndex(board, tempList);
         RandomSortList(tempList);
         ConvertListIndexToBoard(tempList);
-        ToolManager.SetSortTool(-1);
-        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
+        ResourceManager.SetSortTool(-1);
+        PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
     }
 
     private static void ConvertListIndexToBoard(List<int> tempList)

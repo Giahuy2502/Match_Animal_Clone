@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LosePanel : MonoBehaviour
 {
     [SerializeField]ToolByUIManager toolByUIManager;
-     ToolManager ToolManager => ToolManager.Instance;
+     ResourceManager ResourceManager => ResourceManager.Instance;
 
     int indexScene;
     private void Start()
@@ -30,9 +30,9 @@ public class LosePanel : MonoBehaviour
     }
     public void OnBuyButton()
     {
-        if (PlayerPanelManager.Coin < 300) return;
-        PlayerPanelManager.Coin -= 300;
-        PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin); 
+        if (ResourceManager.GetCoin() < 300) return;
+        ResourceManager.SetCoin(-300);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin()); 
         Continue();
         DataGame.stateCurrentPlay = 0;
     }
@@ -41,11 +41,11 @@ public class LosePanel : MonoBehaviour
         for(int i = 0;i<3;i++)
         {
             toolByUIManager.OnUndoButton();
-            ToolManager.SetUndoTool(1);
+            ResourceManager.SetUndoTool(1);
           
         }
         toolByUIManager.OnSortingButton();
-        ToolManager.SetSortTool(1);
+        ResourceManager.SetSortTool(1);
  
         this.gameObject.SetActive(false);
         Debug.Log(this.gameObject.activeSelf);

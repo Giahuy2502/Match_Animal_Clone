@@ -9,7 +9,7 @@ public class StorePanelManager : MonoBehaviour
 {
     public static int IndexCurrentScene;
     [SerializeField] TextMeshProUGUI coinTxt;
-    ToolManager ToolManager => ToolManager.Instance;
+    ResourceManager ResourceManager => ResourceManager.Instance;
     delegate void LoadAd();
     private void Start()
     {
@@ -22,45 +22,45 @@ public class StorePanelManager : MonoBehaviour
     }
     public void OnExitButton()
     {
-        PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin);
+        PlayerPrefs.SetInt("coin",ResourceManager.GetCoin());
         SceneManager.UnloadSceneAsync(2);
     }
     public void OnPriceButton()
     {
-        ToolManager.SetUndoTool(15);
-        ToolManager.SetMagnetTool(15);
-        ToolManager.SetSortTool(15);
-        PlayerPanelManager.Coin += 3000;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount",ToolManager.GetUndoCount());
-        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
-        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
+        ResourceManager.SetUndoTool(15);
+        ResourceManager.SetMagnetTool(15);
+        ResourceManager.SetSortTool(15);
+        ResourceManager.SetCoin(3000);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+        PlayerPrefs.SetInt("undoCount",ResourceManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
     }
     public void OnPriceButton1()
     {
-        ToolManager.SetUndoTool(35);
-        ToolManager.SetMagnetTool(35);
-        ToolManager.SetSortTool(35);
-        PlayerPanelManager.Coin += 7000;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
-        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
-        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
+        ResourceManager.SetUndoTool(35);
+        ResourceManager.SetMagnetTool(35);
+        ResourceManager.SetSortTool(35);
+        ResourceManager.SetCoin(7000);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+        PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
     }
     public void OnPriceButton2()
     {
-        PlayerPanelManager.Coin += 5000;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        ResourceManager.SetCoin(5000);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
     }
     public void OnPriceButton3()
     {
-        PlayerPanelManager.Coin += 15000;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        ResourceManager.SetCoin(15000);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
     }
     public void OnPriceButton4()
     {
-        PlayerPanelManager.Coin += 35000;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        ResourceManager.SetCoin(35000);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
     }
     public void OnPriceButton5()
     {
@@ -68,9 +68,9 @@ public class StorePanelManager : MonoBehaviour
         RewardedAds.watchedEvent.AddListener(GetFreeCoin);
     }
 
-    private static void GetFreeCoin()
+    private void GetFreeCoin()
     {
-        PlayerPanelManager.Coin += 300;
-        PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
+        ResourceManager.SetCoin(300);
+        PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
     }
 }

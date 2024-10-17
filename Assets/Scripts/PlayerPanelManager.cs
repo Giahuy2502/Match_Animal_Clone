@@ -10,17 +10,16 @@ public class PlayerPanelManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] TextMeshProUGUI coinTxt;
 
-    public static int Coin;
+    ResourceManager ResourceManager=> ResourceManager.Instance;
     
     void Start()
     {
         pausePanel.SetActive(false);
-        Coin = PlayerPrefs.GetInt("coin",0);
         AdsManager.Instance.ShowBannerAd();
     }
     private void Update()
     {
-        coinTxt.text = Coin.ToString();
+        coinTxt.text = ResourceManager.GetCoin().ToString();
     }
     public void OnPauseButton()
     {

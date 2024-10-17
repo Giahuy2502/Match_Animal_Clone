@@ -10,16 +10,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ToolManager : MonoSingleton<ToolManager>
+public class ResourceManager : MonoSingleton<ResourceManager>
 {
-
-
-
 
     private int undoCount;
     private int magnetCount;
     private int sortCount;
-
+    private int coin;
     public int GetUndoCount()
     {
         return undoCount;
@@ -33,6 +30,12 @@ public class ToolManager : MonoSingleton<ToolManager>
         return sortCount;
     }
 
+    public int GetCoin()
+    {
+        return coin;
+    }
+    
+   
     public void ResetUndoTool(int count=0)
     {
         undoCount = count;
@@ -45,6 +48,12 @@ public class ToolManager : MonoSingleton<ToolManager>
     {
         sortCount = count;
     }
+
+    public void ResetCoin(int count = 0)
+    {
+        coin = count;
+    }
+
     public void SetUndoTool(int quantity)
     {
         undoCount += quantity;
@@ -57,9 +66,13 @@ public class ToolManager : MonoSingleton<ToolManager>
     {
         sortCount += quantity;
     }
-
+    public void SetCoin(int Count)
+    {
+        coin += Count;
+    }
     protected override void DoOnAwake()
     {
+        coin = PlayerPrefs.GetInt("coin", 0);
         undoCount = PlayerPrefs.GetInt("undoCount", 0);
         magnetCount = PlayerPrefs.GetInt("magnetCount",0);
         sortCount= PlayerPrefs.GetInt("sortCount",0);

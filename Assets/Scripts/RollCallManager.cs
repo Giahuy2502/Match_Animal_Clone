@@ -14,13 +14,14 @@ public class RollCallManager : MonoBehaviour
     [SerializeField] List<Image> images;
     [SerializeField] Button Button;
 
+    ResourceManager ResourceManager=> ResourceManager;
     private void Start()
     {
 
         today = DateTime.Now.Date.ToString("dd/MM/yyyy");
         var tickNow = DateTime.Now.Date.Ticks;
-        PlayerPanelManager.Coin = PlayerPrefs.GetInt("coin", 0);
-        Debug.Log(PlayerPanelManager.Coin);
+        ResourceManager.SetCoin(PlayerPrefs.GetInt("coin", 0)) ;
+        Debug.Log(ResourceManager.GetCoin());
         filePath = Application.persistentDataPath + "/attendance.json";
         LoadGame();
         InitUI(today);
@@ -43,7 +44,7 @@ public class RollCallManager : MonoBehaviour
         if (list.Count==0)
         {
             index[0] = 1;
-            GetReward(ref PlayerPanelManager.Coin, 0);
+            GetReward(0);
             list.Add(today);
         }
         else
@@ -52,7 +53,7 @@ public class RollCallManager : MonoBehaviour
             int firstDay = int.Parse(list[0].Substring(0,2));
             int indexBox = currentDay-firstDay;
             index[indexBox] = 1;
-            GetReward(ref PlayerPanelManager.Coin, indexBox);
+            GetReward(indexBox);
         }
         SaveGame();
         this.gameObject.SetActive(false);
@@ -94,7 +95,7 @@ public class RollCallManager : MonoBehaviour
 
     public void SaveGame()
     {
-        PlayerPrefs.SetInt("coin",PlayerPanelManager.Coin); 
+        PlayerPrefs.SetInt("coin",ResourceManager.GetCoin()); 
         string _data = JsonUtility.ToJson(data);
         System.IO.File.WriteAllText(filePath,_data);
         GameUtility.Log(this,"Da save game" + _data, Color.yellow);
@@ -111,36 +112,36 @@ public class RollCallManager : MonoBehaviour
         }
 
     }
-    public void GetReward(ref int coin,int index)
+    public void GetReward(int index)
     {
         switch (index)
         {
             case 0:
-                coin += 100;
+                ResourceManager.SetCoin(100);
                 break;
             case 1:
-                coin += 150;
+                ResourceManager.SetCoin(150);
                 break;
             case 2:
-                coin += 200;
+                ResourceManager.SetCoin(200);
                 break;
             case 3:
-                coin += 250;
+                ResourceManager.SetCoin(250);
                 break;
             case 4:
-                coin += 300;
+                ResourceManager.SetCoin(300);
                 break;
             case 5:
-                coin += 350;
+                ResourceManager.SetCoin(350);
                 break;
             case 6:
-                coin += 400;
+                ResourceManager.SetCoin(400);
                 break;
             case 7:
-                coin += 450;
+                ResourceManager.SetCoin(450);
                 break;
             case 8:
-                coin += 500;
+                ResourceManager.SetCoin(500);
                 break;
 
         }
