@@ -9,7 +9,7 @@ public class StorePanelManager : MonoBehaviour
 {
     public static int IndexCurrentScene;
     [SerializeField] TextMeshProUGUI coinTxt;
-    
+    ToolManager ToolManager => ToolManager.Instance;
     delegate void LoadAd();
     private void Start()
     {
@@ -27,25 +27,25 @@ public class StorePanelManager : MonoBehaviour
     }
     public void OnPriceButton()
     {
-        ToolManager.undoCount += 15;
-        ToolManager.magnetCount += 15;
-        ToolManager.sortCount += 15;
+        ToolManager.SetUndoTool(15);
+        ToolManager.SetMagnetTool(15);
+        ToolManager.SetSortTool(15);
         PlayerPanelManager.Coin += 3000;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount",ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount",ToolManager.magnetCount);
-        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+        PlayerPrefs.SetInt("undoCount",ToolManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
     }
     public void OnPriceButton1()
     {
-        ToolManager.undoCount += 35;
-        ToolManager.magnetCount += 35;
-        ToolManager.sortCount += 35;
+        ToolManager.SetUndoTool(35);
+        ToolManager.SetMagnetTool(35);
+        ToolManager.SetSortTool(35);
         PlayerPanelManager.Coin += 7000;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
     }
     public void OnPriceButton2()
     {

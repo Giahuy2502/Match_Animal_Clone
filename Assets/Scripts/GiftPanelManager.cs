@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GiftPanelManager : MonoBehaviour
 {
-
-    
+    private ToolManager ToolManager => ToolManager.Instance;
     public void OnExitButton()
     {
         this.gameObject.SetActive(false);
@@ -19,11 +18,11 @@ public class GiftPanelManager : MonoBehaviour
     }
     void GetFreeTool()
     {
-        ToolManager.undoCount++;
-        ToolManager.sortCount++;
-        ToolManager.magnetCount++;
-        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+        ToolManager.SetUndoTool(1);
+        ToolManager.SetSortTool(1);
+        ToolManager.SetMagnetTool(1);
+        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
     }
 }

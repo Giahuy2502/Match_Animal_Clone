@@ -18,6 +18,7 @@ public class RollCallManager : MonoBehaviour
     {
 
         today = DateTime.Now.Date.ToString("dd/MM/yyyy");
+        var tickNow = DateTime.Now.Date.Ticks;
         PlayerPanelManager.Coin = PlayerPrefs.GetInt("coin", 0);
         Debug.Log(PlayerPanelManager.Coin);
         filePath = Application.persistentDataPath + "/attendance.json";

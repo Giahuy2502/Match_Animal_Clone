@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PausePanelManager : MonoBehaviour
 {
+    private ToolManager ToolManager=> ToolManager.Instance;
     int indexScene;
     private void Start()
     {
@@ -24,14 +25,14 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnLevelButton()
     {
-        ToolManager.undoCount =0;
-        ToolManager.magnetCount =0;
-        ToolManager.sortCount = 0;
+        ToolManager.ResetUndoTool();
+        ToolManager.ResetMagnetTool();
+        ToolManager.ResetSortTool();
         PlayerPanelManager.Coin =0;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
     }
     public void OnTutorialButton()
     {

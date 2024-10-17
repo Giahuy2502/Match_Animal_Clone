@@ -17,6 +17,7 @@ public class SpinManager : MonoBehaviour
     [SerializeField] Image spin;
     [SerializeField] Button exit;
     [SerializeField] Button ad;
+    ToolManager ToolManager=> ToolManager.Instance;
     public static Vector3 corner;
     private void Start()
     {
@@ -28,16 +29,16 @@ public class SpinManager : MonoBehaviour
     void InitValue()
     {
         PlayerPanelManager.Coin= PlayerPrefs.GetInt("coin", 0);
-        ToolManager.undoCount= PlayerPrefs.GetInt("undoCount", 0);
-        ToolManager.magnetCount= PlayerPrefs.GetInt("magnetCount", 0);
-        ToolManager.sortCount= PlayerPrefs.GetInt("sortCount", 0);
+        ToolManager.ResetUndoTool(PlayerPrefs.GetInt("undoCount", 0));
+        ToolManager.ResetMagnetTool(PlayerPrefs.GetInt("magnetCount", 0));
+        ToolManager.ResetSortTool(PlayerPrefs.GetInt("sortCount", 0));
     }
     public void OnExitButton()
     {
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
+        PlayerPrefs.SetInt("undoCount", ToolManager.GetUndoCount());
+        PlayerPrefs.SetInt("magnetCount", ToolManager.GetMagnetCount());
+        PlayerPrefs.SetInt("sortCount", ToolManager.GetSortCount());
         SceneManager.LoadScene(1);
     }
     public void OnAdButton()
@@ -72,9 +73,9 @@ public class SpinManager : MonoBehaviour
     void UpdateUI()
     {
         int coin = PlayerPanelManager.Coin;
-        int undo = ToolManager.undoCount;
-        int mag = ToolManager.magnetCount;
-        int sort = ToolManager.sortCount;
+        int undo = ToolManager.GetUndoCount();
+        int mag = ToolManager.GetMagnetCount();
+        int sort = ToolManager.GetSortCount();
         coinTxt.text = coin.ToString();
         undoTxt.text = undo.ToString();
         magTxt.text = mag.ToString();
@@ -86,39 +87,7 @@ public class SpinManager : MonoBehaviour
         int angle = z % 360 + 23;
         int indexgift = (angle / 45)%8;
         Debug.Log($"indexgift = {indexgift}");
-        switch (indexgift)
-        {
-            case 0:
-                UpdateValue(1, ref ToolManager.sortCount);
-                break;
-            case 1:
-                UpdateValue(150, ref PlayerPanelManager.Coin);
-                break;
-            case 2:
-                UpdateValue(2, ref ToolManager.magnetCount);
-                break;
-            case 3:
-                UpdateValue(2, ref ToolManager.undoCount);
-                break;
-            case 4:
-                UpdateValue(2, ref ToolManager.sortCount);
-                break;
-            case 5:
-                UpdateValue(300, ref PlayerPanelManager.Coin);
-                break;
-            case 6:
-                UpdateValue(1, ref ToolManager.magnetCount);
-                break;
-            case 7:
-                UpdateValue(1, ref ToolManager.undoCount);
-                break;
-        }
+        
     }
 
-    private void UpdateValue(int count, ref int ToolCount)
-    {
-        
-        ToolCount += count;
-       
-    }
 }

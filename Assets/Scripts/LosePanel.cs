@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LosePanel : MonoBehaviour
 {
-    
-    [SerializeField] ToolManager toolManager;
+    [SerializeField]ToolByUIManager toolByUIManager;
+     ToolManager ToolManager => ToolManager.Instance;
 
     int indexScene;
     private void Start()
@@ -40,13 +40,13 @@ public class LosePanel : MonoBehaviour
     {
         for(int i = 0;i<3;i++)
         {
-            toolManager.OnUndoButton();
-            ToolManager.undoCount++;
-            Debug.Log(ToolManager.undoCount);
+            toolByUIManager.OnUndoButton();
+            ToolManager.SetUndoTool(1);
+          
         }
-        toolManager.OnSortingButton();
-        ToolManager.sortCount++;
-        Debug.Log(ToolManager.sortCount);
+        toolByUIManager.OnSortingButton();
+        ToolManager.SetSortTool(1);
+ 
         this.gameObject.SetActive(false);
         Debug.Log(this.gameObject.activeSelf);
     }

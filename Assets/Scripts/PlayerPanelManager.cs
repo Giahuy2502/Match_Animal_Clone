@@ -4,7 +4,6 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static DatabaseManager;
 
 public class PlayerPanelManager : MonoBehaviour
 {
