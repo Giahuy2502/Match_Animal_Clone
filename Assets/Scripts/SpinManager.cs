@@ -21,8 +21,16 @@ public class SpinManager : MonoBehaviour
     private void Start()
     {
         AdsManager.Instance.ShowBannerAd();
+        InitValue();
         InitUI();
         
+    }
+    void InitValue()
+    {
+        PlayerPanelManager.Coin= PlayerPrefs.GetInt("coin", 0);
+        ToolManager.undoCount= PlayerPrefs.GetInt("undoCount", 0);
+        ToolManager.magnetCount= PlayerPrefs.GetInt("magnetCount", 0);
+        ToolManager.sortCount= PlayerPrefs.GetInt("sortCount", 0);
     }
     public void OnExitButton()
     {
@@ -35,7 +43,7 @@ public class SpinManager : MonoBehaviour
     public void OnAdButton()
     {
         AdsManager.Instance.ShowRewardedlAd();
-        UnityEvent rotateSpin = RewardedAds.rotateSpin;
+        UnityEvent rotateSpin = RewardedAds.watchedEvent;
         rotateSpin.AddListener(RotateSpin);
     }
     void RotateSpin()

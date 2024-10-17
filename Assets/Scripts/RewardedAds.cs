@@ -12,7 +12,7 @@ public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
     //[SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = ""; // This will remain null for unsupported platforms
     int indexScene;
-    public static UnityEvent rotateSpin = new UnityEvent();
+    public static UnityEvent watchedEvent = new UnityEvent();
 
 
     public void Init()
@@ -29,7 +29,7 @@ public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
 #endif
 
         // Disable the button until the ad is ready to show:
-        indexScene = SceneManager.GetActiveScene().buildIndex;
+        
     }
 
     // Call this public method when you want to get an ad ready to show.
@@ -79,35 +79,8 @@ public class RewardedAds :IUnityAdsShowListener,IUnityAdsLoadListener
 
     private void GrantReward()
     {
-        if(indexScene==1)
-        {
-            if(DataGame.stateCurrentPlay==0)
-            {
-                ToolManager.undoCount++;
-                ToolManager.sortCount++;
-                ToolManager.magnetCount++;
-                PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
-                PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
-                PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
-                Debug.Log("***********");
-            }
-            else
-            {
-                DataGame.stateCurrentPlay = 0;
-                Debug.Log("Da xem quang cao de tiep tuc game"+"  " + DataGame.stateCurrentPlay);
-
-            }
-        }
-        else if(indexScene==2)
-        {
-            PlayerPanelManager.Coin += 300;
-            PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
-        }
-        else if(indexScene==3)
-        {
-            rotateSpin.Invoke();
-            rotateSpin.RemoveAllListeners();
-        }
+        watchedEvent.Invoke();
+        watchedEvent.RemoveAllListeners();
     }
 
     // Implement Load and Show Listener error callbacks:

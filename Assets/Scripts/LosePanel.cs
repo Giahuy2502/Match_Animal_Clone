@@ -26,7 +26,7 @@ public class LosePanel : MonoBehaviour
     {
         
         AdsManager.Instance.ShowRewardedlAd();
-        Continue();
+        RewardedAds.watchedEvent.AddListener(Continue);
     }
     public void OnBuyButton()
     {

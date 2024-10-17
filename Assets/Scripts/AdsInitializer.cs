@@ -17,7 +17,6 @@ public class AdsInitializer : IUnityAdsInitializationListener
             _gameId = _iOSGameId;
 #elif UNITY_EDITOR
         _gameId = _androidGameId; //Only for testing the functionality in the Editor
-        Debug.Log("UnityPlatform");
 #elif UNITY_ANDROID
         _gameId = _androidGameId;
         Debug.Log("UnityPlatform");

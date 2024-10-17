@@ -178,40 +178,7 @@ public class ToolManager : MonoBehaviour
             }
         }
     }
-    //IEnumerator ProcessClicks(List<GameObject[,]> board, int indexSprite,int count )
-    //{
-    //    for (int i = board.Count - 1; i >= 0; i--)
-    //    {
-    //        GameObject[,] boardCell = board[i];
-    //        for (int j = 0; j < boardCell.GetLength(0); j++)
-    //        {
-    //            for (int k = 0; k < boardCell.GetLength(1); k++)
-    //            {
-    //                if (boardCell[j, k] != null)
-    //                {
-    //                    CellManager cell = boardCell[j, k].GetComponent<CellManager>();
-    //                    if (cell.indexSprite == indexSprite && count < 3 && DataGame.countTickedCell <= 7)
-    //                    {
-    //                        if (cell.clickable)
-    //                        {
-    //                            ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
-    //                            PointerEventData eventData = new PointerEventData(EventSystem.current);
-
-    //                            // Thực hiện click cell
-    //                            clickCell.OnPointerClick(eventData);
-    //                            count++;
-
-    //                            // Chờ trước khi click cell tiếp theo
-    //                            yield return new WaitForSeconds(0.5f);
-    //                        }
-    //                    }
-
-    //                    if (count == 3) yield break;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+    
 
     private static void GetCountAndIndexSprite(ref int count, ref int indexSprite)
     {

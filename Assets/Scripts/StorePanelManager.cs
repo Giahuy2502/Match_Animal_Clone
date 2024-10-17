@@ -65,6 +65,11 @@ public class StorePanelManager : MonoBehaviour
     public void OnPriceButton5()
     {
         AdsManager.Instance.ShowRewardedlAd();
+        RewardedAds.watchedEvent.AddListener(GetFreeCoin);
+    }
+
+    private static void GetFreeCoin()
+    {
         PlayerPanelManager.Coin += 300;
         PlayerPrefs.SetInt("coin", PlayerPanelManager.Coin);
     }

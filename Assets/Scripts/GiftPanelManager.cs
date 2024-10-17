@@ -14,6 +14,16 @@ public class GiftPanelManager : MonoBehaviour
     public void OnAdsButton()
     {
         AdsManager.Instance.ShowRewardedlAd();
+        RewardedAds.watchedEvent.AddListener(GetFreeTool);
         this.gameObject.SetActive(false);
+    }
+    void GetFreeTool()
+    {
+        ToolManager.undoCount++;
+        ToolManager.sortCount++;
+        ToolManager.magnetCount++;
+        PlayerPrefs.SetInt("undoCount", ToolManager.undoCount);
+        PlayerPrefs.SetInt("magnetCount", ToolManager.magnetCount);
+        PlayerPrefs.SetInt("sortCount", ToolManager.sortCount);
     }
 }
