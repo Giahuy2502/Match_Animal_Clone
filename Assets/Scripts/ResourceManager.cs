@@ -17,6 +17,29 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     private int magnetCount;
     private int sortCount;
     private int coin;
+    List<string> enumItem = new List<string> {
+        "undoCount",
+        "magnetCount",
+        "sortCount",
+        "coin"
+        };
+
+    public void SetTypeItem(string type,int count)
+    {
+        int n=0;
+        for(int i=0; i<enumItem.Count;i++)
+        {
+            if (enumItem[i].Equals(type))
+            {
+                n=i;
+                break;
+            }
+        }
+        if (n==0) SetUndoTool(count);
+        else if(n==1) SetMagnetTool(count);
+        else if (n==2) SetSortTool(count);
+        else SetCoin(count);
+    }
     public int GetUndoCount()
     {
         return undoCount;
@@ -35,7 +58,11 @@ public class ResourceManager : MonoSingleton<ResourceManager>
         return coin;
     }
     
-   
+    public void SetResources(GiftType type,int count)
+   {
+
+   }
+
     public void ResetUndoTool(int count=0)
     {
         undoCount = count;

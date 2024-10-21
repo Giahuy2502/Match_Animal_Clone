@@ -17,6 +17,7 @@ public class SpinManager : MonoBehaviour
     [SerializeField] Image spin;
     [SerializeField] Button exit;
     [SerializeField] Button ad;
+    [SerializeField] SpinReward rewards;
     ResourceManager ResourceManager=> ResourceManager.Instance;
     public static Vector3 corner;
     private void Start()
@@ -87,7 +88,11 @@ public class SpinManager : MonoBehaviour
         int angle = z % 360 + 23;
         int indexgift = (angle / 45)%8;
         Debug.Log($"indexgift = {indexgift}");
-        
+        GiftReward gift = rewards.Rewards[indexgift];
+        int count= gift.GetCount();
+        GiftType type = gift.GetGiftType();
+        ResourceManager.SetTypeItem(type.ToString(),count);
+
     }
 
 }

@@ -1438,6 +1438,7 @@ MonoBehaviour:
   spin: {fileID: 224590650}
   exit: {fileID: 1330404886}
   ad: {fileID: 1469412321}
+  rewards: {fileID: 11400000, guid: bc11719cf9958ec449aaf56a88b7f95f, type: 2}
 --- !u!1 &813718302
 GameObject:
   m_ObjectHideFlags: 0
