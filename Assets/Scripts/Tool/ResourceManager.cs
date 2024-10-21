@@ -17,14 +17,11 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     private int magnetCount;
     private int sortCount;
     private int coin;
-    List<string> enumItem = new List<string> {
-        "undoCount",
-        "magnetCount",
-        "sortCount",
-        "coin"
-        };
 
-    public void SetTypeItem(string type,int count)
+    //Dictionary<string, int> res
+    [SerializeField]List<GiftType> enumItem;
+
+    public void SetTypeItem(GiftType type,int count)
     {
         int n=0;
         for(int i=0; i<enumItem.Count;i++)

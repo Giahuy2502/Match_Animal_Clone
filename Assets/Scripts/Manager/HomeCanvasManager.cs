@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class HomeCanvasManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinTxt;
+    [SerializeField] GameObject multiLanguage;
     private void Start()
     {
         AdsManager.Instance.ShowBannerAd();
     }
-
+    
     private void Update()
     {
         int coin = PlayerPrefs.GetInt("coin",0);
@@ -30,7 +31,7 @@ public class HomeCanvasManager : MonoBehaviour
 
     public void OnLanguageButton()
     {
-
+        multiLanguage.SetActive(true);
     }
     public void OnShopButton()
     {

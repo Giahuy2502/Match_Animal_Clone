@@ -14,7 +14,7 @@ public class RollCallManager : MonoBehaviour
     [SerializeField] List<Image> images;
     [SerializeField] Button Button;
 
-    ResourceManager ResourceManager=> ResourceManager;
+    ResourceManager ResourceManager=> ResourceManager.Instance;
     private void Start()
     {
 

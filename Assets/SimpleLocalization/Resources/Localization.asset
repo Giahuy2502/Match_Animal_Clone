@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63817d93022759543b57e795c78efe11, type: 3}
-  m_Name: LocalizationSettings
+  m_Name: Localization
   m_EditorClassIdentifier: 
-  TableId: 1VYA-vNf8iJeWKbz_wYG8zETfH8Oebe4OFSZZ5vie3WE
-  Sheets:
-  - Name: Lucky Spin
-    Id: 0
-    TextAsset: {fileID: 4900000, guid: b9049bf5039988641bb6b319007fc616, type: 3}
-  SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}
+  TableId: 
+  Sheets: []
+  SaveFolder: {fileID: 0}

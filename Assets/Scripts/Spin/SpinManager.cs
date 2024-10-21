@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Events;
 using System.Net.Http.Headers;
+using Assets.SimpleLocalization.Scripts;
 
 public class SpinManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class SpinManager : MonoBehaviour
         AdsManager.Instance.ShowBannerAd();
         //InitValue();
         InitUI();
-        
+        Debug.Log(LocalizationManager.Language);
     }
     //void InitValue()
     //{
@@ -91,7 +92,7 @@ public class SpinManager : MonoBehaviour
         GiftReward gift = rewards.Rewards[indexgift];
         int count= gift.GetCount();
         GiftType type = gift.GetGiftType();
-        ResourceManager.SetTypeItem(type.ToString(),count);
+        ResourceManager.SetTypeItem(type,count);
 
     }
 

@@ -34,10 +34,10 @@ namespace Assets.SimpleLocalization.Scripts
 
 		#if UNITY_EDITOR
 
-        public void Awake()
-        {
-			Debug.LogWarning("This script has been deprecated. Use LocalizationSettingsWindow or LocalizationSettings (Scriptable Object).");
-        }
+   //     public void Awake()
+   //     {
+			//Debug.LogWarning("This script has been deprecated. Use LocalizationSettingsWindow or LocalizationSettings (Scriptable Object).");
+   //     }
 
 		/// <summary>
 		/// Sync spreadsheets.
