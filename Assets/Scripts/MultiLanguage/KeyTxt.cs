@@ -19,7 +19,8 @@ public enum KeyTxt
     Lose_Continue,
     Lose_Text,
     Lose_Free,
-    Store_store
+    Store_store,
+    Gift_giftBox
 }
 public static class ConvertEnumToString
 {

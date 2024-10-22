@@ -2,3 +2,17 @@ Key,English,Vietnamese,Spanish
 Spin_LuckySpin,LUCKY SPIN,Vòng Quay May Mắn,Rueda de la suerte
 Spin_FreeSpins,FREE SPINS,Lượt Quay Miễn Phí,Giros gratis
 Home_Level,LEVEL,Cấp độ,nivel
+Home_Levels,Levels,Cấp độ,nivel
+Player_Combo,COMBO,Liên hoàn,continuo
+Pause_Continue,CONTINUE,Tiếp Tục,Continuar
+Pause_Restart,RESTART,Khởi Động Lại,Reanudar
+Pause_Home,HOME,Trang Chủ,pagina de inicio
+Pause_Level,LEVEL,Cấp độ,nivel
+Pause_Tutorial,TUTORIAL,Hướng dẫn,instruir
+Win_DeleteLevel,DELETE LEVEL,Xóa cấp độ,nivel claro
+Lose_Continue,Continue?,Tiếp Tục?,¿Continuar?
+Lose_Text,Recover the last 3 tiles from the last box and refresh all remaining tiles,Khôi phục 3 ô cuối cùng từ hộp cuối cùng và làm mới tất cả các ô còn lại,"Recupera las últimas 3 fichas del último cuadro y 
+actualizar todos los mosaicos restantes"
+Lose_Free,FREE,MIỄN PHÍ,gratis
+Store_store,STORE,CỬA HÀNG,Almacenar
+Gift_giftBox,Gift Box,Hộp quà,Caja de regalo

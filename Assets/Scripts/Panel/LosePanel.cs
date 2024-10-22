@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class LosePanel : MonoBehaviour
 {
     [SerializeField]ToolByUIManager toolByUIManager;
-     ResourceManager ResourceManager => ResourceManager.Instance;
+    ResourceManager ResourceManager => ResourceManager.Instance;
 
     int indexScene;
+    [SerializeField]GameObject panel;
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
@@ -27,6 +28,7 @@ public class LosePanel : MonoBehaviour
         
         AdsManager.Instance.ShowRewardedlAd();
         RewardedAds.watchedEvent.AddListener(Continue);
+        
     }
     public void OnBuyButton()
     {
@@ -35,6 +37,7 @@ public class LosePanel : MonoBehaviour
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin()); 
         Continue();
         DataGame.stateCurrentPlay = 0;
+        
     }
     public void Continue()
     {
@@ -46,8 +49,12 @@ public class LosePanel : MonoBehaviour
         }
         toolByUIManager.OnSortingButton();
         ResourceManager.SetSortTool(1);
- 
-        this.gameObject.SetActive(false);
-        Debug.Log(this.gameObject.activeSelf);
+
+        ExitPanel();
+    }
+    public void ExitPanel()
+    {
+        panel.SetActive(false);
+        GameUtility.Log(this, panel.activeSelf.ToString(), Color.blue);
     }
 }
