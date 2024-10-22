@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PausePanelManager : MonoBehaviour
 {
+    [SerializeField] TutorialPanelManager tutorialPanelManager;
     private ResourceManager ResourceManager=> ResourceManager.Instance;
     int indexScene;
     private void Start()
@@ -36,7 +37,7 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnTutorialButton()
     {
-
+        tutorialPanelManager.gameObject.SetActive(true);
     }
     public void OnMuteButton()
     {

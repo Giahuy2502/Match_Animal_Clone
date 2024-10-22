@@ -20,7 +20,9 @@ public enum KeyTxt
     Lose_Text,
     Lose_Free,
     Store_store,
-    Gift_giftBox
+    Gift_giftBox,
+    Tutorial_HowtoPlay,
+    Tutorial_Text
 }
 public static class ConvertEnumToString
 {
