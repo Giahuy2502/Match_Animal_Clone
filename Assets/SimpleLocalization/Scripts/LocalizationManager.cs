@@ -49,10 +49,10 @@ namespace Assets.SimpleLocalization.Scripts
             {
                 var textAsset = sheet.TextAsset;
                 var lines = GetLines(textAsset.text);
-                foreach(var line in lines)
-                {
-                    Debug.Log(line);
-                }
+                //foreach(var line in lines)
+                //{
+                //    Debug.Log(line);
+                //}
 				var languages = lines[0].Split(',').Select(i => i.Trim()).ToList();
 
                 if (languages.Count != languages.Distinct().Count())

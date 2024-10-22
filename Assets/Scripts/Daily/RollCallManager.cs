@@ -8,24 +8,23 @@ using UnityEngine.UI;
 
 public class RollCallManager : MonoBehaviour
 {
-    [SerializeField] string today;
     [SerializeField] string filePath;
     [SerializeField] AttendanceData data;
     [SerializeField] List<Image> images;
     [SerializeField] Button Button;
+    [SerializeField] long tickNow;
 
     ResourceManager ResourceManager=> ResourceManager.Instance;
     private void Start()
     {
 
-        today = DateTime.Now.Date.ToString("dd/MM/yyyy");
-        var tickNow = DateTime.Now.Date.Ticks;
+        tickNow = DateTime.Now.Date.Ticks;
         ResourceManager.SetCoin(PlayerPrefs.GetInt("coin", 0)) ;
         Debug.Log(ResourceManager.GetCoin());
         filePath = Application.persistentDataPath + "/attendance.json";
         LoadGame();
-        InitUI(today);
-        if(data.attendanceDates.Contains(today))
+        InitUI(tickNow);
+        if(data.attendanceDates.Contains(tickNow))
         {
             Button.interactable = false;
         }
@@ -39,58 +38,34 @@ public class RollCallManager : MonoBehaviour
              +cap nhat chi so ngay hom nay
              +them hom nay vao date
         */
-        List<string> list = data.attendanceDates;
-        int[] index = data.index;
-        if (list.Count==0)
-        {
-            index[0] = 1;
-            GetReward(0);
-            list.Add(today);
+        List<long> list = data.attendanceDates;
+        //int[] index = data.index;
+        GetReward(list.Count);
+        if(list.Count == 9) 
+        { 
+            list.Clear();
         }
-        else
-        {
-            int currentDay = int.Parse(today.Substring(0,2));
-            int firstDay = int.Parse(list[0].Substring(0,2));
-            int indexBox = currentDay-firstDay;
-            index[indexBox] = 1;
-            GetReward(indexBox);
-        }
+        list.Add(tickNow);
         SaveGame();
         this.gameObject.SetActive(false);
     }
-    public void InitUI(string today)
+    public void InitUI(long tickNow)
     {
-        /* -neu ptu index nao =1 thi la ngay da diem danh
-           -nguoc lai la chua diem danh
+        /* 
            -neu da diem danh 9 ngay:
              +xoa het list
              +reset lai mang index
         */
-        List<string> list = data.attendanceDates;
-        int[] index = data.index;
-        if (list.Contains(today)) gameObject.SetActive(false);
+        List<long> list = data.attendanceDates;
+        //int[] index = data.index;
+        //if (list.Contains(tickNow)) gameObject.SetActive(false);
         //Debug.Log($"first day = {list[0]} + list.count = {list.Count}");
         if (list.Count==0) return;
-        int currentDay = int.Parse(today.Substring(0, 2));
-        int firstDay = int.Parse(list[0].Substring(0, 2));
-        int indexBox = currentDay - firstDay;
-        if (indexBox > 9)
+        for(int i=0; i<list.Count; i++)
         {
-            list.Clear();
-            for (int i = 0; i < index.Length; i++)
-            {
-                data.index[i] = 0;
-            }
+            images[i].color = Color.green;
         }
-        for(int i = 0;i<index.Length;i++)
-        {
-            if (index[i]==1)
-            {
-                Image tmp= images[i];
-                tmp.color = Color.green;
-            }
-        }
-
+        
     }
 
     public void SaveGame()
@@ -150,6 +125,6 @@ public class RollCallManager : MonoBehaviour
 [System.Serializable]
 public class AttendanceData
 {
-    public List<string> attendanceDates; // Danh sách các ngày điểm danh
-    public int[] index= new int[10];
+    public List<long> attendanceDates; // Danh sách các ngày điểm danh
+    //public int[] index= new int[10];
 }

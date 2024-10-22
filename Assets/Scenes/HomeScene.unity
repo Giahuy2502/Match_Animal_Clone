@@ -3664,7 +3664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &880500166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3735,11 +3735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642d5bae757360840a4193ed3445bada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  today: 
   filePath: 
   data:
-    attendanceDates: []
-    index: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+    attendanceDates: 
   images:
   - {fileID: 892883406}
   - {fileID: 1858546296}
@@ -3751,6 +3749,7 @@ MonoBehaviour:
   - {fileID: 1341585706}
   - {fileID: 1246061773}
   Button: {fileID: 917292903}
+  tickNow: 0
 --- !u!1 &883814672
 GameObject:
   m_ObjectHideFlags: 0
