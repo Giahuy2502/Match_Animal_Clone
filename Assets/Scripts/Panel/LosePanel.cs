@@ -9,7 +9,7 @@ public class LosePanel : MonoBehaviour
     ResourceManager ResourceManager => ResourceManager.Instance;
 
     int indexScene;
-    [SerializeField]GameObject panel;
+   
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
@@ -36,8 +36,7 @@ public class LosePanel : MonoBehaviour
         ResourceManager.SetCoin(-300);
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin()); 
         Continue();
-        DataGame.stateCurrentPlay = 0;
-        
+             
     }
     public void Continue()
     {
@@ -49,12 +48,12 @@ public class LosePanel : MonoBehaviour
         }
         toolByUIManager.OnSortingButton();
         ResourceManager.SetSortTool(1);
-
+        DataGame.stateCurrentPlay = 0;
         ExitPanel();
     }
     public void ExitPanel()
     {
-        panel.SetActive(false);
-        GameUtility.Log(this, panel.activeSelf.ToString(), Color.blue);
+        gameObject.SetActive(false);
+        GameUtility.Log(this, gameObject.activeSelf.ToString(), Color.blue);
     }
 }
