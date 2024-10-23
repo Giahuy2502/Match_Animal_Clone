@@ -20,6 +20,7 @@ public class SpinManager : MonoBehaviour
     [SerializeField] Button ad;
     [SerializeField] SpinReward rewards;
     ResourceManager ResourceManager=> ResourceManager.Instance;
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     public static Vector3 corner;
     private void Start()
     {
@@ -59,7 +60,8 @@ public class SpinManager : MonoBehaviour
         UpdateValue(z);
         ad.interactable = false;
         Invoke("UpdateUI", 5f);
-        
+        audioSourceManager.PlayAudio(3);
+
     }
     void InitUI()
     {

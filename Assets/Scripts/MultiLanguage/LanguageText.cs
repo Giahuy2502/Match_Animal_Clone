@@ -23,6 +23,6 @@ public class LanguageText : MonoBehaviour
         if (text == null) Debug.Log("Nulll");
         string keyString= ConvertEnumToString.GetStringByKey(key);
         text.text=LocalizationManager.Localize(keyString);
-        Debug.Log("sdbcgb");
+        //Debug.Log("sdbcgb");
     }
 }

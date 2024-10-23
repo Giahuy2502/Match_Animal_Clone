@@ -24,6 +24,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     public void SetTypeItem(GiftType type,int count)
     {
         int n=0;
+        
         for(int i=0; i<enumItem.Count;i++)
         {
             if (enumItem[i].Equals(type))

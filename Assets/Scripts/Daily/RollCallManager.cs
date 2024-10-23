@@ -58,7 +58,7 @@ public class RollCallManager : MonoBehaviour
         */
         List<long> list = data.attendanceDates;
         //int[] index = data.index;
-        //if (list.Contains(tickNow)) gameObject.SetActive(false);
+        if (list.Contains(tickNow)) gameObject.SetActive(false);
         //Debug.Log($"first day = {list[0]} + list.count = {list.Count}");
         if (list.Count==0) return;
         for(int i=0; i<list.Count; i++)
