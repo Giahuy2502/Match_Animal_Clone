@@ -10,6 +10,7 @@ public class StorePanelManager : MonoBehaviour
     public static int IndexCurrentScene;
     [SerializeField] TextMeshProUGUI coinTxt;
     ResourceManager ResourceManager => ResourceManager.Instance;
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     delegate void LoadAd();
     private void Start()
     {
@@ -67,7 +68,10 @@ public class StorePanelManager : MonoBehaviour
         AdsManager.Instance.ShowRewardedlAd();
         RewardedAds.watchedEvent.AddListener(GetFreeCoin);
     }
-
+    public void OnSoundButton(int index)
+    {
+        audioSourceManager.PlayAudio(index);
+    }
     private void GetFreeCoin()
     {
         ResourceManager.SetCoin(300);

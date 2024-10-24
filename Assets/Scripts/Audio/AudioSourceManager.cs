@@ -8,11 +8,12 @@ public class AudioSourceManager : MonoSingleton<AudioSourceManager>
     [SerializeField]private AudioClipManager audioClip;
     public void PlayAudio(int index)
     {
-        if(!effectSound.isPlaying)
+        if(effectSound.isPlaying)
         {
-            AudioClip effect = audioClip.GetAudioClip(index);
-            effectSound.PlayOneShot(effect);
-            GameUtility.Log(this,"PlaySound",Color.red);
+            effectSound.Stop();
         }
+        AudioClip effect = audioClip.GetAudioClip(index);
+        effectSound.PlayOneShot(effect);
+        GameUtility.Log(this, "PlaySound", Color.red);
     }
 }

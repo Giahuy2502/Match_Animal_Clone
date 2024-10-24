@@ -288,7 +288,6 @@ RectTransform:
   m_Children:
   - {fileID: 379697327}
   - {fileID: 1583956132}
-  - {fileID: 2038872592}
   m_Father: {fileID: 886057748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2543,6 +2542,7 @@ RectTransform:
   m_Children:
   - {fileID: 738223350}
   - {fileID: 1515417016}
+  - {fileID: 2038872592}
   - {fileID: 39427714}
   - {fileID: 2123122134}
   - {fileID: 1073198645}
@@ -2774,6 +2774,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
         m_MethodName: OnExitButton
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3758,6 +3770,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1208018820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4286,6 +4310,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1393425383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4419,6 +4455,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443914758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4548,6 +4596,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4760,6 +4820,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6327,6 +6399,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1257889193}
+        m_TargetAssemblyTypeName: StorePanelManager, Assembly-CSharp
+        m_MethodName: OnSoundButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1996595012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6398,11 +6482,11 @@ RectTransform:
   - {fileID: 42391178}
   - {fileID: 1996595010}
   - {fileID: 2140875247}
-  m_Father: {fileID: 39427714}
+  m_Father: {fileID: 886057748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00004506111, y: 255}
+  m_AnchoredPosition: {x: -1.2762, y: 101}
   m_SizeDelta: {x: 1026.8059, y: 253.0219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2038872593

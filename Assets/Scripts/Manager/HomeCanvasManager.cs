@@ -8,6 +8,8 @@ public class HomeCanvasManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinTxt;
     [SerializeField] GameObject multiLanguage;
+
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     private void Start()
     {
         AdsManager.Instance.ShowBannerAd();
@@ -52,5 +54,9 @@ public class HomeCanvasManager : MonoBehaviour
     public void OnGiftButton()
     {
 
+    }
+    public void OnSoundButton(int index)
+    {
+        audioSourceManager.PlayAudio(index);
     }
 }

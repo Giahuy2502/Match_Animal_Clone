@@ -10,7 +10,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject LosePanel;
     [SerializeField] GameObject GiftPanel;
 
-
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     void Start()
     {
         PlayPanel.SetActive(true);
@@ -20,7 +20,10 @@ public class CanvasManager : MonoBehaviour
         GiftPanel.SetActive(false);
     }
 
-    
+    public void OnSoundButton(int index)
+    {
+        audioSourceManager.PlayAudio(index);
+    }
     void Update()
     {
         if(DataGame.stateCurrentPlay==1)

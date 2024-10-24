@@ -29,7 +29,7 @@ public class PausePanelManager : MonoBehaviour
         ResourceManager.ResetUndoTool();
         ResourceManager.ResetMagnetTool();
         ResourceManager.ResetSortTool();
-        ResourceManager.SetCoin(0);
+        ResourceManager.ResetCoin(0);
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
         PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
         PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());

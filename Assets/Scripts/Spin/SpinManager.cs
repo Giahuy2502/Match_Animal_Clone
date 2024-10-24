@@ -50,6 +50,10 @@ public class SpinManager : MonoBehaviour
         UnityEvent rotateSpin = RewardedAds.watchedEvent;
         rotateSpin.AddListener(RotateSpin);
     }
+    public void OnSoundButton(int index)
+    {
+        audioSourceManager.PlayAudio(index);
+    }
     void RotateSpin()
     {
         GameUtility.Log(this, "da xem quang cao de quay spin", Color.magenta);

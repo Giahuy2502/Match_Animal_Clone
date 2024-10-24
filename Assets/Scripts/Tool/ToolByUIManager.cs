@@ -16,12 +16,15 @@ public class ToolByUIManager : MonoBehaviour
     [SerializeField] Image GiftBG;
     [SerializeField] float speedRotation = 15f;
 
-
+    private int index=6;
     
     ResourceManager ResourceManager => ResourceManager.Instance;
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
 
-   
-
+    void SetIndex(int count)
+    {
+        index = count;
+    }
     private void Update()
     {
         GiftBG.transform.Rotate(0f, 0f, speedRotation * Time.deltaTime);
@@ -33,13 +36,19 @@ public class ToolByUIManager : MonoBehaviour
 
     public void OnUndoButton()
     {
-        if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        SetIndex(6);
+        if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() < 300)
+        {
+            SetIndex(2);
+            return;
+        }
         else if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
             GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetUndoTool(1);
+            SetIndex(1);
         }
         bool checkUndoable;
         GameObject undoCell;
@@ -118,13 +127,19 @@ public class ToolByUIManager : MonoBehaviour
         // chon ra cell co so dem lon nhat
         // chon ra cac cell cung loai voi cell tren tu gird
         // set cell.clickable cua cac cell duoc chon la true
-        if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        SetIndex(6);
+        if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() < 300)
+        {
+            SetIndex(2);
+            return;
+        }
         else if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
             GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetMagnetTool(1);
+            SetIndex(1);
         }
         int count = 0;
         int indexSprite = 0;
@@ -169,7 +184,6 @@ public class ToolByUIManager : MonoBehaviour
         }
     }
 
-
     private static void GetCountAndIndexSprite(ref int count, ref int indexSprite)
     {
         for (int i = 0; i < DataGame.listTickedCell.Length; i++)
@@ -192,13 +206,19 @@ public class ToolByUIManager : MonoBehaviour
         //tron danh sach 1 chieu bang thuat toan fisher-yates
         //thay doi cac chi so i,j,layer cua cellManager
         //gan lai gia tri tu danh sach tron ve lai cac layer grid
-        if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() < 300) return;
+        SetIndex(6);
+        if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() < 300)
+        {
+            SetIndex(2);
+            return;
+        }
         else if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
             GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetSortTool(1);
+            SetIndex(1);
         }
         List<GameObject[,]> board = DataGame.layerGrid;
         List<int> tempList = new List<int>();
@@ -281,6 +301,9 @@ public class ToolByUIManager : MonoBehaviour
         giftPanel.SetActive(true);
 
     }
-
+    public void PlayEffect()
+    {
+        audioSourceManager.PlayAudio(index);
+    }
 
 }

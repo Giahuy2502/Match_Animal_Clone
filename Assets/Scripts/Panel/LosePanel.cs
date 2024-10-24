@@ -7,9 +7,14 @@ public class LosePanel : MonoBehaviour
 {
     [SerializeField]ToolByUIManager toolByUIManager;
     ResourceManager ResourceManager => ResourceManager.Instance;
-
-    int indexScene;
-   
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    private int indexScene;
+    private int indexSound;
+    
+    void SetIndexSound(int indexSound)
+    {
+         this.indexSound = indexSound;
+    }
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
@@ -25,14 +30,20 @@ public class LosePanel : MonoBehaviour
     }
     public void OnFreeButton()
     {
-        
+        SetIndexSound(0);
         AdsManager.Instance.ShowRewardedlAd();
         RewardedAds.watchedEvent.AddListener(Continue);
         
     }
     public void OnBuyButton()
     {
-        if (ResourceManager.GetCoin() < 300) return;
+        SetIndexSound(1);
+        if (ResourceManager.GetCoin() < 300)
+        {
+            SetIndexSound(2);
+            return;
+        }
+        
         ResourceManager.SetCoin(-300);
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin()); 
         Continue();
@@ -55,5 +66,9 @@ public class LosePanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameUtility.Log(this, gameObject.activeSelf.ToString(), Color.blue);
+    }
+    public void SoundEffect()
+    {
+        audioSourceManager.PlayAudio(indexSound);
     }
 }

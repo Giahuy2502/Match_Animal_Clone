@@ -8,6 +8,7 @@ using System.Collections;
 
 public class ClickHandler : MonoBehaviour, IPointerClickHandler
 {
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     public void OnPointerClick(PointerEventData eventData)
     {
 
@@ -24,6 +25,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         {
             // cell.clickable==false;
             SetClickable();
+            SoundEffect(4);
             DeleteInGrid(cell);
             CheckEndGame();
         }
@@ -107,6 +109,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         if (TickedCellManager.checkDestroy)
         {
             DestroyTickedCell(); // Hủy cell khi thỏa điều kiện
+            SoundEffect(5);
             DataScore.state = 1;
             DataScore.combo++;
         }
@@ -197,5 +200,8 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
             Debug.Log("Lose game!");
         }
     }
-
+    public void SoundEffect(int index)
+    {
+        audioSourceManager.PlayAudio(index);
+    }
 }
