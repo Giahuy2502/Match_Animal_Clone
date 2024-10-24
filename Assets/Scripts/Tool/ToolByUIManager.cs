@@ -44,17 +44,19 @@ public class ToolByUIManager : MonoBehaviour
         }
         else if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
+            SetIndex(1);
+            if (DataGame.undoCell.Count == 0) return;
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
             GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetUndoTool(1);
-            SetIndex(1);
+            
         }
         bool checkUndoable;
         GameObject undoCell;
         while (true)
         {
-            if (DataGame.undoCell.Count == 0) return;
+            
             undoCell = DataGame.undoCell.Pop();
             if (undoCell != null)
             {
