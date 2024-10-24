@@ -56,7 +56,7 @@ public class ToolByUIManager : MonoBehaviour
         GameObject undoCell;
         while (true)
         {
-            
+            if (DataGame.undoCell.Count == 0) return;
             undoCell = DataGame.undoCell.Pop();
             if (undoCell != null)
             {

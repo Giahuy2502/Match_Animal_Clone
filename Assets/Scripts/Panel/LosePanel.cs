@@ -53,12 +53,14 @@ public class LosePanel : MonoBehaviour
     {
         for(int i = 0;i<3;i++)
         {
-            toolByUIManager.OnUndoButton();
+            
             ResourceManager.SetUndoTool(1);
-          
+            toolByUIManager.OnUndoButton();
+
         }
-        toolByUIManager.OnSortingButton();
         ResourceManager.SetSortTool(1);
+        toolByUIManager.OnSortingButton();
+        
         DataGame.stateCurrentPlay = 0;
         ExitPanel();
     }

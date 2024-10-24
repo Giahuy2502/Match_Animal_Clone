@@ -15,13 +15,9 @@ public class AdsInitializer : IUnityAdsInitializationListener
     {
 #if UNITY_IOS
             _gameId = _iOSGameId;
-#elif UNITY_EDITOR
+#endif  
         _gameId = _androidGameId; //Only for testing the functionality in the Editor
-#elif UNITY_ANDROID
-        _gameId = _androidGameId;
         Debug.Log("UnityPlatform");
-
-#endif
 
         Advertisement.Initialize(_gameId, _testMode, this);
         Debug.Log($"game id = {_gameId}");

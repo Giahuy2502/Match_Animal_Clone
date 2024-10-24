@@ -63,6 +63,7 @@ public class SpinManager : MonoBehaviour
         spinRect.DORotate(corner, 5f, RotateMode.FastBeyond360);
         UpdateValue(z);
         ad.interactable = false;
+        exit.interactable=false;    
         Invoke("UpdateUI", 5f);
         audioSourceManager.PlayAudio(3);
 
@@ -89,6 +90,7 @@ public class SpinManager : MonoBehaviour
         magTxt.text = mag.ToString();
         sortTxt.text = sort.ToString();
         ad.interactable = true;
+        exit.interactable = true;
     }
     private void UpdateValue(int z)
     {

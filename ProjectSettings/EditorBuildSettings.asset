@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpinScene.unity
     guid: d39b656a7344d5e4c91c3aadca39654f
+  - enabled: 1
+    path: Assets/Scenes/BaseScene.unity
+    guid: d03439c178b8cbf4e9990d47ec1a1bc8
   m_configObjects: {}

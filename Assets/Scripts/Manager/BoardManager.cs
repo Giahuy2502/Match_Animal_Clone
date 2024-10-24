@@ -87,7 +87,7 @@ public class BoardManager : MonoBehaviour
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
                 DataGame.countAllCell += 72;
-                Vector3 tickPosition = new Vector3(95f, 963.5f, 0f);
+                Vector3 tickPosition = new Vector3(165f, 665f, 0f);
                 SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
             }
@@ -96,7 +96,7 @@ public class BoardManager : MonoBehaviour
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
                 DataGame.countAllCell += 63;
-                Vector3 tickPosition = new Vector3(165f, 1036f, 0f);
+                Vector3 tickPosition = new Vector3(220f, 720f, 0f);
                 SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
             }
@@ -117,7 +117,7 @@ public class BoardManager : MonoBehaviour
                     {
                         index = Random.Range(0, setUpNumbers.Count);
                     }
-                    Vector3 position = new Vector3((i - 1) * 140 + tickPosition.x, (j - 1) * 140 + tickPosition.y, 0);
+                    Vector3 position = new Vector3((i - 1) * 110 + tickPosition.x, (j - 1) * 110 + tickPosition.y, 0);
                     GameObject cell = Instantiate(prefabs, position, Quaternion.identity);
                     CellManager cellSprite = cell.GetComponent<CellManager>();
                     cellSprite.layer = layer;
