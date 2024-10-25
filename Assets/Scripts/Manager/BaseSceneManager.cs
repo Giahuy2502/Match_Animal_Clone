@@ -11,8 +11,10 @@ public class BaseSceneManager : MonoBehaviour
     [SerializeField] float timeLoad = 5f;
     private void OnEnable()
     {
+        Application.targetFrameRate = 60;
         slider.value = 0f;
         FillBar();
+
     }
 
     void FillBar()
