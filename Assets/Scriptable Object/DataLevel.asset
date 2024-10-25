@@ -12,38 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41794b39ed059f469b721ffb689ced4, type: 3}
   m_Name: DataLevel
   m_EditorClassIdentifier: 
-  DataLv:
-  - lv: 1
-    csvFile: {fileID: 4900000, guid: 0b866fa7ba67bbc468272e970c86938d, type: 3}
+  levels:
+  - level: 1
     layer: 2
+    csvFile: {fileID: 4900000, guid: 0b866fa7ba67bbc468272e970c86938d, type: 3}
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9
     - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 0
+      number: 9

@@ -5,19 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DataLevel",menuName = "DataLevel")]
 public class DataLevel : ScriptableObject
 {
-    [SerializeField] public List<LevelDesign> DataLv= new List<LevelDesign> ();
+    [SerializeField] public List<Level> levels = new List<Level>();
 }
-
 [Serializable]
-public class LevelDesign
+public class Level
 {
-    [SerializeField] private int lv;
-    [SerializeField] private TextAsset csvFile;
+    [SerializeField] private int level;
     [SerializeField] private int layer;
+    [SerializeField] private TextAsset csvFile;
     [SerializeField] private List<SetUpNumberCell> setUpNumbers;
-    public int GetLv() => lv;
-    public int GetLayer() => layer;
-    public TextAsset GetCsvFile() => csvFile;
-    public List<SetUpNumberCell> GetSetUpNumber() => setUpNumbers;
 
+    public int GetLevel() => level;
+    public int GetLayer() => layer;
+    public TextAsset GetCSVFile() => csvFile;
+    public List<SetUpNumberCell> GetSetUpNumbers() => setUpNumbers;
 }

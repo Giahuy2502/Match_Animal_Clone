@@ -14,7 +14,6 @@ public class BaseSceneManager : MonoBehaviour
         Application.targetFrameRate = 60;
         slider.value = 0f;
         FillBar();
-
     }
 
     void FillBar()

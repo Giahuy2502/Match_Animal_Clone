@@ -1,63 +1,41 @@
-﻿
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
-    [SerializeField] GameObject prefabs;
-    //
-    [SerializeField] DataLevel dataLevel;
     [SerializeField] int layer;
+    [SerializeField] GameObject prefabs;
+    [SerializeField] DataLevel dataLevel;
+    [SerializeField] List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
     [SerializeField] TextAsset csv;
-    [SerializeField] List<SetUpNumberCell> setUpNumbers;
-    //
     [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
     void Start()
     {
         GetDataLevel();
         ResetDataGame();
-
+       
         SetUpBoard();
         SetUpGrid(layer);
     }
-
 
     void Update()
     {
         CheckClickableCell();
     }
 
-    void ResetDataGame()
-    {
-        DataGame.countAllCell = 0;
-        DataGame.layer = layer;
-        DataGame.layerGrid.Clear();
-        DataGame.stateCurrentPlay = 0;
-        DataGame.countTickedCell = 0;
-        DataGame.setUpNumbers.Clear();
-        for (int i = 0; i < 7; i++)
-        {
-            DataGame.listTickedCell[i] = null;
-        }
-        DataGame.undoCell.Clear();
-        DataGame.setUpNumbers = setUpNumbers;
-        DataGame.arrindex = new int[setUpNumbers.Count];
-    }
     void GetDataLevel()
     {
-        int level = PlayerPrefs.GetInt("level", 0);
-        level = 1;
-        foreach (var tmp in dataLevel.DataLv)
+        int level = 1;
+        foreach(var tmp in dataLevel.levels)
         {
-            if (tmp.GetLv() == level)
+            if(tmp.GetLevel() == level)
             {
-                csv = tmp.GetCsvFile();
-                layer = tmp.GetLayer();
-                setUpNumbers = tmp.GetSetUpNumber();
-                Debug.Log(level);
-                Debug.Log("Số lượng phần tử trong setUpNumbers: " + tmp.GetSetUpNumber().Count);
-                Debug.Log("da lay data level");
+                layer= tmp.GetLayer();
+                csv=tmp.GetCSVFile();
+                setUpNumbers= tmp.GetSetUpNumbers();
+                Debug.Log("DA Lay DU LIEU");
             }
         }
     }
@@ -177,6 +155,23 @@ public class BoardManager : MonoBehaviour
     {
         if (cellSprite.clickable) cellSprite.SetUpColor(Color.white);
         else cellSprite.SetUpColor(Color.gray);
+    }
+
+    void ResetDataGame()
+    {
+        DataGame.countAllCell = 0;
+        DataGame.layer = layer;
+        DataGame.layerGrid.Clear();
+        DataGame.stateCurrentPlay = 0;
+        DataGame.countTickedCell = 0;
+        DataGame.setUpNumbers.Clear();
+        for (int i = 0; i < 7; i++)
+        {
+            DataGame.listTickedCell[i] = null;
+        }
+        DataGame.undoCell.Clear();
+        DataGame.setUpNumbers = setUpNumbers;
+        DataGame.arrindex = new int[setUpNumbers.Count];
     }
     static void CheckConditionsClickableCell(GameObject currentCell, GameObject checkCell1, GameObject checkCell2, GameObject checkCell3, GameObject checkCell4)
     {
