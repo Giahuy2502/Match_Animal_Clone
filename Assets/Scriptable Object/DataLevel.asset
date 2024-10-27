@@ -47,3 +47,37 @@ MonoBehaviour:
       number: 9
     - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 9
+  - level: 2
+    layer: 3
+    csvFile: {fileID: 4900000, guid: 35e25f55eade12a45910f9c3d3857d49, type: 3}
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 9
+    - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 9
+    - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 9
+    - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6

@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,16 +27,25 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
-        int level = 1;
-        foreach(var tmp in dataLevel.levels)
+        int level = 2;
+        bool isLevelFound = false;
+
+        foreach (var tmp in dataLevel.levels)
         {
-            if(tmp.GetLevel() == level)
+            if (tmp.GetLevel() == level)
             {
-                layer= tmp.GetLayer();
-                csv=tmp.GetCSVFile();
-                setUpNumbers= tmp.GetSetUpNumbers();
+                layer = tmp.GetLayer();
+                csv = tmp.GetCSVFile();
+                setUpNumbers = tmp.GetSetUpNumbers();
                 Debug.Log("DA Lay DU LIEU");
+                isLevelFound = true;
+                break; // Thoát khỏi vòng lặp sau khi tìm thấy cấp độ
             }
+        }
+
+        if (!isLevelFound)
+        {        
+            Debug.Log("Level không tồn tại trong danh sách");
         }
     }
     void SetUpBoard()
