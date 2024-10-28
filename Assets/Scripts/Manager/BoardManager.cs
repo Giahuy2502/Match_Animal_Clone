@@ -27,7 +27,7 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
-        int level = 3;
+        int level = 5;
         bool isLevelFound = false;
         DataGame.countAllCell = 0;
         foreach (var tmp in dataLevel.levels)

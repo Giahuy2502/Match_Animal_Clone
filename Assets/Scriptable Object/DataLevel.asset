@@ -88,13 +88,47 @@ MonoBehaviour:
     csvFile: {fileID: 4900000, guid: 04871584b4e47f84e83eb8a98ad7ff04, type: 3}
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 0
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 0
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 0
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 0
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 0
+    countAllCell: 36
+  - level: 4
+    layer: 2
+    csvFile: {fileID: 4900000, guid: f39dc3d1396bcdf46842dd7d23ef5ca6, type: 3}
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    countAllCell: 27
+  - level: 5
+    layer: 3
+    csvFile: {fileID: 4900000, guid: c84104f4f1a07e74db87c5f6a272c391, type: 3}
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
     - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
     - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 9
+      number: 6
     - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
-      number: 9
+      number: 6
     - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 36
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    countAllCell: 42
