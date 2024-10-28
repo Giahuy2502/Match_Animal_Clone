@@ -16,6 +16,7 @@ MonoBehaviour:
   - level: 1
     layer: 2
     csvFile: {fileID: 4900000, guid: 0b866fa7ba67bbc468272e970c86938d, type: 3}
+    countAllCell: 135
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 9
@@ -47,10 +48,10 @@ MonoBehaviour:
       number: 9
     - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 9
-    countAllCell: 135
   - level: 2
     layer: 3
     csvFile: {fileID: 4900000, guid: 35e25f55eade12a45910f9c3d3857d49, type: 3}
+    countAllCell: 99
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
@@ -82,10 +83,10 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 99
   - level: 3
     layer: 3
     csvFile: {fileID: 4900000, guid: 04871584b4e47f84e83eb8a98ad7ff04, type: 3}
+    countAllCell: 36
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
@@ -97,10 +98,10 @@ MonoBehaviour:
       number: 9
     - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 9
-    countAllCell: 36
   - level: 4
     layer: 2
     csvFile: {fileID: 4900000, guid: f39dc3d1396bcdf46842dd7d23ef5ca6, type: 3}
+    countAllCell: 27
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 3
@@ -112,10 +113,10 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 27
   - level: 5
     layer: 3
     csvFile: {fileID: 4900000, guid: c84104f4f1a07e74db87c5f6a272c391, type: 3}
+    countAllCell: 42
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
@@ -131,10 +132,10 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 42
   - level: 6
     layer: 2
     csvFile: {fileID: 4900000, guid: cdbedb83328c4f04688087ebe8ef22af, type: 3}
+    countAllCell: 60
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
@@ -156,10 +157,10 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 60
   - level: 7
     layer: 3
     csvFile: {fileID: 4900000, guid: 8fae56a5bab760c4e8f0a1bb9cab812e, type: 3}
+    countAllCell: 48
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
@@ -181,10 +182,10 @@ MonoBehaviour:
       number: 3
     - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 3
-    countAllCell: 48
   - level: 8
     layer: 2
     csvFile: {fileID: 4900000, guid: f3eb9885b83c3a4459b760f7ba87cf76, type: 3}
+    countAllCell: 75
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 9
@@ -210,10 +211,10 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 75
   - level: 9
     layer: 3
     csvFile: {fileID: 4900000, guid: 6f27123a0450c1646ac31e60e2f84dd3, type: 3}
+    countAllCell: 51
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 3
@@ -239,5 +240,80 @@ MonoBehaviour:
       number: 6
     - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 6
-    countAllCell: 51
-  level: 9
+  - level: 10
+    layer: 4
+    csvFile: {fileID: 4900000, guid: d3668ea876a2f924dadfba717fffc90b, type: 3}
+    countAllCell: 66
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+  - level: 11
+    layer: 2
+    csvFile: {fileID: 4900000, guid: fc5d3657133ab744da8ed645d168cea5, type: 3}
+    countAllCell: 84
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -295125232, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1178722312, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 21300000, guid: 7fbe435974d1fd341abfd76668ddc802, type: 3}
+      number: 3
+  level: 10

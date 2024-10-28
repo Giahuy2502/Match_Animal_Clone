@@ -30,8 +30,9 @@ public class Level
     [SerializeField] private int level;
     [SerializeField] private int layer;
     [SerializeField] private TextAsset csvFile;
-    [SerializeField] private List<SetUpNumberCell> setUpNumbers;
     [SerializeField] private int countAllCell;
+    [SerializeField] private List<SetUpNumberCell> setUpNumbers;
+    
     public int GetCountAllCell() => countAllCell;
     public int GetLevel() => level;
     public int GetLayer() => layer;
