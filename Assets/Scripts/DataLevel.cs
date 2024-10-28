@@ -6,6 +6,7 @@ using UnityEngine;
 public class DataLevel : ScriptableObject
 {
     [SerializeField] public List<Level> levels = new List<Level>();
+    [SerializeField] public int level;
 }
 [Serializable]
 public class Level

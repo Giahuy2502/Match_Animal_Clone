@@ -27,12 +27,11 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
-        int level = 5;
         bool isLevelFound = false;
         DataGame.countAllCell = 0;
         foreach (var tmp in dataLevel.levels)
         {
-            if (tmp.GetLevel() == level)
+            if (tmp.GetLevel() == dataLevel.level)
             {
                 layer = tmp.GetLayer();
                 csv = tmp.GetCSVFile();
@@ -138,7 +137,7 @@ public class BoardManager : MonoBehaviour
                 if (board[j][i] == "1")
                 {
                     int index = Random.Range(0, setUpNumbers.Count);
-                    while (setUpNumbers[index].number == 0)
+                    while (DataGame.setUpNumbers[index].number == 0)
                     {
                         index = Random.Range(0, setUpNumbers.Count);
                     }
@@ -153,7 +152,7 @@ public class BoardManager : MonoBehaviour
                     cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
                     grid[i, j] = cell;
                     cellSprite.undoPosition = position;
-                    setUpNumbers[index].number--;
+                    DataGame.setUpNumbers[index].number--;
                 }
                 
             }
@@ -178,7 +177,7 @@ public class BoardManager : MonoBehaviour
             DataGame.listTickedCell[i] = null;
         }
         DataGame.undoCell.Clear();
-        DataGame.setUpNumbers = setUpNumbers;
+        DataGame.setUpNumbers = new List<SetUpNumberCell>(setUpNumbers);
         DataGame.arrindex = new int[setUpNumbers.Count];
         
     }
@@ -223,4 +222,5 @@ public class SetUpNumberCell
 {
     public Sprite Sprite;
     public int number;
+   
 }
