@@ -386,4 +386,86 @@ MonoBehaviour:
       number: 3
     - Sprite: {fileID: 21300000, guid: 7fbe435974d1fd341abfd76668ddc802, type: 3}
       number: 3
-  level: 12
+  - level: 14
+    layer: 4
+    csvFile: {fileID: 4900000, guid: 8b7574729ed2f394b96fffa2d42b9503, type: 3}
+    countAllCell: 63
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -295125232, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1178722312, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 21300000, guid: 7fbe435974d1fd341abfd76668ddc802, type: 3}
+      number: 3
+  - level: 15
+    layer: 2
+    csvFile: {fileID: 4900000, guid: 043f0bb348cb0074799c3e308021645f, type: 3}
+    countAllCell: 78
+    setUpNumbers:
+    - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 923020982, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -2045121503, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -542800091, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: -834869901, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 1911413823, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 121647455, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 925269370, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 6
+    - Sprite: {fileID: 751070358, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1038846522, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -1018213736, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 2064333731, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -772396899, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 7210, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: -295125232, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 1178722312, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
+      number: 3
+    - Sprite: {fileID: 21300000, guid: 7fbe435974d1fd341abfd76668ddc802, type: 3}
+      number: 3
+  level: 15
