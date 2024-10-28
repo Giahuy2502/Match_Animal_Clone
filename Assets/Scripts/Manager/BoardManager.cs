@@ -27,15 +27,16 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
+        DataLevel cloneData = (DataLevel)dataLevel.Clone();
         bool isLevelFound = false;
         DataGame.countAllCell = 0;
-        foreach (var tmp in dataLevel.levels)
+        foreach (var tmp in cloneData.GetListLevels())
         {
-            if (tmp.GetLevel() == dataLevel.level)
+            if (tmp.GetLevel() == cloneData.level)
             {
                 layer = tmp.GetLayer();
                 csv = tmp.GetCSVFile();
-                setUpNumbers = tmp.GetSetUpNumbers();
+                setUpNumbers =new List<SetUpNumberCell>( tmp.GetSetUpNumbers());
                 DataGame.countAllCell = tmp.GetCountAllCell();
                 Debug.Log("DA Lay DU LIEU");
                 isLevelFound = true;
@@ -137,7 +138,7 @@ public class BoardManager : MonoBehaviour
                 if (board[j][i] == "1")
                 {
                     int index = Random.Range(0, setUpNumbers.Count);
-                    while (DataGame.setUpNumbers[index].number == 0)
+                    while (DataGame.setUpNumbers[index].GetNumber() == 0)
                     {
                         index = Random.Range(0, setUpNumbers.Count);
                     }
@@ -152,7 +153,7 @@ public class BoardManager : MonoBehaviour
                     cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
                     grid[i, j] = cell;
                     cellSprite.undoPosition = position;
-                    DataGame.setUpNumbers[index].number--;
+                    DataGame.setUpNumbers[index].SetNumber(-1);
                 }
                 
             }
@@ -221,6 +222,16 @@ public static class DataGame
 public class SetUpNumberCell
 {
     public Sprite Sprite;
-    public int number;
-   
+    [SerializeField] private int number;
+    public int GetNumber() => number;
+    public void SetNumber(int count)
+    {
+        number += count;
+    }
+    public SetUpNumberCell DeepClone()
+    {
+        // Sử dụng MemberwiseClone nếu chỉ chứa các giá trị đơn giản, 
+        // nếu không thì thực hiện sao chép sâu với các đối tượng bên trong.
+        return (SetUpNumberCell)this.MemberwiseClone();
+    }
 }

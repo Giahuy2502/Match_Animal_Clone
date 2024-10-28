@@ -19,7 +19,7 @@ public class RollCallManager : MonoBehaviour
     {
 
         tickNow = DateTime.Now.Date.Ticks;
-        ResourceManager.SetCoin(PlayerPrefs.GetInt("coin", 0)) ;
+        ResourceManager.ResetCoin(PlayerPrefs.GetInt("coin", 0)) ;
         Debug.Log(ResourceManager.GetCoin());
         filePath = Application.persistentDataPath + "/attendance.json";
         LoadGame();
