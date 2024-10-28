@@ -27,9 +27,9 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
-        int level = 2;
+        int level = 3;
         bool isLevelFound = false;
-
+        DataGame.countAllCell = 0;
         foreach (var tmp in dataLevel.levels)
         {
             if (tmp.GetLevel() == level)
@@ -37,6 +37,7 @@ public class BoardManager : MonoBehaviour
                 layer = tmp.GetLayer();
                 csv = tmp.GetCSVFile();
                 setUpNumbers = tmp.GetSetUpNumbers();
+                DataGame.countAllCell = tmp.GetCountAllCell();
                 Debug.Log("DA Lay DU LIEU");
                 isLevelFound = true;
                 break; // Thoát khỏi vòng lặp sau khi tìm thấy cấp độ
@@ -112,7 +113,6 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                DataGame.countAllCell += 72;
                 Vector3 tickPosition = new Vector3(165f, 665f, 0f);
                 SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
@@ -121,7 +121,6 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                DataGame.countAllCell += 63;
                 Vector3 tickPosition = new Vector3(220f, 720f, 0f);
                 SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
@@ -168,7 +167,7 @@ public class BoardManager : MonoBehaviour
 
     void ResetDataGame()
     {
-        DataGame.countAllCell = 0;
+        
         DataGame.layer = layer;
         DataGame.layerGrid.Clear();
         DataGame.stateCurrentPlay = 0;
@@ -181,6 +180,7 @@ public class BoardManager : MonoBehaviour
         DataGame.undoCell.Clear();
         DataGame.setUpNumbers = setUpNumbers;
         DataGame.arrindex = new int[setUpNumbers.Count];
+        
     }
     static void CheckConditionsClickableCell(GameObject currentCell, GameObject checkCell1, GameObject checkCell2, GameObject checkCell3, GameObject checkCell4)
     {
