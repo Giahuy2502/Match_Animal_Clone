@@ -14,8 +14,7 @@ public class BoardManager : MonoBehaviour
     void Start()
     {
         GetDataLevel();
-        ResetDataGame();
-       
+        ResetDataGame();   
         SetUpBoard();
         SetUpGrid(layer);
     }
