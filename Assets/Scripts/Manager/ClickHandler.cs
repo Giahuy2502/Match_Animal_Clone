@@ -61,7 +61,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         {
             DataGame.countAllCell--;
             DataGame.countTickedCell++;
-            Debug.Log($"countTickedCell = {DataGame.countTickedCell}");
+            //Debug.Log($"countTickedCell = {DataGame.countTickedCell}");
             
             MoveTickedCell();
         }

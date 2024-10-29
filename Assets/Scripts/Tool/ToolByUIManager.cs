@@ -139,7 +139,7 @@ public class ToolByUIManager : MonoBehaviour
         {
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
-            GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
+            //GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetMagnetTool(1);
             SetIndex(1);
         }

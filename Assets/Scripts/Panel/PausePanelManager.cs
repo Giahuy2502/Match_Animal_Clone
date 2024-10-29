@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PausePanelManager : MonoBehaviour
 {
     [SerializeField] TutorialPanelManager tutorialPanelManager;
+    [SerializeField] Sprite muteImage;
+    [SerializeField] Sprite unmuteImage;
+    [SerializeField] Image muteButton;
     private ResourceManager ResourceManager=> ResourceManager.Instance;
     int indexScene;
     private void Start()
@@ -26,6 +30,26 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnLevelButton()
     {
+        SceneManager.LoadScene(5);
+    }
+    public void OnTutorialButton()
+    {
+        tutorialPanelManager.gameObject.SetActive(true);
+    }
+    public void OnMuteButton()
+    {
+        if(AudioSourceManager.Soundable)
+        {
+            muteButton.sprite=unmuteImage;
+        }
+        else
+        {
+            muteButton.sprite=muteImage;
+        }
+        AudioSourceManager.Soundable = !AudioSourceManager.Soundable;
+    }
+    public void OnVibrationButton()
+    {
         ResourceManager.ResetUndoTool();
         ResourceManager.ResetMagnetTool();
         ResourceManager.ResetSortTool();
@@ -34,17 +58,5 @@ public class PausePanelManager : MonoBehaviour
         PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
         PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
         PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
-    }
-    public void OnTutorialButton()
-    {
-        tutorialPanelManager.gameObject.SetActive(true);
-    }
-    public void OnMuteButton()
-    {
-
-    }
-    public void OnVibrationButton()
-    {
-
     }
 }

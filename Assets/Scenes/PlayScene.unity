@@ -3155,9 +3155,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1735662252, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
+  m_Sprite: {fileID: -1035421438, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -11527,7 +11527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2102428954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11599,6 +11599,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanelManager: {fileID: 9177541958229257803}
+  muteImage: {fileID: -1035421438, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
+  unmuteImage: {fileID: 1735662252, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
+  muteButton: {fileID: 590285442}
 --- !u!1 &2106239687
 GameObject:
   m_ObjectHideFlags: 0

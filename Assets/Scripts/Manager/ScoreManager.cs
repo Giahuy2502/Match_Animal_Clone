@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
             currentScore = currentScore + 10 * DataScore.combo;
             DataScore.state = 0;
             DataScore.countTime = countTime;
-            Debug.Log($"countTime = {DataScore.countTime}+ combo = {DataScore.combo}+1");
+            //Debug.Log($"countTime = {DataScore.countTime}+ combo = {DataScore.combo}+1");
             float percentCoin = (float)currentScore / maxScore;
             fillScore.fillAmount = percentCoin;
             FillAllStar(percentCoin);

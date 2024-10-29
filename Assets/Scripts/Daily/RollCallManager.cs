@@ -20,7 +20,7 @@ public class RollCallManager : MonoBehaviour
 
         tickNow = DateTime.Now.Date.Ticks;
         ResourceManager.ResetCoin(PlayerPrefs.GetInt("coin", 0)) ;
-        Debug.Log(ResourceManager.GetCoin());
+        //Debug.Log(ResourceManager.GetCoin());
         filePath = Application.persistentDataPath + "/attendance.json";
         LoadGame();
         InitUI(tickNow);
@@ -82,8 +82,8 @@ public class RollCallManager : MonoBehaviour
 
             string _data = System.IO.File.ReadAllText(filePath);
             data =JsonUtility.FromJson<AttendanceData>(_data);
-            GameUtility.Log(this,"Da load game"+_data, Color.yellow);
-            Debug.Log(filePath);
+            //GameUtility.Log(this,"Da load game"+_data, Color.yellow);
+            //Debug.Log(filePath);
         }
 
     }
