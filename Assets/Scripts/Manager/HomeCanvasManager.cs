@@ -23,6 +23,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnPlayButton()
     {
+        BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
         //AdsManager.Instance.ShowInterstitialAd();
         SceneManager.LoadScene(3);
     }
@@ -43,7 +44,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnLevelsButton()
     {
-
+        SceneManager.LoadScene(5);
     }
     public void OnCoinButton()
     {

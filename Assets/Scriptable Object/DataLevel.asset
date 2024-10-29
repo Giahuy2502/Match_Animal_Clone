@@ -610,7 +610,7 @@ MonoBehaviour:
       number: 3
   - level: 20
     layer: 4
-    csvFile: {fileID: 4900000, guid: 6923d7c08ad452c43815a705670d5c96, type: 3}
+    csvFile: {fileID: 4900000, guid: 3a026ffbaae56b4428ba0d499e1d0190, type: 3}
     countAllCell: 60
     setUpNumbers:
     - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
@@ -643,4 +643,3 @@ MonoBehaviour:
       number: 3
     - Sprite: {fileID: 1075256240, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
       number: 3
-  level: 20

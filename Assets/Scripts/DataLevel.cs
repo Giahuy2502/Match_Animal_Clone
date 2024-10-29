@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class DataLevel : ScriptableObject,ICloneable
 {
-    [SerializeField] private List<Level> levels = new List<Level>();
-    [SerializeField] public int level;
+    [SerializeField] private List<Level> levels;
+    public int levelCount => levels.Count;
     public List<Level> GetListLevels() =>levels;
+    private List<Level> Levels => levels;
+    public Level GetDataLevel(int id) => Levels[id];
 
     public object Clone()
     {
@@ -27,12 +29,12 @@ public class DataLevel : ScriptableObject,ICloneable
 [Serializable]
 public class Level
 {
-    [SerializeField] private int level;
+    [SerializeField]private int level;
     [SerializeField] private int layer;
     [SerializeField] private TextAsset csvFile;
     [SerializeField] private int countAllCell;
     [SerializeField] private List<SetUpNumberCell> setUpNumbers;
-    
+
     public int GetCountAllCell() => countAllCell;
     public int GetLevel() => level;
     public int GetLayer() => layer;

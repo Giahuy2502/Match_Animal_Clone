@@ -11,10 +11,11 @@ public class BoardManager : MonoBehaviour
     [SerializeField] List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
     [SerializeField] TextAsset csv;
     [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
+    public static int levelCurrent = 1;
     void Start()
     {
         GetDataLevel();
-        ResetDataGame();   
+        ResetDataGame();
         SetUpBoard();
         SetUpGrid(layer);
     }
@@ -26,16 +27,17 @@ public class BoardManager : MonoBehaviour
 
     void GetDataLevel()
     {
+
         DataLevel cloneData = (DataLevel)dataLevel.Clone();
         bool isLevelFound = false;
         DataGame.countAllCell = 0;
         foreach (var tmp in cloneData.GetListLevels())
         {
-            if (tmp.GetLevel() == cloneData.level)
+            if (tmp.GetLevel() == levelCurrent)
             {
                 layer = tmp.GetLayer();
                 csv = tmp.GetCSVFile();
-                setUpNumbers =new List<SetUpNumberCell>( tmp.GetSetUpNumbers());
+                setUpNumbers = new List<SetUpNumberCell>(tmp.GetSetUpNumbers());
                 DataGame.countAllCell = tmp.GetCountAllCell();
                 Debug.Log("DA Lay DU LIEU");
                 isLevelFound = true;
@@ -44,7 +46,7 @@ public class BoardManager : MonoBehaviour
         }
 
         if (!isLevelFound)
-        {        
+        {
             Debug.Log("Level không tồn tại trong danh sách");
         }
     }
