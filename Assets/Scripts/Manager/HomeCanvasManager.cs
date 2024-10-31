@@ -8,10 +8,13 @@ public class HomeCanvasManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinTxt;
     [SerializeField] GameObject multiLanguage;
+    [SerializeField] TextMeshProUGUI lvTxt;
 
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     private void Start()
     {
+        BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
+        lvTxt.text=BoardManager.levelCurrent.ToString();
         AdsManager.Instance.ShowBannerAd();
     }
     
@@ -23,7 +26,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnPlayButton()
     {
-        BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
+        
         //AdsManager.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("SpinScene");
     }
