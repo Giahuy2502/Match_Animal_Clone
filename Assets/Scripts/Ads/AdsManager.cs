@@ -16,6 +16,10 @@ public class AdsManager : MonoSingleton<AdsManager>
         interstitialAd.Init();
         bannerAd.Init();
         rewardedAds.Init();
+        LoadInterstitialAd();
+        LoadRewardedlAd();
+        LoadBannerAd();
+
     }
     public void LoadInterstitialAd()
     {

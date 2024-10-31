@@ -11,10 +11,11 @@ public class StorePanelManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinTxt;
     ResourceManager ResourceManager => ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    AdsManager adsManager => AdsManager.Instance;
     delegate void LoadAd();
     private void Start()
     {
-        AdsManager.Instance.ShowBannerAd();
+        adsManager.ShowBannerAd();
     }
     private void Update()
     {
@@ -76,5 +77,6 @@ public class StorePanelManager : MonoBehaviour
     {
         ResourceManager.SetCoin(300);
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
+        adsManager.LoadRewardedlAd();
     }
 }

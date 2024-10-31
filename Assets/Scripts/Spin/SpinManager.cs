@@ -21,10 +21,11 @@ public class SpinManager : MonoBehaviour
     [SerializeField] SpinReward rewards;
     ResourceManager ResourceManager=> ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    AdsManager adsManager => AdsManager.Instance;
     public static Vector3 corner;
     private void Start()
     {
-        AdsManager.Instance.ShowBannerAd();
+        adsManager.ShowBannerAd();
         //InitValue();
         InitUI();
         Debug.Log(LocalizationManager.Language);
@@ -66,6 +67,7 @@ public class SpinManager : MonoBehaviour
         exit.interactable=false;    
         Invoke("UpdateUI", 5f);
         audioSourceManager.PlayAudio(3);
+        adsManager.LoadRewardedlAd();
 
     }
     void InitUI()

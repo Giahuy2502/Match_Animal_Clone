@@ -8,6 +8,8 @@ public class LosePanel : MonoBehaviour
     [SerializeField]ToolByUIManager toolByUIManager;
     ResourceManager ResourceManager => ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    AdsManager adsManager => AdsManager.Instance;
+
     private int indexScene;
     private int indexSound;
     
@@ -31,9 +33,9 @@ public class LosePanel : MonoBehaviour
     public void OnFreeButton()
     {
         SetIndexSound(0);
-        AdsManager.Instance.ShowRewardedlAd();
+        adsManager.ShowRewardedlAd();
         RewardedAds.watchedEvent.AddListener(Continue);
-        
+        adsManager.LoadRewardedlAd();
     }
     public void OnBuyButton()
     {
