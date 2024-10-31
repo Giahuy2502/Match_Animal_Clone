@@ -21,7 +21,7 @@ public class LosePanel : MonoBehaviour
     }
     public void OnHomeButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomeScene");
     }
     public void OnRestartButton()
     {

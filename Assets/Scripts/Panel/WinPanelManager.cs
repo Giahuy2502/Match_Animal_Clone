@@ -30,11 +30,11 @@ public class WinPanelManager : MonoBehaviour
         BoardManager.levelCurrent=nextlevel;
         Debug.Log(BoardManager.levelCurrent);
         PlayerPrefs.SetInt("level", nextlevel);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("PlayScene");
     }
     public void OnHomeButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomeScene");
     }
     public void SaveStars(int level, int stars)
     {

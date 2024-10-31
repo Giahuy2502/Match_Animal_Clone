@@ -25,7 +25,7 @@ public class HomeCanvasManager : MonoBehaviour
     {
         BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
         //AdsManager.Instance.ShowInterstitialAd();
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("SpinScene");
     }
     public void OnResponButton()
     {
@@ -40,17 +40,17 @@ public class HomeCanvasManager : MonoBehaviour
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
     }
     public void OnLevelsButton()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene("LevelScene");
     }
     public void OnCoinButton()
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
     }
     public void OnGiftButton()
     {

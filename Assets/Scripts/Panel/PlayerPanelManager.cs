@@ -29,7 +29,7 @@ public class PlayerPanelManager : MonoBehaviour
     {
         StorePanelManager.IndexCurrentScene=SceneManager.GetActiveScene().buildIndex;
         Debug.Log("da bam va cua hang");
-        SceneManager.LoadSceneAsync(2,LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(3,LoadSceneMode.Additive);
     }
     public void OnApplicationQuit()
     {

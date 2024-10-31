@@ -42,7 +42,7 @@ public class SpinManager : MonoBehaviour
         PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
         PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
         PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("PlayScene");
     }
     public void OnAdButton()
     {

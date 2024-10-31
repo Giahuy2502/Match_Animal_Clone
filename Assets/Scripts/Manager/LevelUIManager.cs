@@ -8,8 +8,8 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] DataLevel dataLevel;
     [SerializeField] GameObject prefab;
     [SerializeField] Transform position;
+    AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
 
-    
     private void OnEnable()
     {
         for(var i = 0; i < dataLevel.levelCount; i++)
@@ -24,6 +24,10 @@ public class LevelUIManager : MonoBehaviour
    
     public void OnHomeButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomeScene");
+    }
+    public void OnSoundButton(int index)
+    {
+        audioSourceManager.PlayAudio(index);
     }
 }

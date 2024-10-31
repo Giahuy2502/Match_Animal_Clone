@@ -26,11 +26,11 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnHomeButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomeScene");
     }
     public void OnLevelButton()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene("LevelScene");
     }
     public void OnTutorialButton()
     {

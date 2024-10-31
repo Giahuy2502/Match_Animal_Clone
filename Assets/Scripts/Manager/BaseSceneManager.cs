@@ -23,6 +23,6 @@ public class BaseSceneManager : MonoBehaviour
     }
     void CloseScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomeScene");
     }
 }

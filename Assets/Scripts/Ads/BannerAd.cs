@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class BannerAd
+public class BannerAd 
 {
 
     // For the purpose of this example, these buttons are for functionality testing:
