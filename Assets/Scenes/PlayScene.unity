@@ -11599,8 +11599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanelManager: {fileID: 9177541958229257803}
-  muteImage: {fileID: -1035421438, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
-  unmuteImage: {fileID: 1735662252, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
+  muteImage: {fileID: 1735662252, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
+  unmuteImage: {fileID: -1035421438, guid: 2fcb48011a85f61459505523e80c758b, type: 3}
   muteButton: {fileID: 590285442}
 --- !u!1 &2106239687
 GameObject:

@@ -29,7 +29,7 @@ public class Item : MonoBehaviour
     public void OnClickButton()
     {
         BoardManager.levelCurrent = level;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("PlayScene");
     }
     public int GetStars(int level)
     {

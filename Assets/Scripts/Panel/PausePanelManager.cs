@@ -15,6 +15,7 @@ public class PausePanelManager : MonoBehaviour
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
+        UpdateMuteUI();
     }
     public void OnContinueButton()
     {
@@ -38,16 +39,23 @@ public class PausePanelManager : MonoBehaviour
     }
     public void OnMuteButton()
     {
-        if(AudioSourceManager.Soundable)
+        AudioSourceManager.Soundable = !AudioSourceManager.Soundable;
+        UpdateMuteUI();
+        
+    }
+
+    private void UpdateMuteUI()
+    {
+        if (AudioSourceManager.Soundable)
         {
-            muteButton.sprite=unmuteImage;
+            muteButton.sprite = unmuteImage;
         }
         else
         {
-            muteButton.sprite=muteImage;
+            muteButton.sprite = muteImage;
         }
-        AudioSourceManager.Soundable = !AudioSourceManager.Soundable;
     }
+
     public void OnVibrationButton()
     {
         ResourceManager.ResetUndoTool();
