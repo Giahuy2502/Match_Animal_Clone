@@ -19,24 +19,22 @@ public class SpinManager : MonoBehaviour
     [SerializeField] Button exit;
     [SerializeField] Button ad;
     [SerializeField] SpinReward rewards;
+    public static bool checkable=false;
     ResourceManager ResourceManager=> ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     AdsManager adsManager => AdsManager.Instance;
     public static Vector3 corner;
     private void Start()
     {
+        if (!checkable)
+        {
+            gameObject.SetActive(false);
+        }
         adsManager.ShowBannerAd();
-        //InitValue();
         InitUI();
         Debug.Log(LocalizationManager.Language);
     }
-    //void InitValue()
-    //{
-    //    ResourceManager.ResetCoin(PlayerPrefs.GetInt("coin", 0));
-    //    ResourceManager.ResetUndoTool(PlayerPrefs.GetInt("undoCount", 0));
-    //    ResourceManager.ResetMagnetTool(PlayerPrefs.GetInt("magnetCount", 0));
-    //    ResourceManager.ResetSortTool(PlayerPrefs.GetInt("sortCount", 0));
-    //}
+    
     public void OnExitButton()
     {
         PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
@@ -71,7 +69,7 @@ public class SpinManager : MonoBehaviour
     }
     void LoadPlayScene()
     {
-        adsManager.LoadRewardedlAd();
+        SceneManager.LoadScene("PlayScene");
     }
     void InitUI()
     {

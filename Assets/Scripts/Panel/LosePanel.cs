@@ -20,6 +20,8 @@ public class LosePanel : MonoBehaviour
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
+        adsManager.ShowInterstitialAd();
+        adsManager.LoadInterstitialAd();
     }
     public void OnHomeButton()
     {

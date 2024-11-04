@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     public Level levelData;
     [SerializeField] Button button;
     [SerializeField] public List<Image> imageList= new List<Image>();
-    
+    AdsManager adsManager => AdsManager.Instance;
 
     private void OnEnable()
     {
@@ -28,8 +28,15 @@ public class Item : MonoBehaviour
     }
     public void OnClickButton()
     {
+        
         BoardManager.levelCurrent = level;
         SceneManager.LoadScene("PlayScene");
+        LoadAd();
+    }
+    public void LoadAd()
+    {
+        adsManager.ShowInterstitialAd();
+        adsManager.LoadInterstitialAd();
     }
     public int GetStars(int level)
     {

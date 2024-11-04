@@ -21,7 +21,7 @@ public class LevelUIManager : MonoBehaviour
             item.levelData = dataLevel.GetDataLevel(i);
         }
     }
-   
+    
     public void OnHomeButton()
     {
         SceneManager.LoadScene("HomeScene");

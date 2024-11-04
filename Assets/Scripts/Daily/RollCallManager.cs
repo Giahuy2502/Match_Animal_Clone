@@ -51,19 +51,17 @@ public class RollCallManager : MonoBehaviour
     }
     public void InitUI(long tickNow)
     {
-        /* 
-           -neu da diem danh 9 ngay:
-             +xoa het list
-             +reset lai mang index
-        */
+        
         List<long> list = data.attendanceDates;
-        //int[] index = data.index;
         if (list.Contains(tickNow)) gameObject.SetActive(false);
-        //Debug.Log($"first day = {list[0]} + list.count = {list.Count}");
         if (list.Count==0) return;
         for(int i=0; i<list.Count; i++)
         {
             images[i].color = Color.green;
+        }
+        for(int i=list.Count; i<images.Count;i++)
+        {
+            images[i].color = Color.white;
         }
         
     }
@@ -79,7 +77,6 @@ public class RollCallManager : MonoBehaviour
     {
         if (System.IO.File.Exists(filePath))
         {
-
             string _data = System.IO.File.ReadAllText(filePath);
             data =JsonUtility.FromJson<AttendanceData>(_data);
             //GameUtility.Log(this,"Da load game"+_data, Color.yellow);
@@ -118,8 +115,8 @@ public class RollCallManager : MonoBehaviour
             case 8:
                 ResourceManager.SetCoin(500);
                 break;
-
         }
+        SpinManager.checkable = true;
     }
 }
 [System.Serializable]

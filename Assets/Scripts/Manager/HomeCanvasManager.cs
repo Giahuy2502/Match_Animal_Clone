@@ -26,9 +26,20 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnPlayButton()
     {
-        
-        //AdsManager.Instance.ShowInterstitialAd();
-        SceneManager.LoadScene("SpinScene");
+        if(SpinManager.checkable)
+        {
+            SceneManager.LoadScene("SpinScene");
+        }
+        else
+        {
+            LoadPlayScene();
+            AdsManager.Instance.ShowInterstitialAd();
+            AdsManager.Instance.LoadInterstitialAd();
+        }
+    }
+    void LoadPlayScene()
+    {
+        SceneManager.LoadScene("PlayScene");
     }
     public void OnResponButton()
     {
