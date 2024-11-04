@@ -41,7 +41,8 @@ public class PausePanelManager : MonoBehaviour
     {
         AudioSourceManager.Soundable = !AudioSourceManager.Soundable;
         UpdateMuteUI();
-        
+        int soundable = AudioSourceManager.Soundable ? 1 : 0;
+        PlayerPrefs.SetInt("soundable",soundable);
     }
 
     private void UpdateMuteUI()

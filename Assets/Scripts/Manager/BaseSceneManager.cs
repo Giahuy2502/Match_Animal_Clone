@@ -11,9 +11,17 @@ public class BaseSceneManager : MonoBehaviour
     [SerializeField] float timeLoad = 5f;
     private void OnEnable()
     {
+        SetSoundable();
         Application.targetFrameRate = 60;
         slider.value = 0f;
         FillBar();
+    }
+
+    private static void SetSoundable()
+    {
+        int soundable = PlayerPrefs.GetInt("soundable", 1);
+        AudioSourceManager.Soundable = soundable == 1;
+        Debug.Log(AudioSourceManager.Soundable);
     }
 
     void FillBar()
