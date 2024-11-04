@@ -7,6 +7,7 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField] int layer;
     [SerializeField] GameObject prefabs;
+    [SerializeField] ScoreManager score;
     [SerializeField] DataLevel dataLevel;
     [SerializeField] List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
     [SerializeField] TextAsset csv;
@@ -39,6 +40,7 @@ public class BoardManager : MonoBehaviour
                 csv = tmp.GetCSVFile();
                 setUpNumbers = new List<SetUpNumberCell>(tmp.GetSetUpNumbers());
                 DataGame.countAllCell = tmp.GetCountAllCell();
+                score.setMaxScore(DataGame.countAllCell * 10);
                 Debug.Log("DA Lay DU LIEU");
                 isLevelFound = true;
                 break; // Thoát khỏi vòng lặp sau khi tìm thấy cấp độ

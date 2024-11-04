@@ -1392,6 +1392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: 3
   prefabs: {fileID: 6720437745377179942, guid: a9bbf36125599b44aaa1f849bad127c2, type: 3}
+  score: {fileID: 643510657}
   dataLevel: {fileID: 11400000, guid: f61a153c5c5825b4692c6fbd1d9b9393, type: 2}
   setUpNumbers:
   - Sprite: {fileID: 681036347, guid: dddc99c6d129e414da8d8e60bc10ded3, type: 3}
@@ -3282,6 +3283,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScore: 2000
   currentScore: 0
+  dataLevel:
+    level: 0
+    layer: 0
+    csvFile: {fileID: 0}
+    countAllCell: 0
+    setUpNumbers: []
   fillScore: {fileID: 939401886}
   fillCombo: {fileID: 1849017378}
   fillStar1: {fileID: 574622653}
@@ -11527,7 +11534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2102428954
 RectTransform:
   m_ObjectHideFlags: 0

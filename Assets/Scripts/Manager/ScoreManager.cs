@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] int maxScore;
+    [SerializeField] private int maxScore;
     [SerializeField] int currentScore;
+    [SerializeField] Level dataLevel;
     [SerializeField] Image fillScore;
     [SerializeField] Image fillCombo;
     [SerializeField] Image fillStar1;
@@ -28,6 +29,10 @@ public class ScoreManager : MonoBehaviour
         DataScore.star1 = false;
         DataScore.star2 = false;
         DataScore.star3 = false;
+    }
+    public void setMaxScore(int maxScore)
+    {
+        this.maxScore = maxScore;
     }
     private void Update()
     {

@@ -67,8 +67,11 @@ public class SpinManager : MonoBehaviour
         exit.interactable=false;    
         Invoke("UpdateUI", 5f);
         audioSourceManager.PlayAudio(3);
+        
+    }
+    void LoadPlayScene()
+    {
         adsManager.LoadRewardedlAd();
-
     }
     void InitUI()
     {
@@ -80,6 +83,7 @@ public class SpinManager : MonoBehaviour
         undoTxt.text = undo.ToString();
         magTxt.text = mag.ToString();
         sortTxt.text = sort.ToString();
+        Invoke("LoadPlayScene", 1f);
     }
     void UpdateUI()
     {
@@ -93,6 +97,7 @@ public class SpinManager : MonoBehaviour
         sortTxt.text = sort.ToString();
         ad.interactable = true;
         exit.interactable = true;
+        SceneManager.LoadScene("PlayScene");
     }
     private void UpdateValue(int z)
     {
