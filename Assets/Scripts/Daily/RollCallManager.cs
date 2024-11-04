@@ -48,6 +48,7 @@ public class RollCallManager : MonoBehaviour
         list.Add(tickNow);
         SaveGame();
         this.gameObject.SetActive(false);
+        SpinManager.checkable = true;
     }
     public void InitUI(long tickNow)
     {

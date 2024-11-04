@@ -30,10 +30,14 @@ public class Item : MonoBehaviour
     {
         
         BoardManager.levelCurrent = level;
-        SceneManager.LoadScene("PlayScene");
-        LoadAd();
+        InterstitialAd.WatchedAd.AddListener(LoadPlayScene);
+        ShowAd();
     }
-    public void LoadAd()
+    void LoadPlayScene()
+    {
+        SceneManager.LoadScene("PlayScene");
+    }
+    public void ShowAd()
     {
         adsManager.ShowInterstitialAd();
         adsManager.LoadInterstitialAd();

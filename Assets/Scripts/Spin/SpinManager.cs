@@ -45,6 +45,7 @@ public class SpinManager : MonoBehaviour
     }
     public void OnAdButton()
     {
+        checkable = false;
         AdsManager.Instance.ShowRewardedlAd();
         UnityEvent rotateSpin = RewardedAds.watchedEvent;
         rotateSpin.AddListener(RotateSpin);
@@ -81,7 +82,6 @@ public class SpinManager : MonoBehaviour
         undoTxt.text = undo.ToString();
         magTxt.text = mag.ToString();
         sortTxt.text = sort.ToString();
-        Invoke("LoadPlayScene", 1f);
     }
     void UpdateUI()
     {
@@ -95,6 +95,7 @@ public class SpinManager : MonoBehaviour
         sortTxt.text = sort.ToString();
         ad.interactable = true;
         exit.interactable = true;
+        Invoke("LoadPlayScene", 1f);
     }
     private void UpdateValue(int z)
     {

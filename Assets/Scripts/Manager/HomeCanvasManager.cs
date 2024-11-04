@@ -12,6 +12,7 @@ public class HomeCanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI lvTxt;
 
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    AdsManager adsManager => AdsManager.Instance;
     private void Start()
     {
         BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
@@ -33,10 +34,14 @@ public class HomeCanvasManager : MonoBehaviour
         }
         else
         {
-            LoadPlayScene();
-            AdsManager.Instance.ShowInterstitialAd();
-            AdsManager.Instance.LoadInterstitialAd();
+            InterstitialAd.WatchedAd.AddListener(LoadPlayScene);
+            ShowAd();
         }
+    }
+    public void ShowAd()
+    {
+        adsManager.ShowInterstitialAd();
+        adsManager.LoadInterstitialAd();
     }
     void LoadPlayScene()
     {

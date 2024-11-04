@@ -9,6 +9,7 @@ public class InterstitialAd : IUnityAdsLoadListener,IUnityAdsShowListener
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
+    public static UnityEvent WatchedAd = new UnityEvent();
     public void Init()
     {
         // Get the Ad Unit ID for the current platform:
@@ -51,9 +52,14 @@ public class InterstitialAd : IUnityAdsLoadListener,IUnityAdsShowListener
         // Optionally execute code if the Ad Unit fails to show, such as loading another ad.
     }
 
-    public void OnUnityAdsShowStart(string _adUnitId) { }
+    public void OnUnityAdsShowStart(string _adUnitId) 
+    {
+        WatchedAd.Invoke();
+        WatchedAd.RemoveAllListeners();
+    }
     public void OnUnityAdsShowClick(string _adUnitId) { }
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
+        
     }
 }

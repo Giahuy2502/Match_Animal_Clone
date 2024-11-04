@@ -22,6 +22,10 @@ public class LosePanel : MonoBehaviour
     {
         vibrationController.StartVibration();
         indexScene = SceneManager.GetActiveScene().buildIndex;
+        ShowAd();
+    }
+    public void ShowAd()
+    {
         adsManager.ShowInterstitialAd();
         adsManager.LoadInterstitialAd();
     }
