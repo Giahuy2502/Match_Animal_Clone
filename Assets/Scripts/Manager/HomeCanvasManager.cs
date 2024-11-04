@@ -8,6 +8,7 @@ public class HomeCanvasManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinTxt;
     [SerializeField] GameObject multiLanguage;
+    [SerializeField] GameObject responPanel;
     [SerializeField] TextMeshProUGUI lvTxt;
 
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
@@ -43,7 +44,7 @@ public class HomeCanvasManager : MonoBehaviour
     }
     public void OnResponButton()
     {
-
+        responPanel.SetActive(true);
     }
 
     public void OnLanguageButton()

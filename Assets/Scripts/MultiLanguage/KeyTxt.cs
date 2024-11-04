@@ -22,22 +22,13 @@ public enum KeyTxt
     Store_store,
     Gift_giftBox,
     Tutorial_HowtoPlay,
-    Tutorial_Text
+    Tutorial_Text,
+    Home_Respon_Title,
+    Home_Respon_Txt,
+    Home_Respon_button
 }
 public static class ConvertEnumToString
 {
-
-    //public static Dictionary<KeyTxt, string> dic = new Dictionary<KeyTxt, string>
-    //{
-    //    { KeyTxt.Spin_LuckySpin,"Spin_LuckySpin" },
-    //    { KeyTxt.Spin_FreeSpins,"Spin_FreeSpins" },
-    //    { KeyTxt.Home_Level,"Home_Level" },
-    //    { KeyTxt.Home_Levels,"Home_Levels" },
-    //    { KeyTxt.Player_Combo,"Player_Combo"},
-    //    { KeyTxt.Pause_Continue,"Pause_Continue"},
-    //    { KeyTxt.Pause_Restart,"Pause_Restart"},
-    //    { KeyTxt.Pause_Home,"Pause_Home"},
-    //};
     public static string GetStringByKey(KeyTxt key)
     {
         
