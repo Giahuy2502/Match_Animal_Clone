@@ -9,6 +9,7 @@ public class LosePanel : MonoBehaviour
     ResourceManager ResourceManager => ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
     AdsManager adsManager => AdsManager.Instance;
+    VibrationController vibrationController => VibrationController.Instance;
 
     private int indexScene;
     private int indexSound;
@@ -19,6 +20,7 @@ public class LosePanel : MonoBehaviour
     }
     private void Start()
     {
+        vibrationController.StartVibration();
         indexScene = SceneManager.GetActiveScene().buildIndex;
         adsManager.ShowInterstitialAd();
         adsManager.LoadInterstitialAd();

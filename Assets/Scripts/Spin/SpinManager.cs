@@ -95,7 +95,6 @@ public class SpinManager : MonoBehaviour
         sortTxt.text = sort.ToString();
         ad.interactable = true;
         exit.interactable = true;
-        SceneManager.LoadScene("PlayScene");
     }
     private void UpdateValue(int z)
     {

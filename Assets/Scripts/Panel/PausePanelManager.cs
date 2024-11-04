@@ -10,12 +10,17 @@ public class PausePanelManager : MonoBehaviour
     [SerializeField] Sprite muteImage;
     [SerializeField] Sprite unmuteImage;
     [SerializeField] Image muteButton;
+    [SerializeField] Sprite unvibImage;
+    [SerializeField] Sprite vibImage;
+    [SerializeField] Image vibButton;
+    VibrationController vibrationController => VibrationController.Instance;
     private ResourceManager ResourceManager=> ResourceManager.Instance;
     int indexScene;
     private void Start()
     {
         indexScene = SceneManager.GetActiveScene().buildIndex;
         UpdateMuteUI();
+        UpdateVibUI();
     }
     public void OnContinueButton()
     {
@@ -58,6 +63,30 @@ public class PausePanelManager : MonoBehaviour
     }
 
     public void OnVibrationButton()
+    {
+        VibrationController.vibable = !VibrationController.vibable;
+        if (VibrationController.vibable)
+        {
+            vibrationController.StartVibration();
+        }
+        UpdateVibUI();
+        int vibable = VibrationController.vibable ? 1 : 0;
+
+        PlayerPrefs.SetInt("vibable", vibable);
+        Debug.Log(VibrationController.vibable);
+    }
+    private void UpdateVibUI()
+    {
+        if (VibrationController.vibable)
+        {
+            vibButton.sprite = vibImage;
+        }
+        else
+        {
+            vibButton.sprite = unvibImage;
+        }
+    }
+    public void ResetSource()
     {
         ResourceManager.ResetUndoTool();
         ResourceManager.ResetMagnetTool();

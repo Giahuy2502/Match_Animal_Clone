@@ -12,6 +12,7 @@ public class BaseSceneManager : MonoBehaviour
     private void OnEnable()
     {
         SetSoundable();
+        SetVibable();
         Application.targetFrameRate = 60;
         slider.value = 0f;
         FillBar();
@@ -22,6 +23,12 @@ public class BaseSceneManager : MonoBehaviour
         int soundable = PlayerPrefs.GetInt("soundable", 1);
         AudioSourceManager.Soundable = soundable == 1;
         Debug.Log(AudioSourceManager.Soundable);
+    }
+    private static void SetVibable()
+    {
+        int vibable = PlayerPrefs.GetInt("vibable", 1);
+        VibrationController.vibable = vibable == 1;
+        Debug.Log(VibrationController.vibable);
     }
 
     void FillBar()

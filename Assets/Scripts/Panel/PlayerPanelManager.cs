@@ -1,10 +1,7 @@
-
 using TMPro;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class PlayerPanelManager : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
