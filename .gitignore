@@ -7,3 +7,8 @@ Temp
 Assembly-CSharp.csproj
 Match Animal.sln
 UserSettings
+Assembly-CSharp-Editor.csproj
+Match Animal release.aab
+MonoSingleton.csproj
+Test_02.apk
+.idea
