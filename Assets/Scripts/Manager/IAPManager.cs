@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -41,7 +42,13 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
         Debug.Log($"--- (IAP) Initializing IAP...");
 
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-        builder.AddProduct("option_1", ProductType.Consumable);
+        List<string> products_ID = new List<string> { "option_1", "option_2", "option_3", "option_4", "option_5" };
+        foreach (string product in products_ID)
+        {
+            builder.AddProduct(product, ProductType.Consumable);
+        }
+
+
 
         UnityPurchasing.Initialize(this, builder);
     }
