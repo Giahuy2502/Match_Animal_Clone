@@ -5,9 +5,9 @@ using UnityEngine.Advertisements;
 
 public class AdsInitializer : IUnityAdsInitializationListener
 {
-    /*[SerializeField]*/ string _androidGameId= "5709443";
-    //[SerializeField] string _iOSGameId= "5709442";
-    /*[SerializeField] */bool _testMode = true;
+    string _androidGameId= "5709443";
+    //string _iOSGameId= "5709442";
+    bool _testMode = true;
     public string _gameId="";
 
     

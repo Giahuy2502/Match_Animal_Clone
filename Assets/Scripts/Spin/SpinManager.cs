@@ -74,10 +74,10 @@ public class SpinManager : MonoBehaviour
     }
     void InitUI()
     {
-        int coin = PlayerPrefs.GetInt("coin", 0);
-        int undo = PlayerPrefs.GetInt("undoCount", 0);
-        int mag = PlayerPrefs.GetInt("magnetCount", 0);
-        int sort = PlayerPrefs.GetInt("sortCount", 0);
+        int coin = ResourceManager.GetCoin();
+        int undo = ResourceManager.GetUndoCount();
+        int mag = ResourceManager.GetMagnetCount();
+        int sort = ResourceManager.GetSortCount();
         coinTxt.text = coin.ToString();
         undoTxt.text = undo.ToString();
         magTxt.text = mag.ToString();

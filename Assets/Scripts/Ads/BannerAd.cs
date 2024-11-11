@@ -12,9 +12,10 @@ public class BannerAd
     //[SerializeField] Button _showBannerButton;
     //[SerializeField] Button _hideBannerButton;
 
-   /* [SerializeField]*/ BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
+    BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
 
-    /*[SerializeField] */string _androidAdUnitId = "Banner_Android";
+    /*[SerializeField] */
+    string _androidAdUnitId = "Banner_Android";
     //[SerializeField] string _iOSAdUnitId = "Banner_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms.
 

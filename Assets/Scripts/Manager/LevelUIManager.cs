@@ -14,18 +14,20 @@ public class LevelUIManager : MonoBehaviour
     {
         for(var i = 0; i < dataLevel.levelCount; i++)
         {
-            var obj = Instantiate(prefab,new Vector3(),Quaternion.identity, position);
-            var item = obj.GetComponent<Item>();
-            item.level = i+1;
-            item.levelTxt.text = (i + 1).ToString();
-            item.levelData = dataLevel.GetDataLevel(i);
+            InitButton(i);
         }
     }
-    
-    public void OnHomeButton()
+
+    private void InitButton(int i)
     {
-        SceneManager.LoadScene("HomeScene");
+        var obj = Instantiate(prefab, new Vector3(), Quaternion.identity, position);
+        var item = obj.GetComponent<Item>();
+        item.level = i + 1;
+        item.levelTxt.text = (i + 1).ToString();
+        item.levelData = dataLevel.GetDataLevel(i);
     }
+
+    
     public void OnSoundButton(int index)
     {
         audioSourceManager.PlayAudio(index);

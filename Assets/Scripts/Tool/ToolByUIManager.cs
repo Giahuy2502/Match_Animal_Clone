@@ -78,8 +78,8 @@ public class ToolByUIManager : MonoBehaviour
         SortArrayObject();
         SortListTickedCell();
         ResetAllCountNumber(cell);
-        undoCell.transform.DOMove(cell.undoPosition, 0.25f);
-        cell.clickable = true;
+        undoCell.transform.DOMove(cell.GetUndoPosition(), 0.25f);
+        cell.SetClickable(true);
         //----
         ResourceManager.SetUndoTool(-1);
         PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
@@ -89,7 +89,7 @@ public class ToolByUIManager : MonoBehaviour
     {
         DataGame.countAllCell++;
         DataGame.countTickedCell--;
-        int indexCell = cell.indexSprite;
+        int indexCell = cell.GetIndexSprite();
         DataGame.arrindex[indexCell]--;
     }
     private static void SortListTickedCell()
@@ -117,9 +117,9 @@ public class ToolByUIManager : MonoBehaviour
     private static void GetIndexPositionCell(GameObject undoCell, out CellManager cell, out int i, out int j, out int layer)
     {
         cell = undoCell.GetComponent<CellManager>();
-        i = cell.i;
-        j = cell.j;
-        layer = cell.layer;
+        i = cell.GetI();
+        j = cell.GetJ();
+        layer = cell.GetLayer();
     }
 
     //-----------------------------------------------------------------------------------------------------------
@@ -167,11 +167,11 @@ public class ToolByUIManager : MonoBehaviour
                     {
 
                         CellManager cell = boardCell[j, k].GetComponent<CellManager>();
-                        cell.clickable = true;
+                        cell.SetClickable(true);
                         cell.SetUpColor(Color.white);
-                        if (count == 0 && indexSprite == 0) indexSprite = cell.indexSprite;
+                        if (count == 0 && indexSprite == 0) indexSprite = cell.GetIndexSprite();
 
-                        if (cell.indexSprite == indexSprite && count < 3 && DataGame.countTickedCell <= 7)
+                        if (cell.GetIndexSprite() == indexSprite && count < 3 && DataGame.countTickedCell <= 7)
                         {
                             ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
                             PointerEventData eventData = new PointerEventData(EventSystem.current);
@@ -192,9 +192,9 @@ public class ToolByUIManager : MonoBehaviour
         {
             if (DataGame.listTickedCell[i] == null) break;
             CellManager cell = DataGame.listTickedCell[i].GetComponent<CellManager>();
-            if (DataGame.arrindex[cell.indexSprite] > count)
+            if (DataGame.arrindex[cell.GetIndexSprite()] > count)
             {
-                indexSprite = cell.indexSprite;
+                indexSprite = cell.GetIndexSprite();
                 count = DataGame.arrindex[indexSprite];
             }
         }
@@ -245,8 +245,8 @@ public class ToolByUIManager : MonoBehaviour
                     {
 
                         CellManager tempCell = Grid[i, j].GetComponent<CellManager>();
-                        tempCell.indexSprite = tempList[index];
-                        tempCell.SetUpSprite(tempCell.indexSprite);
+                        tempCell.SetIndexSprite(tempList[index]);
+                        tempCell.SetUpSprite(tempCell.GetIndexSprite());
                         index++;
                     }
 
@@ -276,7 +276,7 @@ public class ToolByUIManager : MonoBehaviour
                     {
 
                         CellManager cell = Grid[i, j].GetComponent<CellManager>();
-                        tempList.Add(cell.indexSprite);
+                        tempList.Add(cell.GetIndexSprite());
                         // tempList[tempList.Count-1]
                         // Debug.Log($"cell.layer= {cell.layer} +cell.i= {cell.i}+cell.j= {cell.j}");
                     }
@@ -294,7 +294,7 @@ public class ToolByUIManager : MonoBehaviour
                 return a == null ? 1 : -1;
             var aIndex = a.GetComponent<CellManager>();
             var bIndex = b.GetComponent<CellManager>();
-            return aIndex.indexSprite.CompareTo(bIndex.indexSprite);
+            return aIndex.GetIndexSprite().CompareTo(bIndex.GetIndexSprite());
         });
     }
     //-----------------------------------------------------------------------------------------------------------

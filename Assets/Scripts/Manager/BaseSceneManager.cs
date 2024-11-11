@@ -7,8 +7,8 @@ using DG.Tweening;
 
 public class BaseSceneManager : MonoBehaviour
 {
-    [SerializeField] Slider slider;
-    [SerializeField] float timeLoad = 5f;
+    [SerializeField] private Slider slider;
+    [SerializeField] private float timeLoad = 5f;
     private void OnEnable()
     {
         SetSoundable();

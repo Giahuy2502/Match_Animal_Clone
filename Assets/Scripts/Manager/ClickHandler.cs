@@ -21,7 +21,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
             Debug.Log("Lose game!");
             return;
         }
-        if (cell.clickable)
+        if (cell.GetClickable())
         {
             // cell.clickable==false;
             SetClickable();
@@ -33,13 +33,13 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     void SetClickable()
     {
         CellManager cell = GetComponent<CellManager>();
-        cell.clickable = false;
+        cell.SetClickable(false);
     }
     void DeleteInGrid(CellManager cell)
     {
-        int i = cell.i;
-        int j = cell.j;
-        int layer = cell.layer;
+        int i = cell.GetI();
+        int j = cell.GetJ();
+        int layer = cell.GetLayer();
         DataGame.undoCell.Push(gameObject);
         GameObject[,] grid = DataGame.layerGrid[layer];
         grid[i, j] = null;
@@ -166,7 +166,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     static int GetIndexSprite(GameObject obj)
     {
         CellManager datacell = obj.GetComponent<CellManager>();
-        int indexCell = datacell.indexSprite;
+        int indexCell = datacell.GetIndexSprite();
         return indexCell;
     }
 
@@ -178,7 +178,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
                 return a == null ? 1 : -1;
             var aIndex = a.GetComponent<CellManager>();
             var bIndex = b.GetComponent<CellManager>();
-            return aIndex.indexSprite.CompareTo(bIndex.indexSprite);
+            return aIndex.GetIndexSprite().CompareTo(bIndex.GetIndexSprite());
         });
     }
 

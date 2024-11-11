@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 221132949}
   - component: {fileID: 221132948}
   - component: {fileID: 221132947}
+  - component: {fileID: 221132950}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -249,9 +250,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 646343502}
-        m_TargetAssemblyTypeName: LevelUIManager, Assembly-CSharp
-        m_MethodName: OnHomeButton
+      - m_Target: {fileID: 221132950}
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -311,6 +312,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221132945}
   m_CullTransparentMesh: 1
+--- !u!114 &221132950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221132945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7551f4eaa9c36f47865071d788980d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: HomeScene
+  Button: {fileID: 221132947}
 --- !u!1 &356735854
 GameObject:
   m_ObjectHideFlags: 0

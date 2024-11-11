@@ -414,6 +414,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6076589493513552659, guid: 0d3aaf91b399d1f44969c9e931812b6d, type: 3}
+      propertyPath: jsonDefault
+      value: '{"undoCount":0,"magnetCount":0,"sortCount":0,"coin":0}'
+      objectReference: {fileID: 0}
     - target: {fileID: 8578193823556905426, guid: 0d3aaf91b399d1f44969c9e931812b6d, type: 3}
       propertyPath: m_Name
       value: ResourceManager

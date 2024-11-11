@@ -3942,7 +3942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &880500166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7073,6 +7073,7 @@ GameObject:
   - component: {fileID: 1321677754}
   - component: {fileID: 1321677753}
   - component: {fileID: 1321677752}
+  - component: {fileID: 1321677755}
   m_Layer: 0
   m_Name: LevelsButton
   m_TagString: Untagged
@@ -7144,9 +7145,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 646343502}
-        m_TargetAssemblyTypeName: HomeCanvasManager, Assembly-CSharp
-        m_MethodName: OnLevelsButton
+      - m_Target: {fileID: 1321677755}
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7206,6 +7207,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321677750}
   m_CullTransparentMesh: 1
+--- !u!114 &1321677755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321677750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7551f4eaa9c36f47865071d788980d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: LevelScene
+  Button: {fileID: 1321677752}
 --- !u!1 &1341585704
 GameObject:
   m_ObjectHideFlags: 0
@@ -9702,6 +9717,7 @@ GameObject:
   - component: {fileID: 1686326935}
   - component: {fileID: 1686326934}
   - component: {fileID: 1686326933}
+  - component: {fileID: 1686326936}
   m_Layer: 0
   m_Name: PlayButton
   m_TagString: Untagged
@@ -9774,8 +9790,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 646343502}
-        m_TargetAssemblyTypeName: HomeCanvasManager, Assembly-CSharp
+      - m_Target: {fileID: 1686326936}
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
         m_MethodName: OnPlayButton
         m_Mode: 1
         m_Arguments:
@@ -9836,6 +9852,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686326931}
   m_CullTransparentMesh: 1
+--- !u!114 &1686326936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686326931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7551f4eaa9c36f47865071d788980d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: SpinScene
+  Button: {fileID: 1686326933}
 --- !u!1 &1713016777
 GameObject:
   m_ObjectHideFlags: 0

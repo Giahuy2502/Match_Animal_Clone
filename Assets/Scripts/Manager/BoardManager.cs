@@ -5,32 +5,31 @@ using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
-    [SerializeField] int layer;
-    [SerializeField] GameObject prefabs;
-    [SerializeField] ScoreManager score;
-    [SerializeField] DataLevel dataLevel;
-    [SerializeField] List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
-    [SerializeField] TextAsset csv;
-    [SerializeField] List<List<List<string>>> boardLayer = new List<List<List<string>>>();
+    [SerializeField] private int layer;
+    [SerializeField] private int countAllCell;
+    [SerializeField] private GameObject prefabs;
+    [SerializeField] private ScoreManager score;
+    [SerializeField] private DataLevel dataLevel;
+    [SerializeField] private List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
+    [SerializeField] private TextAsset csv;
+    [SerializeField] private List<List<List<string>>> boardLayer = new List<List<List<string>>>();
     public static int levelCurrent = 1;
     void Start()
     {
         GetDataLevel();
         ResetDataGame();
-        SetUpBoard();
+        ReadCSVFile();
         SetUpGrid(layer);
     }
-
     void Update()
     {
         CheckClickableCell();
     }
-
     void GetDataLevel()
     {
-
         DataLevel cloneData = (DataLevel)dataLevel.Clone();
         bool isLevelFound = false;
+
         DataGame.countAllCell = 0;
         foreach (var tmp in cloneData.GetListLevels())
         {
@@ -41,9 +40,9 @@ public class BoardManager : MonoBehaviour
                 setUpNumbers = new List<SetUpNumberCell>(tmp.GetSetUpNumbers());
                 DataGame.countAllCell = tmp.GetCountAllCell();
                 score.setMaxScore(DataGame.countAllCell * 10);
-                Debug.Log("DA Lay DU LIEU");
+
                 isLevelFound = true;
-                break; // Thoát khỏi vòng lặp sau khi tìm thấy cấp độ
+                break;
             }
         }
 
@@ -52,29 +51,15 @@ public class BoardManager : MonoBehaviour
             Debug.Log("Level không tồn tại trong danh sách");
         }
     }
-    void SetUpBoard()
+    void ReadCSVFile()
     {
         var csvReader = new CsvReader();
-        boardLayer = csvReader.ReadCsvLayer(csv.text);
-        
+        boardLayer = csvReader.ReadCsvLayer(csv.text);      
     }
     void CheckClickableCell()
     {
-        GameObject[,] topGrid = DataGame.layerGrid[layer-1];
-        for (int j = 1; j < topGrid.GetLength(0) - 1; j++)
-        {
-            for (int k = 1; k < topGrid.GetLength(1) - 1; k++)
-            {
-                if (topGrid[j, k] != null)
-                {
-                    CellManager tempCell = topGrid[j, k].GetComponent<CellManager>();
-                    tempCell.clickable = true;
-                    tempCell.SetUpColor(Color.white);
-                }
-            }
-        }
+        CheckClickableCellOnTopGrid();
 
-        //Debug.Log("Da xet cac cellable");
         for (int i = layer - 2; i >= 0; i--)
         {
             GameObject[,] currentGrid = DataGame.layerGrid[i];
@@ -85,29 +70,52 @@ public class BoardManager : MonoBehaviour
                 {
                     if (i % 2 == 0)
                     {
-                        GameObject currentCell = currentGrid[j, k];
-                        GameObject checkCell1 = checkGrid[j, k];
-                        GameObject checkCell2 = checkGrid[j, k - 1];
-                        GameObject checkCell3 = checkGrid[j - 1, k];
-                        GameObject checkCell4 = checkGrid[j - 1, k - 1];
-                        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
+                        CheckClickableOnOddGrid(currentGrid, checkGrid, j, k);
                     }
 
                     else
                     {
-                        GameObject currentCell = currentGrid[j, k];
-                        GameObject checkCell1 = checkGrid[j, k];
-                        GameObject checkCell2 = checkGrid[j, k + 1];
-                        GameObject checkCell3 = checkGrid[j+1, k];
-                        GameObject checkCell4 = checkGrid[j+1, k + 1];
-                        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
+                        CheckClickableOnEvenGrid(currentGrid, checkGrid, j, k);
                     }
-                    
+
                 }
             }
         }
     }
-
+    private void CheckClickableOnEvenGrid(GameObject[,] currentGrid, GameObject[,] checkGrid, int j, int k)
+    {
+        GameObject currentCell = currentGrid[j, k];
+        GameObject checkCell1 = checkGrid[j, k];
+        GameObject checkCell2 = checkGrid[j, k + 1];
+        GameObject checkCell3 = checkGrid[j + 1, k];
+        GameObject checkCell4 = checkGrid[j + 1, k + 1];
+        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
+    }
+    private void CheckClickableOnOddGrid(GameObject[,] currentGrid, GameObject[,] checkGrid, int j, int k)
+    {
+        GameObject currentCell = currentGrid[j, k];
+        GameObject checkCell1 = checkGrid[j, k];
+        GameObject checkCell2 = checkGrid[j, k - 1];
+        GameObject checkCell3 = checkGrid[j - 1, k];
+        GameObject checkCell4 = checkGrid[j - 1, k - 1];
+        CheckConditionsClickableCell(currentCell, checkCell1, checkCell2, checkCell3, checkCell4);
+    }
+    private void CheckClickableCellOnTopGrid()
+    {
+        GameObject[,] topGrid = DataGame.layerGrid[layer - 1];
+        for (int j = 1; j < topGrid.GetLength(0) - 1; j++)
+        {
+            for (int k = 1; k < topGrid.GetLength(1) - 1; k++)
+            {
+                if (topGrid[j, k] != null)
+                {
+                    CellManager tempCell = topGrid[j, k].GetComponent<CellManager>();
+                    tempCell.SetClickable(true);
+                    tempCell.SetUpColor(Color.white);
+                }
+            }
+        }
+    }
     void SetUpGrid(int layer)
     {
         for(int z=0; z<layer; z++)
@@ -148,14 +156,14 @@ public class BoardManager : MonoBehaviour
                     Vector3 position = new Vector3((i - 1) * 110 + tickPosition.x, (j - 1) * 110 + tickPosition.y, 0);
                     GameObject cell = Instantiate(prefabs, position, Quaternion.identity);
                     CellManager cellSprite = cell.GetComponent<CellManager>();
-                    cellSprite.layer = layer;
-                    cellSprite.i = i;
-                    cellSprite.j = j;
+                    cellSprite.SetLayer(layer);
+                    cellSprite.SetI(i);
+                    cellSprite.SetJ(j);
                     cellSprite.SetUpSprite(index);
                     SetUpClickAble(cell, cellSprite);
                     cell.transform.SetParent(transform); // gan doi tuong cell lam con doi tuong board
                     grid[i, j] = cell;
-                    cellSprite.undoPosition = position;
+                    cellSprite.SetUndoPosition(position);
                     DataGame.setUpNumbers[index].SetNumber(-1);
                 }
                 
@@ -164,10 +172,9 @@ public class BoardManager : MonoBehaviour
     }
     static void SetUpClickAble(GameObject cell, CellManager cellSprite)
     {
-        if (cellSprite.clickable) cellSprite.SetUpColor(Color.white);
+        if (cellSprite.GetClickable()) cellSprite.SetUpColor(Color.white);
         else cellSprite.SetUpColor(Color.gray);
     }
-
     void ResetDataGame()
     {
         
@@ -190,7 +197,7 @@ public class BoardManager : MonoBehaviour
         if (checkCell1 == null && checkCell2 == null && checkCell3 == null && checkCell4 == null && currentCell != null)
         {
             CellManager cell = currentCell.GetComponent<CellManager>();
-            cell.clickable = true;
+            cell.SetClickable(true);
             SetUpClickAble(currentCell, cell);
         }
         else
@@ -198,13 +205,12 @@ public class BoardManager : MonoBehaviour
             if (currentCell != null)
             {
                 CellManager cell = currentCell.GetComponent<CellManager>();
-                cell.clickable = false;
+                cell.SetClickable(false);
                 SetUpClickAble(currentCell, cell);
             }
             
         }
     }
-
 }
 public static class DataGame
 {

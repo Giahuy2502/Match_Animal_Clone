@@ -10,7 +10,7 @@ public class WinPanelManager : MonoBehaviour
     [SerializeField] Image fillStar1;
     [SerializeField] Image fillStar2;
     [SerializeField] Image fillStar3;
-
+    private int endLevel=20;
     private void Start()
     {
         fillStar1.enabled = DataScore.star1;
@@ -26,16 +26,13 @@ public class WinPanelManager : MonoBehaviour
     }
     public void OnContinueButton()
     {
-        int nextlevel= BoardManager.levelCurrent+1;
+        int nextlevel= (BoardManager.levelCurrent+1)%endLevel;
         BoardManager.levelCurrent=nextlevel;
         Debug.Log(BoardManager.levelCurrent);
         PlayerPrefs.SetInt("level", nextlevel);
         SceneManager.LoadScene("PlayScene");
     }
-    public void OnHomeButton()
-    {
-        SceneManager.LoadScene("HomeScene");
-    }
+   
     public void SaveStars(int level, int stars)
     {
         PlayerPrefs.SetInt("Level_" + level + "_Stars", stars);

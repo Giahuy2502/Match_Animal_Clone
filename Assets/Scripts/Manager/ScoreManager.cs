@@ -42,16 +42,26 @@ public class ScoreManager : MonoBehaviour
         // sau khi đến 1 mức nhất định sẽ lấp đầy các ngôi sao
         if(DataScore.state==1)
         {
-            currentScore = currentScore + 10 * DataScore.combo;
-            DataScore.state = 0;
-            DataScore.countTime = countTime;
-            //Debug.Log($"countTime = {DataScore.countTime}+ combo = {DataScore.combo}+1");
+            CalculateScore();
+            ResetCountTime();
             float percentCoin = (float)currentScore / maxScore;
             fillScore.fillAmount = percentCoin;
             FillAllStar(percentCoin);
         }
         CountTimeForCombo();
         
+    }
+
+    private void CalculateScore()
+    {
+        currentScore = currentScore + 10 * DataScore.combo;
+        DataScore.state = 0;
+        
+    }
+
+    private void ResetCountTime()
+    {
+        DataScore.countTime = countTime;
     }
 
     private void FillAllStar(float percentCoin)

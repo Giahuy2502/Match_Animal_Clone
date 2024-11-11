@@ -12,7 +12,8 @@ public class HomeCanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI lvTxt;
 
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
-    AdsManager adsManager => AdsManager.Instance;
+    ResourceManager resource=>ResourceManager.Instance;
+    
     private void Start()
     {
         BoardManager.levelCurrent = PlayerPrefs.GetInt("level", 1);
@@ -22,31 +23,13 @@ public class HomeCanvasManager : MonoBehaviour
     
     private void Update()
     {
-        int coin = PlayerPrefs.GetInt("coin",0);
+        int coin = resource.GetCoin();
         coinTxt.text = coin.ToString();
         
     }
-    public void OnPlayButton()
-    {
-        if(SpinManager.checkable)
-        {
-            SceneManager.LoadScene("SpinScene");
-        }
-        else
-        {
-            InterstitialAd.WatchedAd.AddListener(LoadPlayScene);
-            ShowAd();
-        }
-    }
-    public void ShowAd()
-    {
-        adsManager.ShowInterstitialAd();
-        adsManager.LoadInterstitialAd();
-    }
-    void LoadPlayScene()
-    {
-        SceneManager.LoadScene("PlayScene");
-    }
+   
+   
+    
     public void OnResponButton()
     {
         responPanel.SetActive(true);
@@ -59,23 +42,15 @@ public class HomeCanvasManager : MonoBehaviour
     public void OnShopButton()
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
-
         SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
     }
-    public void OnLevelsButton()
-    {
-        SceneManager.LoadScene("LevelScene");
-    }
+    
     public void OnCoinButton()
     {
         StorePanelManager.IndexCurrentScene = SceneManager.GetActiveScene().buildIndex;
-
         SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
     }
-    public void OnGiftButton()
-    {
-
-    }
+    
     public void OnSoundButton(int index)
     {
         audioSourceManager.PlayAudio(index);

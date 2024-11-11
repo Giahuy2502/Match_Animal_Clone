@@ -28,8 +28,5 @@ public class PlayerPanelManager : MonoBehaviour
         Debug.Log("da bam va cua hang");
         SceneManager.LoadSceneAsync(3,LoadSceneMode.Additive);
     }
-    public void OnApplicationQuit()
-    {
-        PlayerPrefs.Save();
-    }
+    
 }

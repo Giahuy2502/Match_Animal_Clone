@@ -47,9 +47,6 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
         {
             builder.AddProduct(product, ProductType.Consumable);
         }
-
-
-
         UnityPurchasing.Initialize(this, builder);
     }
 
@@ -88,4 +85,5 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
     {
        
     }
+
 }

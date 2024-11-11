@@ -21,8 +21,5 @@ public class GiftPanelManager : MonoBehaviour
         ResourceManager.SetUndoTool(1);
         ResourceManager.SetSortTool(1);
         ResourceManager.SetMagnetTool(1);
-        PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
-        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
-        PlayerPrefs.SetInt("sortCount", ResourceManager.GetSortCount());
     }
 }

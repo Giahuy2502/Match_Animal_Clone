@@ -8,26 +8,18 @@ using UnityEngine.UI;
 
 public class RollCallManager : MonoBehaviour
 {
-    [SerializeField] string filePath;
-    [SerializeField] AttendanceData data;
-    [SerializeField] List<Image> images;
-    [SerializeField] Button Button;
-    [SerializeField] long tickNow;
+    [SerializeField] private string filePath;
+    [SerializeField] private AttendanceData data;
+    [SerializeField] private List<Image> images;
+    [SerializeField] private Button Button;
+    [SerializeField] private long tickNow;
 
     ResourceManager ResourceManager=> ResourceManager.Instance;
     private void Start()
     {
-
         tickNow = DateTime.Now.Date.Ticks;
-        ResourceManager.ResetCoin(PlayerPrefs.GetInt("coin", 0)) ;
-        //Debug.Log(ResourceManager.GetCoin());
-        filePath = Application.persistentDataPath + "/attendance.json";
-        LoadGame();
+        LoadData();
         InitUI(tickNow);
-        if(data.attendanceDates.Contains(tickNow))
-        {
-            Button.interactable = false;
-        }
     }
     public void OnCollectButton()
     {
@@ -39,49 +31,59 @@ public class RollCallManager : MonoBehaviour
              +them hom nay vao date
         */
         List<long> list = data.attendanceDates;
-        //int[] index = data.index;
+        
         GetReward(list.Count);
-        if(list.Count == 9) 
-        { 
+        ClearList(list);
+        list.Add(tickNow);
+        SaveData();
+        SpinManager.checkable = true;
+        Exit();
+    }   
+    private static void ClearList(List<long> list)
+    {
+        if (list.Count == 9)
+        {
             list.Clear();
         }
-        list.Add(tickNow);
-        SaveGame();
-        this.gameObject.SetActive(false);
-        SpinManager.checkable = true;
     }
     public void InitUI(long tickNow)
     {
-        
         List<long> list = data.attendanceDates;
-        if (list.Contains(tickNow)) gameObject.SetActive(false);
-        if (list.Count==0) return;
-        for(int i=0; i<list.Count; i++)
+        if (list.Contains(tickNow)) Exit();       
+        SetColorUI(list);
+    }
+    private void SetColorUI(List<long> list)
+    {
+        if (list.Count == 0) return;
+
+        for (int i = 0; i < list.Count; i++)
         {
             images[i].color = Color.green;
         }
-        for(int i=list.Count; i<images.Count;i++)
+
+        for (int i = list.Count; i < images.Count; i++)
         {
             images[i].color = Color.white;
         }
-        
     }
-
-    public void SaveGame()
+    private void Exit()
+    {
+        this.gameObject.SetActive(false);
+    }
+    public void SaveData()
     {
         PlayerPrefs.SetInt("coin",ResourceManager.GetCoin()); 
         string _data = JsonUtility.ToJson(data);
         System.IO.File.WriteAllText(filePath,_data);
         GameUtility.Log(this,"Da save game" + _data, Color.yellow);
     }
-    public void LoadGame()
+    public void LoadData()
     {
+        filePath = Application.persistentDataPath + "/attendance.json";
         if (System.IO.File.Exists(filePath))
         {
             string _data = System.IO.File.ReadAllText(filePath);
             data =JsonUtility.FromJson<AttendanceData>(_data);
-            //GameUtility.Log(this,"Da load game"+_data, Color.yellow);
-            //Debug.Log(filePath);
         }
 
     }
@@ -124,5 +126,5 @@ public class RollCallManager : MonoBehaviour
 public class AttendanceData
 {
     public List<long> attendanceDates; // Danh sách các ngày điểm danh
-    //public int[] index= new int[10];
+    
 }

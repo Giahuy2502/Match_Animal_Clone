@@ -15,7 +15,6 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        
         button.onClick.AddListener(OnClickButton);
     }
     private void Start()
@@ -49,12 +48,11 @@ public class Item : MonoBehaviour
     void FillStar()
     {
         int starFill= GetStars(level);
-        Debug.Log("bhcwbcbc.w" + starFill+"   "+level);
+
         if (starFill==0) return;
         for(int i = 0;i<starFill;i++)
         {
             imageList[i].enabled = true;
         }
-
     }
 }

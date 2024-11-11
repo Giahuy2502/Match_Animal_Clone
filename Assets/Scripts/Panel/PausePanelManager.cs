@@ -71,7 +71,6 @@ public class PausePanelManager : MonoBehaviour
         }
         UpdateVibUI();
         int vibable = VibrationController.vibable ? 1 : 0;
-
         PlayerPrefs.SetInt("vibable", vibable);
         Debug.Log(VibrationController.vibable);
     }

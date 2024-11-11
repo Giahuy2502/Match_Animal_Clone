@@ -12,10 +12,12 @@ public class AdsManager : MonoSingleton<AdsManager>
     protected override void DoOnAwake()
     {
         // Khởi tạo các quảng cáo
+
         adsInitializer.InitializeAds();
         interstitialAd.Init();
         bannerAd.Init();
         rewardedAds.Init();
+
         LoadInterstitialAd();
         LoadRewardedlAd();
         LoadBannerAd();

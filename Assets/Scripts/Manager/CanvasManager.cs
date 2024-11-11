@@ -26,18 +26,19 @@ public class CanvasManager : MonoBehaviour
     }
     void Update()
     {
-        if(DataGame.stateCurrentPlay==1)
+        switch(DataGame.stateCurrentPlay)
         {
-            WinPanel.SetActive(true);
+            case 1:
+                WinPanel.SetActive(true);
+                break;
+            case 2:
+                LosePanel.SetActive(true);
+                break;
+            default:
+                LosePanel.SetActive(false);
+                WinPanel.SetActive(false);
+                break;
         }
-        else if(DataGame.stateCurrentPlay==2)
-        {
-            LosePanel.SetActive(true);
-        }
-        else
-        {
-            LosePanel.SetActive(false);
-            WinPanel.SetActive(false);
-        }
+        
     }
 }

@@ -61,19 +61,34 @@ public class LosePanel : MonoBehaviour
     }
     public void Continue()
     {
-        for(int i = 0;i<3;i++)
+        Undo3Cell();
+        SortGrid();
+        SetupState();
+        ExitPanel();
+    }
+
+    private static void SetupState()
+    {
+        DataGame.stateCurrentPlay = 0;
+    }
+
+    private void SortGrid()
+    {
+        ResourceManager.SetSortTool(1);
+        toolByUIManager.OnSortingButton();
+    }
+
+    private void Undo3Cell()
+    {
+        for (int i = 0; i < 3; i++)
         {
-            
+
             ResourceManager.SetUndoTool(1);
             toolByUIManager.OnUndoButton();
 
         }
-        ResourceManager.SetSortTool(1);
-        toolByUIManager.OnSortingButton();
-        
-        DataGame.stateCurrentPlay = 0;
-        ExitPanel();
     }
+
     public void ExitPanel()
     {
         gameObject.SetActive(false);

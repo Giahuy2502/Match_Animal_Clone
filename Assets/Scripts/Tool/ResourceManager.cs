@@ -12,15 +12,14 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoSingleton<ResourceManager>
 {
-
-    private int undoCount;
-    private int magnetCount;
-    private int sortCount;
-    private int coin;
-
-    //Dictionary<string, int> res
-    [SerializeField]List<GiftType> enumItem;
-
+    [SerializeField] private UserData userData;
+    [SerializeField] private string jsonDefault;
+    [SerializeField] List<GiftType> enumItem;
+    protected override void DoOnAwake()
+    {
+        string json = UserData.GetJsonData(jsonDefault);
+        userData = new UserData(json);
+    }
     public void SetTypeItem(GiftType type,int count)
     {
         int n=0;
@@ -38,72 +37,72 @@ public class ResourceManager : MonoSingleton<ResourceManager>
         else if (n==2) SetSortTool(count);
         else SetCoin(count);
     }
+
+
     public int GetUndoCount()
     {
-        return undoCount;
+        return userData.undoCount;
     }
     public int GetMagnetCount()
     {
-        return magnetCount;
+        return userData.magnetCount;
     }
     public int GetSortCount()
     {
-        return sortCount;
+        return userData.sortCount;
     }
-
     public int GetCoin()
     {
-        return coin;
+        return userData.coin;
     }
     
-    public void SetResources(GiftType type,int count)
-   {
-
-   }
-
     public void ResetUndoTool(int count=0)
     {
-        undoCount = count;
+        userData.undoCount = count;
     }
     public void ResetMagnetTool(int count = 0)
     {
-        magnetCount = count;
+        userData.magnetCount = count;
     }
     public void ResetSortTool(int count = 0)
     {
-        sortCount = count;
+        userData.sortCount = count;
     }
-
     public void ResetCoin(int count = 0)
     {
-        coin = count;
+        userData.coin = count;
     }
+
 
     public void SetUndoTool(int quantity)
     {
-        undoCount += quantity;
+        userData.undoCount += quantity;
     }
     public void SetMagnetTool(int quantity) 
     {
-        magnetCount += quantity;
+        userData.magnetCount += quantity;
     }
     public void SetSortTool(int quantity)
     {
-        sortCount += quantity;
+        userData.sortCount += quantity;
     }
     public void SetCoin(int Count)
     {
-        coin += Count;
+        userData.coin += Count;
     }
-    protected override void DoOnAwake()
+    
+    
+    public void SetProduct(int coin,int undo,int magnet,int sort)
     {
-        coin = PlayerPrefs.GetInt("coin", 0);
-        undoCount = PlayerPrefs.GetInt("undoCount", 0);
-        magnetCount = PlayerPrefs.GetInt("magnetCount",0);
-        sortCount= PlayerPrefs.GetInt("sortCount",0);
+        SetUndoTool(undo);
+        SetMagnetTool(magnet);
+        SetSortTool(sort);
+        SetCoin(coin);
+        userData.SaveData();
     }
-    
-   
-   
-    
+    public void OnApplicationQuit()
+    {
+        userData.SaveData();
+    }
+ 
 }

@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 3
+  countAllCell: 0
   prefabs: {fileID: 6720437745377179942, guid: a9bbf36125599b44aaa1f849bad127c2, type: 3}
   score: {fileID: 643510657}
   dataLevel: {fileID: 11400000, guid: f61a153c5c5825b4692c6fbd1d9b9393, type: 2}
@@ -1737,18 +1738,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
         m_MethodName: OnSoundButton
         m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2102428957}
-        m_TargetAssemblyTypeName: PausePanelManager, Assembly-CSharp
-        m_MethodName: ResetSource
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6181,9 +6170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1100111
-
-'
+  m_text: 1100111
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6210,10 +6197,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 43.95
   m_fontSizeBase: 35
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -9417,7 +9404,7 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -10360,6 +10347,7 @@ GameObject:
   - component: {fileID: 1969791402}
   - component: {fileID: 1969791401}
   - component: {fileID: 1969791400}
+  - component: {fileID: 1969791403}
   m_Layer: 5
   m_Name: HomeButton
   m_TagString: Untagged
@@ -10432,9 +10420,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 481097443}
-        m_TargetAssemblyTypeName: WinPanelManager, Assembly-CSharp
-        m_MethodName: OnHomeButton
+      - m_Target: {fileID: 1969791403}
+        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10494,6 +10482,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969791398}
   m_CullTransparentMesh: 1
+--- !u!114 &1969791403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969791398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7551f4eaa9c36f47865071d788980d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: HomeScene
+  Button: {fileID: 1969791400}
 --- !u!1 &1980497835
 GameObject:
   m_ObjectHideFlags: 0
