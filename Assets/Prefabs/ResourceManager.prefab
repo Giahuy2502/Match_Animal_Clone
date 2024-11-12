@@ -45,4 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyThisObject: 1
+  userData:
+    undoCount: 0
+    magnetCount: 0
+    sortCount: 0
+    coin: 0
+  jsonDefault: '{"undoCount":0,"magnetCount":0,"sortCount":0,"coin":0}'
   enumItem: 00000000010000000200000003000000

@@ -20,8 +20,15 @@ public class VibrationController : MonoSingleton<VibrationController>
                 vibrator = null;
             }
         }
+        SetVibable();   
     }
 
+    private static void SetVibable()
+    {
+        int vibable = PlayerPrefs.GetInt("vibable", 1);
+        VibrationController.vibable = vibable == 1;
+        Debug.Log(VibrationController.vibable);
+    }
     public void StartVibration(long milliseconds=500)
     {
         if (!vibable) return;

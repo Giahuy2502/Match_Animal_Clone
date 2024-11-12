@@ -40,6 +40,7 @@ public class LosePanel : MonoBehaviour
     }
     public void OnFreeButton()
     {
+        Debug.Log("-------***  xem quang cao   ***--------");
         SetIndexSound(0);
         adsManager.ShowRewardedlAd();
         RewardedAds.watchedEvent.AddListener(Continue);
@@ -48,6 +49,7 @@ public class LosePanel : MonoBehaviour
     public void OnBuyButton()
     {
         SetIndexSound(1);
+        Debug.Log("-------***  300 xu   ***--------");
         if (ResourceManager.GetCoin() < 300)
         {
             SetIndexSound(2);
@@ -61,6 +63,7 @@ public class LosePanel : MonoBehaviour
     }
     public void Continue()
     {
+        Debug.Log("-------***  continue   ***--------");
         Undo3Cell();
         SortGrid();
         SetupState();

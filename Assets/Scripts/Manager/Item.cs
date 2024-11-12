@@ -34,6 +34,7 @@ public class Item : MonoBehaviour
     }
     void LoadPlayScene()
     {
+        Debug.Log("--- (Item)(day la load ----- scene) ----");
         SceneManager.LoadScene("PlayScene");
     }
     public void ShowAd()

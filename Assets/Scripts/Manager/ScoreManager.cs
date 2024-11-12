@@ -29,6 +29,8 @@ public class ScoreManager : MonoBehaviour
         DataScore.star1 = false;
         DataScore.star2 = false;
         DataScore.star3 = false;
+        DataScore.combo = 0;
+        DataScore.countTime = 0;
     }
     public void setMaxScore(int maxScore)
     {

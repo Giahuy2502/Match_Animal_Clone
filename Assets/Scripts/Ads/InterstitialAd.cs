@@ -54,12 +54,12 @@ public class InterstitialAd : IUnityAdsLoadListener,IUnityAdsShowListener
 
     public void OnUnityAdsShowStart(string _adUnitId) 
     {
-        WatchedAd.Invoke();
-        WatchedAd.RemoveAllListeners();
+        
     }
     public void OnUnityAdsShowClick(string _adUnitId) { }
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
-        
+        WatchedAd.Invoke();
+        WatchedAd.RemoveAllListeners();
     }
 }
