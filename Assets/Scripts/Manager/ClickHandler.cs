@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 
 public class ClickHandler : MonoBehaviour, IPointerClickHandler
@@ -74,8 +75,8 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
             {
                 Vector3 To = DataGame.PositionTicked[i];
                 DataGame.listTickedCell[i] = gameObject;
-                IncreaseArrIndex();
                 StartCoroutine(ArrangeTickedCell());
+                StartCoroutine(CheckDestroyOrLose());
                 return;
             }
         }
@@ -102,10 +103,12 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
 
         }
         yield return new WaitForSeconds(0.25f);
-        CheckDestroyOrLose();
+        
     }
-    void CheckDestroyOrLose()
+    IEnumerator CheckDestroyOrLose()
     {
+        yield return ArrangeTickedCell();
+        IncreaseArrIndex();
         if (TickedCellManager.checkDestroy)
         {
             DestroyTickedCell(); // Hủy cell khi thỏa điều kiện
@@ -118,7 +121,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
             DataGame.stateCurrentPlay = 2; // Chuyển sang trạng thái thua
             Debug.Log(DataGame.countTickedCell);
             Debug.Log("Lose game!");
-            return;
+            yield break;
         }
 
         if (DataGame.countAllCell == 0)

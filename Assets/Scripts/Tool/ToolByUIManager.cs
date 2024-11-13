@@ -148,10 +148,7 @@ public class ToolByUIManager : MonoBehaviour
         GetCountAndIndexSprite(ref count, ref indexSprite);
         Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
-        //StartCoroutine(ProcessClicks(DataGame.layerGrid,indexSprite,count));
-        //----
         ResourceManager.SetMagnetTool(-1);
-        PlayerPrefs.SetInt("magnetCount", ResourceManager.GetMagnetCount());
     }
     private void GetSameCell(ref int count, ref int indexSprite)
     {
@@ -176,8 +173,9 @@ public class ToolByUIManager : MonoBehaviour
                             ClickHandler clickCell = boardCell[j, k].GetComponent<ClickHandler>();
                             PointerEventData eventData = new PointerEventData(EventSystem.current);
                             clickCell.OnPointerClick(eventData);
-                            //StartCoroutine(Delay(clickCell, eventData));
                             count++;
+
+                            
                         }
                         if (count == 3) return;
                     }
@@ -185,6 +183,7 @@ public class ToolByUIManager : MonoBehaviour
             }
         }
     }
+
 
     private static void GetCountAndIndexSprite(ref int count, ref int indexSprite)
     {
