@@ -13,6 +13,9 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private List<SetUpNumberCell> setUpNumbers=new List<SetUpNumberCell>();
     [SerializeField] private TextAsset csv;
     [SerializeField] private List<List<List<string>>> boardLayer = new List<List<List<string>>>();
+    [SerializeField] private RectTransform tickPosition1;
+    [SerializeField] private RectTransform tickPosition2;
+    [SerializeField] private int cellSize;
     public static int levelCurrent = 1;
     void Start()
     {
@@ -124,7 +127,7 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                Vector3 tickPosition = new Vector3(165f, 665f, 0f);
+                Vector3 tickPosition = tickPosition1.position;
                 SpawmCell(tickPosition,z, grid, board);
                 DataGame.layerGrid.Add(grid);
             }
@@ -132,7 +135,7 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject[,] grid = new GameObject[10, 11];
                 List<List<string>> board = boardLayer[z];
-                Vector3 tickPosition = new Vector3(220f, 720f, 0f);
+                Vector3 tickPosition = tickPosition2.position;
                 SpawmCell(tickPosition, z,grid,board);
                 DataGame.layerGrid.Add(grid);
             }
@@ -153,7 +156,7 @@ public class BoardManager : MonoBehaviour
                     {
                         index = Random.Range(0, setUpNumbers.Count);
                     }
-                    Vector3 position = new Vector3((i - 1) * 110 + tickPosition.x, (j - 1) * 110 + tickPosition.y, 0);
+                    Vector3 position = new Vector3((i - 1) * cellSize + tickPosition.x, (j - 1) * cellSize + tickPosition.y, 0);
                     GameObject cell = Instantiate(prefabs, position, Quaternion.identity);
                     CellManager cellSprite = cell.GetComponent<CellManager>();
                     cellSprite.SetLayer(layer);
