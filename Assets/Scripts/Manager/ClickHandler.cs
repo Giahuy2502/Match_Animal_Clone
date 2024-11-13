@@ -14,7 +14,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     {
 
         CellManager cell = GetComponent<CellManager>();
-        //Debug.Log($"indexSptite ={cell.indexSprite}");
+        
         if (DataGame.countTickedCell >= 7)
         {
             DataGame.stateCurrentPlay = 2;
@@ -24,11 +24,11 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         }
         if (cell.GetClickable())
         {
-            // cell.clickable==false;
+            Debug.Log("Continue game!");
             SetClickable();
             SoundEffect(4);
             DeleteInGrid(cell);
-            CheckEndGame();
+            MoveTickedCell();
         }
     }
     void SetClickable()
@@ -44,29 +44,9 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         DataGame.undoCell.Push(gameObject);
         GameObject[,] grid = DataGame.layerGrid[layer];
         grid[i, j] = null;
+        Debug.Log("____***(da xoa tren gird)");
     }
-    void CheckEndGame()
-    {
-        //cập nhật các chỉ số đếm
-        //thực hiện di chuyển và sắp xếp các cell
-        //xét điều kiện end game
-
-        if (DataGame.countTickedCell >= 7)
-        {
-            DataGame.stateCurrentPlay = 2;
-            Debug.Log(DataGame.countTickedCell);
-            Debug.Log("Lose game!");
-            return;
-        }
-        else
-        {
-            DataGame.countAllCell--;
-            DataGame.countTickedCell++;
-            //Debug.Log($"countTickedCell = {DataGame.countTickedCell}");
-            
-            MoveTickedCell();
-        }
-    }
+   
     void MoveTickedCell()
     {
         for (int i = 0; i < DataGame.PositionTicked.Count; i++)
@@ -83,6 +63,8 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     }
     void IncreaseArrIndex()
     {
+        DataGame.countAllCell--;
+        DataGame.countTickedCell++;
         int indexCell = GetIndexSprite(gameObject);
         DataGame.arrindex[indexCell]++;
         if (DataGame.arrindex[indexCell] == 3)

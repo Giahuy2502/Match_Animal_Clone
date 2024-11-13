@@ -19,7 +19,7 @@ public class AudioSourceManager : MonoSingleton<AudioSourceManager>
     }
     public void PlayAudio(int index)
     {
-        Debug.Log($"----------(AudioSource) playsound +{Soundable}--------");
+
         if (!Soundable) return;
         
         if (effectSound.isPlaying)

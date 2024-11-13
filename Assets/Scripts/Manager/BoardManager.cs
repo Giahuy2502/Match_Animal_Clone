@@ -217,7 +217,7 @@ public class BoardManager : MonoBehaviour
 }
 public static class DataGame
 {
-    public static GameObject[] listTickedCell= new GameObject[7];//luu cac cell
+    public static GameObject[] listTickedCell= new GameObject[8];//luu cac cell
     public static List<Vector3> PositionTicked = new List<Vector3>();//luu position cac o
     public static int[] arrindex;//mang dem so luong cac cell 
     public static int countAllCell;//luu tong so co cell tren board
