@@ -3576,7 +3576,6 @@ MonoBehaviour:
     csvFile: {fileID: 0}
     countAllCell: 0
     setUpNumbers: []
-    unlock: 0
   fillScore: {fileID: 939401886}
   fillCombo: {fileID: 1849017378}
   fillStar1: {fileID: 574622653}
@@ -6959,8 +6958,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -276680367, guid: 1e4476c7f4ee24249a1a23edd2fe5e5d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b4d434f33a8557f46b13fc9cba451a06, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -12550,7 +12549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2102428954
 RectTransform:
   m_ObjectHideFlags: 0

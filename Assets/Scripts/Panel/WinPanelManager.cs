@@ -52,9 +52,8 @@ public class WinPanelManager : MonoBehaviour
     }
     public void UnLockNextLevel(int nextLevel)
     {
-        Level nextLevelData = dataLevel.GetDataLevel(nextLevel-1);
         Debug.Log(nextLevel);
-        unlock.unlockData.unlocked[nextlevel - 1] = true;
+        unlock.unlockData.unlocked[nextLevel - 1] = true;
 
     }
 }
