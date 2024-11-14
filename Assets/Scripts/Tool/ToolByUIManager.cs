@@ -12,45 +12,63 @@ public class ToolByUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI undoTxt;
     [SerializeField] TextMeshProUGUI magTxt;
     [SerializeField] TextMeshProUGUI sortTxt;
+    [SerializeField] GameObject undoCoin;
+    [SerializeField] GameObject magCoin;
+    [SerializeField] GameObject sortCoin;
     [SerializeField] GameObject giftPanel;
     [SerializeField] Image GiftBG;
     [SerializeField] float speedRotation = 15f;
 
-    private int index=6;
-    
+    private int index = 6;
+
     ResourceManager ResourceManager => ResourceManager.Instance;
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
 
-    void SetIndex(int count)
-    {
-        index = count;
-    }
     private void Update()
     {
         GiftBG.transform.Rotate(0f, 0f, speedRotation * Time.deltaTime);
         undoTxt.text = ResourceManager.GetUndoCount().ToString();
         magTxt.text = ResourceManager.GetMagnetCount().ToString();
         sortTxt.text = ResourceManager.GetSortCount().ToString();
-
+        UpDateUI();
     }
+    void SetIndex(int count)
+    {
+        index = count;
+    }
+    private void UpDateUI()
+    {
+        int stateUndo = GetStateUI(ResourceManager.GetUndoCount(), ResourceManager.GetCoin());
+        UpdateTextUI(undoCoin, undoTxt, stateUndo);
+
+        int stateMag = GetStateUI(ResourceManager.GetMagnetCount(), ResourceManager.GetCoin());
+        UpdateTextUI(magCoin, magTxt, stateMag);
+
+        int stateSort = GetStateUI(ResourceManager.GetSortCount(), ResourceManager.GetCoin());
+        UpdateTextUI(sortCoin, sortTxt, stateSort);
+    }
+
+    
 
     public void OnUndoButton()
     {
         SetIndex(6);
         if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() < 300)
         {
+            // khong undo duoc
             SetIndex(2);
             return;
         }
         else if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() >= 300)
         {
+            // tieu 300 coin de undo
             SetIndex(1);
             if (DataGame.undoCell.Count == 0) return;
             ResourceManager.SetCoin(-300);
             PlayerPrefs.SetInt("coin", ResourceManager.GetCoin());
             GameUtility.Log(this, $"ResourceManager.GetCoin() = {ResourceManager.GetCoin()}", Color.cyan);
             ResourceManager.SetUndoTool(1);
-            
+
         }
         bool checkUndoable;
         GameObject undoCell;
@@ -83,6 +101,7 @@ public class ToolByUIManager : MonoBehaviour
         //----
         ResourceManager.SetUndoTool(-1);
         PlayerPrefs.SetInt("undoCount", ResourceManager.GetUndoCount());
+
     }
 
     private static void ResetAllCountNumber(CellManager cell)
@@ -130,8 +149,9 @@ public class ToolByUIManager : MonoBehaviour
         // chon ra cac cell cung loai voi cell tren tu gird
         // set cell.clickable cua cac cell duoc chon la true
         SetIndex(6);
+        
         if (ResourceManager.GetMagnetCount() <= 0 && ResourceManager.GetCoin() < 300)
-        {
+        {           
             SetIndex(2);
             return;
         }
@@ -149,6 +169,7 @@ public class ToolByUIManager : MonoBehaviour
         Debug.Log($"count : {count} + indexSprite : {indexSprite}");
         GetSameCell(ref count, ref indexSprite);
         ResourceManager.SetMagnetTool(-1);
+
     }
     private void GetSameCell(ref int count, ref int indexSprite)
     {
@@ -175,7 +196,7 @@ public class ToolByUIManager : MonoBehaviour
                             clickCell.OnPointerClick(eventData);
                             count++;
 
-                            
+
                         }
                         if (count == 3) return;
                     }
@@ -208,6 +229,7 @@ public class ToolByUIManager : MonoBehaviour
         //thay doi cac chi so i,j,layer cua cellManager
         //gan lai gia tri tu danh sach tron ve lai cac layer grid
         SetIndex(6);
+
         if (ResourceManager.GetSortCount() <= 0 && ResourceManager.GetCoin() < 300)
         {
             SetIndex(2);
@@ -306,5 +328,33 @@ public class ToolByUIManager : MonoBehaviour
     {
         audioSourceManager.PlayAudio(index);
     }
+    void UpdateTextUI(GameObject textCoin, TextMeshProUGUI textCount, int state)
+    {
+        TextMeshProUGUI number = textCoin.GetComponentInChildren<TextMeshProUGUI>();
+        switch (state)
+        {
+            case 0:
+                textCount.enabled = true;
+                textCoin.SetActive(false);
+                break;
+            case 1:
+                textCount.enabled = false;
+                textCoin.SetActive(true);
 
+                number.color = Color.red;
+                break;
+            case 2:
+                textCount.enabled = false;
+                textCoin.SetActive(true);
+                number.color = Color.white;
+                break;
+        }
+    }
+    int GetStateUI(int count, int coin)
+    {
+        if (count > 0) return 0;
+        else if (count <= 0 && coin < 300) return 1;
+        else if (count <= 0 && coin >= 300) return 2;
+        return 0;
+    }
 }
