@@ -623,6 +623,9 @@ MonoBehaviour:
   dataLevel: {fileID: 11400000, guid: f61a153c5c5825b4692c6fbd1d9b9393, type: 2}
   prefab: {fileID: 2755279701897920430, guid: 6b74c006e54c7fa4f8273203d1324919, type: 3}
   position: {fileID: 356735855}
+  unlock:
+    unlocked: 0000000000000000000000000000000000000000
+  jsonDefault: '{"unlocked":[true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]}'
 --- !u!1 &988118130
 GameObject:
   m_ObjectHideFlags: 0

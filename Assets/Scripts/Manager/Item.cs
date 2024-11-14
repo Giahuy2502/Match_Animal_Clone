@@ -10,7 +10,9 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI levelTxt;
     public Level levelData;
     [SerializeField] Button button;
+    [SerializeField] Image unlockImg;
     [SerializeField] public List<Image> imageList= new List<Image>();
+    UnlockLevel unlock =>UnlockLevel.Instance;
     AdsManager adsManager => AdsManager.Instance;
 
     private void OnEnable()
@@ -19,7 +21,7 @@ public class Item : MonoBehaviour
     }
     private void Start()
     {
-        FillStar();
+        UpdateUI();
     }
     private void OnDisable()
     {
@@ -27,7 +29,7 @@ public class Item : MonoBehaviour
     }
     public void OnClickButton()
     {
-        
+        if (!unlock.unlockData.unlocked[level-1]) return;
         BoardManager.levelCurrent = level;
         InterstitialAd.WatchedAd.AddListener(LoadPlayScene);
         ShowAd();
@@ -54,6 +56,15 @@ public class Item : MonoBehaviour
         for(int i = 0;i<starFill;i++)
         {
             imageList[i].enabled = true;
+        }
+    }
+    void UpdateUI()
+    {
+        if (!unlock.unlockData.unlocked[level-1]) unlockImg.enabled = true;
+        else
+        {
+            unlockImg.enabled = false;
+            FillStar();
         }
     }
 }

@@ -53,6 +53,7 @@ public class ToolByUIManager : MonoBehaviour
     public void OnUndoButton()
     {
         SetIndex(6);
+        if (DataGame.undoCell.Count == 0) return;
         if (ResourceManager.GetUndoCount() <= 0 && ResourceManager.GetCoin() < 300)
         {
             // khong undo duoc
@@ -74,7 +75,7 @@ public class ToolByUIManager : MonoBehaviour
         GameObject undoCell;
         while (true)
         {
-            if (DataGame.undoCell.Count == 0) return;
+            
             undoCell = DataGame.undoCell.Pop();
             if (undoCell != null)
             {

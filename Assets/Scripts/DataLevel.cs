@@ -8,6 +8,8 @@ public class DataLevel : ScriptableObject,ICloneable
 {
     [SerializeField] private List<Level> levels;
     public int levelCount => levels.Count;
+
+
     public List<Level> GetListLevels() =>levels;
     private List<Level> Levels => levels;
     public Level GetDataLevel(int id) => Levels[id];
@@ -34,7 +36,6 @@ public class Level
     [SerializeField] private TextAsset csvFile;
     [SerializeField] private int countAllCell;
     [SerializeField] private List<SetUpNumberCell> setUpNumbers;
-
     public int GetCountAllCell() => countAllCell;
     public int GetLevel() => level;
     public int GetLayer() => layer;

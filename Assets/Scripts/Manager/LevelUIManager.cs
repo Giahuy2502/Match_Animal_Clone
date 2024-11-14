@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,19 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] DataLevel dataLevel;
     [SerializeField] GameObject prefab;
     [SerializeField] Transform position;
+    
     AudioSourceManager audioSourceManager => AudioSourceManager.Instance;
+    UnlockLevel unlock =>UnlockLevel.Instance;
 
     private void OnEnable()
     {
-        for(var i = 0; i < dataLevel.levelCount; i++)
+        //PlayerPrefs.DeleteKey("unlockKey");
+       
+        for (var i = 0; i < dataLevel.levelCount; i++)
         {
             InitButton(i);
         }
+       
     }
 
     private void InitButton(int i)
@@ -25,9 +31,14 @@ public class LevelUIManager : MonoBehaviour
         item.level = i + 1;
         item.levelTxt.text = (i + 1).ToString();
         item.levelData = dataLevel.GetDataLevel(i);
+        if (i == 0) unlock.unlockData.unlocked[i] = true;
+        //Debug.Log(unlock.unlocked[i]);
     }
 
-    
+    public void OnApplicationQuit()
+    {
+        unlock.SaveData();
+    }
     public void OnSoundButton(int index)
     {
         audioSourceManager.PlayAudio(index);
